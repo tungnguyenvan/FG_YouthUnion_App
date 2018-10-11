@@ -1,0 +1,14 @@
+package com.dev.nguyenvantung.fg_app.utils;
+
+public class AppConstants {
+    public static final String END_POINT = "http://192.168.1.13/FG-YouthUnion/public/api/v1/";
+
+    public static final String TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjY0MWYxMzcwNThiNjQ3ZDExMTBlOWY2M2QwOTQwN2U0NzhlY2MzODU3ZDAyNDExNjBjZmZhZjJkNjE0ZWY3OTFiMTE5NTIyOTk0ZDljYzVhIn0.eyJhdWQiOiIxIiwianRpIjoiNjQxZjEzNzA1OGI2NDdkMTExMGU5ZjYzZDA5NDA3ZTQ3OGVjYzM4NTdkMDI0MTE2MGNmZmFmMmQ2MTRlZjc5MWIxMTk1MjI5OTRkOWNjNWEiLCJpYXQiOjE1MzkyNTU1NjksIm5iZiI6MTUzOTI1NTU2OSwiZXhwIjoxNTcwNzkxNTY5LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.acS_RpzEetaf5_uXbQqTLNEyAcEc7mp7v80J0UPvug0T9-Yx3oQI74aRSpdQtBKSeZXdSM5iYkd6XqIlJ4nyJQ2KJvFn0JSBwhLCP-yttyjivj-_bHTGpV1Hau8uw4OOldEF4z3JBD9a-mcgXGm-ZPU8kfGyjKaj9lYs4EhRrIB0oM9WPcr4l1tlLCienkOlY8KtoUNWi5YJzn2IiQjzK_lWLiK-rYotqAAoY1vDhceNiUKtKAll-jGdpSEbFWLNBW6HZXaIZub68FFKj6H4v5EgT0qSelSilozK53Ffvfg1fOcVqiKJJTgQM0pHqMcIn69EgmaMIPKVhNb_SMLH_ScEZlfKc0_F0yU3sx9Xza4FSszzwLKM09ApKAmOnPXpI2WYxZwM7e7-0W5vdRBRny-mlSLcMMhz71-MvPIZ_TExTcY4ZIXqWowIr475wgN9LQLsKkW3gtjSPpP-AMXDA-vMfHNK8KFwrrk6D3YfG2ote46p6RVcbAAafxG6IrWjZCrX1PGd28yrxGjyhANvOilTC2di3mT8yRg-8_RaxBu3eBEH7LUNiOE3TWcnu_Ro4UUHhXAbRrpBxIAelWltrzAQ4dzg8MVxWo656k8gjQwoL3VhkkMGOWDghSW437hcsGrHddmTMLuSgoMbrhOYLELPimY-BDtGaeXmrZ2MEm4";
+
+    public static final String API_TOKEN = "apiToken";
+    public static final String BEARER = "Bearer ";
+    public static final String AUTHORIZATION = "Authorization";
+
+
+    public static final String APP_PREF = "App_pref";
+}
