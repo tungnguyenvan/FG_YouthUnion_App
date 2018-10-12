@@ -1,4 +1,4 @@
-package com.dev.nguyenvantung.fg_app.ui.main.fragment.coming;
+package com.dev.nguyenvantung.fg_app.ui.main.fragment.hoatdong;
 
 
 import android.os.Bundle;
@@ -26,12 +26,12 @@ public class ComingFragment extends Fragment {
         return new ComingFragment();
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_coming, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_coming, container, false);
+        return view;
     }
 
 }
