@@ -1,44 +1,115 @@
 package com.dev.nguyenvantung.fg_app.data.source.remote.response;
 
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
 public class BaseResponse implements Serializable {
-    @SerializedName("status")
+    @SerializedName("links")
     @Expose
-    private Integer status;
-
-    @SerializedName("message")
+    private Links links;
+    @SerializedName("meta")
     @Expose
-    private String message;
+    private Meta meta;
 
-    @SerializedName("success")
-    @Expose
-    private Boolean success;
-
-    public Integer getStatus() {
-        return status;
+    public Links getLinks() {
+        return links;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setLinks(Links links) {
+        this.links = links;
     }
 
-    public String getMessage() {
-        return message;
+    public Meta getMeta() {
+        return meta;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setMeta(Meta meta) {
+        this.meta = meta;
     }
 
-    public Boolean getSuccess() {
-        return success;
+    private class Links {
+        @SerializedName("first")
+        @Expose
+        private String first;
+        @SerializedName("last")
+        @Expose
+        private String last;
+        @SerializedName("prev")
+        @Expose
+        private Object prev;
+        @SerializedName("next")
+        @Expose
+        private String next;
+
+        public String getFirst() {
+            return first;
+        }
+
+        public String getLast() {
+            return last;
+        }
+
+        public Object getPrev() {
+            return prev;
+        }
+
+        public String getNext() {
+            return next;
+        }
     }
 
-    public void setSuccess(Boolean success) {
-        this.success = success;
+    private class Meta {
+        @SerializedName("current_page")
+        @Expose
+        private Integer currentPage;
+        @SerializedName("from")
+        @Expose
+        private Integer from;
+        @SerializedName("last_page")
+        @Expose
+        private Integer lastPage;
+        @SerializedName("path")
+        @Expose
+        private String path;
+        @SerializedName("per_page")
+        @Expose
+        private Integer perPage;
+        @SerializedName("to")
+        @Expose
+        private Integer to;
+        @SerializedName("total")
+        @Expose
+        private Integer total;
+
+        public Integer getCurrentPage() {
+            return currentPage;
+        }
+
+        public Integer getFrom() {
+            return from;
+        }
+
+        public Integer getLastPage() {
+            return lastPage;
+        }
+
+        public String getPath() {
+            return path;
+        }
+
+        public Integer getPerPage() {
+            return perPage;
+        }
+
+        public Integer getTo() {
+            return to;
+        }
+
+        public Integer getTotal() {
+            return total;
+        }
     }
 }
