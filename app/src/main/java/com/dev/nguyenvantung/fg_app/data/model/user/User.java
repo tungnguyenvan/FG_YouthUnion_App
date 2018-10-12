@@ -1,12 +1,10 @@
 package com.dev.nguyenvantung.fg_app.data.model.user;
 
+import com.dev.nguyenvantung.fg_app.data.model.base.BaseModel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class User {
-    @SerializedName("id")
-    @Expose
-    private Integer id;
+public class User extends BaseModel{
     @SerializedName("username")
     @Expose
     private String username;
@@ -19,20 +17,6 @@ public class User {
     @SerializedName("role")
     @Expose
     private UserRole role;
-    @SerializedName("created_at")
-    @Expose
-    private UserCreatedAt createdAt;
-    @SerializedName("updated_at")
-    @Expose
-    private UserUpdatedAt updatedAt;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;
@@ -62,23 +46,4 @@ public class User {
         return role;
     }
 
-    public void setRole(UserRole role) {
-        this.role = role;
-    }
-
-    public UserCreatedAt getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(UserCreatedAt createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public UserUpdatedAt getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(UserUpdatedAt updatedAt) {
-        this.updatedAt = updatedAt;
-    }
 }
