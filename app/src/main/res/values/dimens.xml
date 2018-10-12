@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="height_toolbar_bottombar">56dp</dimen>
+    <dimen name="margin_lefr_right">8dp</dimen>
+    <dimen name="margin_item_top_bottom">4dp</dimen>
+    <dimen name="padding_default">8dp</dimen>
+    <dimen name="radius_cartview_default">5dp</dimen>
+    <dimen name="elevation_cartview_default">8dp</dimen>
+    <dimen name="font_size_title_default">24sp</dimen>
 </resources>
