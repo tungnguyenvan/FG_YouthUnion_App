@@ -20,10 +20,10 @@ public class HoatDong {
     private String desc;
     @SerializedName("from_date")
     @Expose
-    private String fromDate;
+    private Date fromDate;
     @SerializedName("end_date")
     @Expose
-    private String endDate;
+    private Date endDate;
     @SerializedName("hoc_ky")
     @Expose
     private HocKy hocKy;
@@ -51,24 +51,24 @@ public class HoatDong {
         return desc;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
-    public String getFromDate() {
+    public Date getFromDate() {
         return fromDate;
     }
 
-    public void setFromDate(String fromDate) {
+    public void setFromDate(Date fromDate) {
         this.fromDate = fromDate;
     }
 
-    public String getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public HocKy getHocKy() {

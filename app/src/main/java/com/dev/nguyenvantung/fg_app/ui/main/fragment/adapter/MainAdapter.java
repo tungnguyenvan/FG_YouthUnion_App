@@ -1,4 +1,4 @@
-package com.dev.nguyenvantung.fg_app.ui.main;
+package com.dev.nguyenvantung.fg_app.ui.main.fragment.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
