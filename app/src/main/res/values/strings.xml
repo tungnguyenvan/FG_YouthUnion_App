@@ -3,4 +3,12 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name_logo">Modern</string>
+    <string name="title_login">Login With Email Office365</string>
+    <string name="office365">Office365</string>
+    <string name="title_login_or">OR</string>
+    <string name="password">Password</string>
+    <string name="your_password">Your password</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="login">Login</string>
 </resources>
