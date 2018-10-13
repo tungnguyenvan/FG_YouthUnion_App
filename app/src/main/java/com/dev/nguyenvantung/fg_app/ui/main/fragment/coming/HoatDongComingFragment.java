@@ -1,4 +1,4 @@
-package com.dev.nguyenvantung.fg_app.ui.main.fragment.hoatdong;
+package com.dev.nguyenvantung.fg_app.ui.main.fragment.coming;
 
 
 import android.os.Bundle;
@@ -12,18 +12,18 @@ import com.dev.nguyenvantung.fg_app.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ComingFragment extends Fragment {
-    private static ComingFragment instance;
+public class HoatDongComingFragment extends Fragment {
+    private static HoatDongComingFragment instance;
 
-    public ComingFragment() {
+    public HoatDongComingFragment() {
         // Required empty public constructor
     }
 
     public static Fragment getInstance(){
         if (instance == null){
-            instance = new ComingFragment();
+            instance = new HoatDongComingFragment();
         }
-        return new ComingFragment();
+        return new HoatDongComingFragment();
     }
 
     @Override

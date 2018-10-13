@@ -5,8 +5,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import com.dev.nguyenvantung.fg_app.R;
-import com.dev.nguyenvantung.fg_app.ui.main.fragment.hoatdong.ComingFragment;
-import com.dev.nguyenvantung.fg_app.ui.main.fragment.end.EndFragment;
+import com.dev.nguyenvantung.fg_app.ui.main.fragment.adapter.MainAdapter;
+import com.dev.nguyenvantung.fg_app.ui.main.fragment.coming.HoatDongComingFragment;
+import com.dev.nguyenvantung.fg_app.ui.main.fragment.end.HoatDongEndFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,8 +27,8 @@ public class MainActivity extends AppCompatActivity{
 
     private void initViewPager() {
         MainAdapter mainAdapter = new MainAdapter(getSupportFragmentManager());
-        mainAdapter.addFragment(EndFragment.getInstance());
-        mainAdapter.addFragment(ComingFragment.getInstance());
+        mainAdapter.addFragment(HoatDongEndFragment.getInstance());
+        mainAdapter.addFragment(HoatDongComingFragment.getInstance());
         main_viewpager.setAdapter(mainAdapter);
     }
 
