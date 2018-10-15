@@ -9,29 +9,28 @@ import android.widget.TextView;
 
 import com.dev.nguyenvantung.fg_app.R;
 import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDong;
-import com.dev.nguyenvantung.fg_app.ui.lcdoan.adapter.LCDoanAdapter;
+import com.dev.nguyenvantung.fg_app.utils.helper.DateHelper;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class HoatDongAdapter extends RecyclerView.Adapter<HoatDongAdapter.ViewHolder>{
+    private static final String TAG = "HoatDongAdapter ";
     private List<HoatDong> listHoatDong;
-    private SimpleDateFormat fm = new SimpleDateFormat("dd-MM-yyyy");
-    private Date currentDate = Calendar.getInstance().getTime();
-    private String valid_until = "1-2-1990";
+    private SimpleDateFormat fm = new SimpleDateFormat("yyyy/MM/dd");
+    private DateHelper dateHelper = new DateHelper();
     public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.item_hoatdong_txt_name)
         TextView txt_name;
         @BindView(R.id.item_hoatdong_txt_desc)
         TextView txt_desc;
-        @BindView(R.id.item_hoatdong_txt_date)
-        TextView txt_date;
+        @BindView(R.id.item_hoatdong_txt_from_date)
+        TextView txt_from_date;
+        @BindView(R.id.item_hoatdong_txt_to_date)
+        TextView txt_to_date;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -53,18 +52,14 @@ public class HoatDongAdapter extends RecyclerView.Adapter<HoatDongAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-
-        viewHolder.txt_name.setText(listHoatDong.get(i).getName());
-        viewHolder.txt_desc.setText(listHoatDong.get(i).getDesc());
-        viewHolder.txt_date.setText("Từ ngày " + splitDate(listHoatDong.get(i).getFromDate()) +
-                " Đến ngày " + splitDate(listHoatDong.get(i).getEndDate()));
-
-
-    }
-
-    private String splitDate(Date date) {
-        String strDate = this.fm.format(date);
-        return strDate;
+        HoatDong hoatDong = listHoatDong.get(i);
+        String strDate = fm.format(hoatDong.getFromDate());
+        viewHolder.txt_name.setText(hoatDong.getName());
+        viewHolder.txt_desc.setText(hoatDong.getDesc());
+        DateHelper.date date = DateHelper.getInstance();
+        date = dateHelper.splitDate(strDate);
+        viewHolder.txt_from_date.setText(date.getDay() + "/" + date.getMonth());
+        viewHolder.txt_to_date.setText(this.fm.format(hoatDong.getEndDate()));
     }
 
     @Override

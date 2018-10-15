@@ -1,4 +1,4 @@
-package com.dev.nguyenvantung.fg_app.ui.main.fragment.hoatdong;
+package com.dev.nguyenvantung.fg_app.ui.main.fragment.end;
 
 import android.util.Log;
 
@@ -9,13 +9,13 @@ import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
 import io.reactivex.SingleObserver;
 import io.reactivex.disposables.Disposable;
 
-public class HoatDongPresenter implements HoatDongConstract.Presenter{
-    public static final String TAG = "HoatDongPresenter: ";
-    private HoatDongConstract.View mView;
+public class HoatDongEndedPresenter implements HoatDongEndedConstract.Presenter {
+    public static final String TAG = "HDEndedPresenter: ";
+    private HoatDongEndedConstract.View mView;
     private HoatDongRepository mHoatDongRepository;
     private SchedulerProvider mSchedulerProvider;
 
-    public HoatDongPresenter(HoatDongRepository mHoatDongRepository, SchedulerProvider mSchedulerProvider) {
+    public HoatDongEndedPresenter(HoatDongRepository mHoatDongRepository, SchedulerProvider mSchedulerProvider) {
         this.mHoatDongRepository = mHoatDongRepository;
         this.mSchedulerProvider = mSchedulerProvider;
     }
@@ -43,7 +43,7 @@ public class HoatDongPresenter implements HoatDongConstract.Presenter{
                 });
     }
 
-    public void setView(HoatDongConstract.View view) {
+    public void setView(HoatDongEndedConstract.View view) {
         this.mView = view;
     }
 

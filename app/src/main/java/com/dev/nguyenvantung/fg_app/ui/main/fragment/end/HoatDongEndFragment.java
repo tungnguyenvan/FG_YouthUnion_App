@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +14,7 @@ import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDong;
 import com.dev.nguyenvantung.fg_app.data.repository.HoatDongRepository;
 import com.dev.nguyenvantung.fg_app.data.source.local.HoatDongLocalDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.HoatDongRemoteDataSource;
-import com.dev.nguyenvantung.fg_app.ui.lcdoan.adapter.LCDoanAdapter;
 import com.dev.nguyenvantung.fg_app.ui.main.fragment.adapter.HoatDongAdapter;
-import com.dev.nguyenvantung.fg_app.ui.main.fragment.hoatdong.HoatDongConstract;
-import com.dev.nguyenvantung.fg_app.ui.main.fragment.hoatdong.HoatDongPresenter;
 import com.dev.nguyenvantung.fg_app.utils.AppConstants;
 import com.dev.nguyenvantung.fg_app.utils.AppPref;
 import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
@@ -32,10 +28,10 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HoatDongEndFragment extends Fragment implements HoatDongConstract.View{
+public class HoatDongEndFragment extends Fragment implements HoatDongEndedConstract.View{
     private static HoatDongEndFragment instance;
     private static final String TAG = "HoatDongEndFragment: ";
-    private HoatDongConstract.Presenter mPresenter;
+    private HoatDongEndedConstract.Presenter mPresenter;
     // RecycleView
     @BindView(R.id.rv_hoatdong_end)
     protected RecyclerView rv_hoatdong_end;
@@ -65,7 +61,7 @@ public class HoatDongEndFragment extends Fragment implements HoatDongConstract.V
         AppPref.getInstance(getContext()).putApiToken(AppConstants.TOKEN);
         HoatDongRepository hoatDongRepository = new HoatDongRepository(HoatDongLocalDataSource.getInstance(),
                 HoatDongRemoteDataSource.getInstance(getContext()));
-        mPresenter = new HoatDongPresenter(hoatDongRepository, SchedulerProvider.getInstance());
+        mPresenter = new HoatDongEndedPresenter(hoatDongRepository, SchedulerProvider.getInstance());
         mPresenter.setView(this);
         mPresenter.listHoatDong(AppConstants.BEARER + AppPref.getInstance(getContext()).getApiToken());
 
