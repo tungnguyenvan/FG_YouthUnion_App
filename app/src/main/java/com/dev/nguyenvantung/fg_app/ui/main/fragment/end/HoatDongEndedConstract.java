@@ -1,20 +1,18 @@
-package com.dev.nguyenvantung.fg_app.ui.main.fragment.hoatdong;
+package com.dev.nguyenvantung.fg_app.ui.main.fragment.end;
 
 
-
-import android.view.View;
 
 import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDong;
 
 import java.util.List;
 
-public interface HoatDongConstract {
+public interface HoatDongEndedConstract {
     interface View{
         void setListHoatDong(List<HoatDong> listHoatDong);
     }
 
     interface Presenter{
         void listHoatDong(String token);
-        void setView(HoatDongConstract.View view);
+        void setView(HoatDongEndedConstract.View view);
     }
 }

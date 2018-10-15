@@ -5,6 +5,7 @@ import com.dev.nguyenvantung.fg_app.data.model.hocky.HocKy;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class HoatDong {
