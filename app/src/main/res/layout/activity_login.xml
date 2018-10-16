@@ -126,6 +126,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <EditText
+            android:id="@+id/login_txt_email"
             android:inputType="textEmailAddress"
             android:textSize="13sp"
             android:textColor="@color/colorBlack"
@@ -149,6 +150,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <EditText
+            android:id="@+id/login_txt_password"
             android:textSize="13sp"
             android:hint="@string/your_password"
             android:inputType="textPassword"
@@ -168,6 +170,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <CheckBox
+            android:id="@+id/login_remenber_me"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
@@ -184,6 +187,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/login_btn_sigin"
         android:elevation="0dp"
         android:gravity="center"
         android:text="@string/login"
