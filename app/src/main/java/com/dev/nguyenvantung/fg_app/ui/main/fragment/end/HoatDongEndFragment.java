@@ -58,7 +58,6 @@ public class HoatDongEndFragment extends Fragment implements HoatDongEndedConstr
         ButterKnife.bind(this, view);
         initRecycleview();
 
-        AppPref.getInstance(getContext()).putApiToken(AppConstants.TOKEN);
         HoatDongRepository hoatDongRepository = new HoatDongRepository(HoatDongLocalDataSource.getInstance(),
                 HoatDongRemoteDataSource.getInstance(getContext()));
         mPresenter = new HoatDongEndedPresenter(hoatDongRepository, SchedulerProvider.getInstance());

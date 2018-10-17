@@ -107,8 +107,7 @@ public class LoginActivity extends AppCompatActivity implements LoginConstact.Vi
 
     @Override
     public void loginSuccess(LoginResponse mLoginResponse) {
-        AppPref appPref = new AppPref(this);
-        appPref.putApiToken(mLoginResponse.getAccess_token());
+        AppPref.getInstance(this).putApiToken(mLoginResponse.getAccess_token());
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
