@@ -33,7 +33,6 @@ public class UserActivity extends AppCompatActivity implements UserConstact.View
         setContentView(R.layout.activity_user);
         ButterKnife.bind(this);
 
-        AppPref.getInstance(this).putApiToken(AppConstants.TOKEN);
         UserRepository userRepository = new UserRepository(UserLocalDataSource.getInstance(),
                 UserRemoteDataSource.getInstance(this));
         mPresenter = new UserPresenter(userRepository, SchedulerProvider.getInstance());

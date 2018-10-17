@@ -37,7 +37,7 @@ public class LCDoanActivity extends AppCompatActivity implements LCDoanConstact.
         ButterKnife.bind(this);
 
         initRecyclerView();
-        AppPref.getInstance(this).putApiToken(AppConstants.TOKEN);
+
         LCDoanRepository lcDoanRepository = new LCDoanRepository(LCDoanLocalDataSource.getInstance(),
                 LCDoanRemoteDataSource.getInstance(this));
 
