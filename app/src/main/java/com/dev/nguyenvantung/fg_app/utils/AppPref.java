@@ -28,4 +28,35 @@ public class AppPref {
     public String getApiToken(){
         return preference.getString(AppConstants.API_TOKEN, "");
     }
+
+    public void putEmail(String email){
+        SharedPreferences.Editor editor = preference.edit();
+        editor.putString(AppConstants.EMAIL_PREF, email);
+        editor.commit();
+    }
+
+    public String getEmail(){
+        return preference.getString(AppConstants.EMAIL_PREF, "");
+    }
+
+    public void putPassword(String password){
+        SharedPreferences.Editor editor = preference.edit();
+        editor.putString(AppConstants.PASSWORD_PREF, password);
+        editor.commit();
+    }
+
+    public String getPassword(){
+        return preference.getString(AppConstants.PASSWORD_PREF, "");
+    }
+
+    public void putRememberMe(boolean checked){
+        SharedPreferences.Editor editor = preference.edit();
+        if (checked) editor.putBoolean(AppConstants.REMEMBER_PREF, false);
+        else editor.putBoolean(AppConstants.REMEMBER_PREF, true);
+        editor.commit();
+    }
+
+    public boolean getRemember(){
+        return preference.getBoolean(AppConstants.REMEMBER_PREF, false);
+    }
 }
