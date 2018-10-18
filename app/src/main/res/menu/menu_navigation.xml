@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <group android:checkableBehavior="single">
+        <item android:title="Hoạt động"
+            android:id="@+id/mnu_hoatdong"/>
+        <item android:title="@string/LCDoan"
+            android:id="@+id/mnu_lcdoan"/>
+    </group>
+
+    <item android:title="Support">
+        <menu>
+            <item android:title="@string/title_Contact"
+                android:icon="@drawable/ic_phone"
+                android:id="@+id/mnu_fgdev_contact"/>
+            <item android:title="@string/title_github"
+                android:icon="@drawable/ic_github"
+                android:id="@+id/mnu_github"/>
+            <item android:title="About"
+                android:icon="@drawable/ic_information"
+                android:id="@+id/mnu_info"/>
+        </menu>
+    </item>
+</menu>

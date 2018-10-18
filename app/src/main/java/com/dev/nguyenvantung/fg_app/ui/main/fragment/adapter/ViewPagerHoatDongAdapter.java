@@ -7,10 +7,10 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainAdapter extends FragmentPagerAdapter {
+public class ViewPagerHoatDongAdapter extends FragmentPagerAdapter {
     private List<Fragment> listFragment = new ArrayList<>();
 
-    public MainAdapter(FragmentManager fm) {
+    public ViewPagerHoatDongAdapter(FragmentManager fm) {
         super(fm);
     }
 
