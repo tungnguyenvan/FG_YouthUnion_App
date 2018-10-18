@@ -9,8 +9,6 @@ import java.util.List;
 public interface HoatDongEndedConstract {
     interface View{
         void setListHoatDong(List<HoatDong> listHoatDong);
-        void showProgress();
-        void dismissProgress();
     }
 
     interface Presenter{

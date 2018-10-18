@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 
 import com.dev.nguyenvantung.fg_app.R;
 import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDong;
@@ -36,8 +35,6 @@ public class HoatDongEndFragment extends Fragment implements HoatDongEndedConstr
     // RecycleView
     @BindView(R.id.rv_hoatdong_end)
     protected RecyclerView rv_hoatdong_end;
-    @BindView(R.id.progress_end)
-    public ProgressBar progressBar;
 
     private HoatDongAdapter hoatDongAdapter;
     private List<HoatDong> listHoatDong;
@@ -85,15 +82,5 @@ public class HoatDongEndFragment extends Fragment implements HoatDongEndedConstr
     public void setListHoatDong(List<HoatDong> listHoatDong) {
         this.listHoatDong.addAll(listHoatDong);
         hoatDongAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void showProgress() {
-        progressBar.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void dismissProgress() {
-        progressBar.setVisibility(View.INVISIBLE);
     }
 }
