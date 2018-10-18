@@ -46,16 +46,30 @@ public class LoginActivity extends AppCompatActivity implements LoginConstact.Vi
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
-        //initProgress
-        initProgressbar();
-
         //set Presenter
         LoginRepository loginRepository = new LoginRepository(LoginRemoteDataSource.getInstance(this));
         mPresenter  = new LoginPresenter(loginRepository, SchedulerProvider.getInstance());
         mPresenter.setView(this);
 
+        //initProgress
+        initProgressbar();
         //setAction
         btnSigin.setOnClickListener(this);
+        //init view
+        initView();
+        //check login
+        checkLogin();
+    }
+
+    private void checkLogin() {
+        if (AppPref.getInstance(this).getRemember()){
+            login();
+        }
+    }
+
+    private void initView() {
+        edEmail.setText(AppPref.getInstance(this).getEmail());
+        edPassword.setText(AppPref.getInstance(this).getPassword());
     }
 
     private void initProgressbar(){
@@ -107,9 +121,15 @@ public class LoginActivity extends AppCompatActivity implements LoginConstact.Vi
 
     @Override
     public void loginSuccess(LoginResponse mLoginResponse) {
-        AppPref.getInstance(this).putApiToken(mLoginResponse.getAccess_token());
+        AppPref appPref = AppPref.getInstance(this);
+        appPref.putApiToken(mLoginResponse.getAccess_token());
+        appPref.putEmail(edEmail.getText().toString());
+        appPref.putPassword(edPassword.getText().toString());
+        appPref.putRememberMe(loginRemenberMe.isChecked());
+
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override
