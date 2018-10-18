@@ -1,6 +1,7 @@
 package com.dev.nguyenvantung.fg_app.ui.main.fragment.end;
 
 import android.util.Log;
+import android.widget.ProgressBar;
 
 import com.dev.nguyenvantung.fg_app.data.repository.HoatDongRepository;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.hoatdong.HoatDongResponse;
@@ -22,6 +23,7 @@ public class HoatDongEndedPresenter implements HoatDongEndedConstract.Presenter 
 
     @Override
     public void listHoatDong(String token) {
+        mView.showProgress();
         mHoatDongRepository.listHoatDong(token)
                 .subscribeOn(mSchedulerProvider.io())
                 .observeOn(mSchedulerProvider.ui())
@@ -48,10 +50,12 @@ public class HoatDongEndedPresenter implements HoatDongEndedConstract.Presenter 
     }
 
    private void handleSuccess(HoatDongResponse hoatDongResponse) {
+        mView.dismissProgress();
         mView.setListHoatDong(hoatDongResponse.getData());
    }
 
     private void handleError(Throwable e) {
+        mView.dismissProgress();
         Log.d(TAG, e.toString());
     }
 }
