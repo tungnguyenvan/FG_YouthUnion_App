@@ -1,12 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/main_drawlayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/main_viewpager"
+    <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:id="@+id/main_framelayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <ImageView
+            android:id="@+id/main_img_menu"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="@dimen/padding_default"
+            android:src="@drawable/ic_menu_24dp"
+            android:layout_margin="@dimen/margin_default"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/main_navigation_view"
+        app:headerLayout="@layout/navigation_header"
+        app:menu="@menu/menu_navigation"
+        android:fitsSystemWindows="true"
+        android:layout_gravity="start"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"/>
 
-</RelativeLayout>
+</android.support.v4.widget.DrawerLayout>

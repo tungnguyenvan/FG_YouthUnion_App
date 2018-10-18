@@ -1,34 +1,44 @@
 package com.dev.nguyenvantung.fg_app.ui.main;
 
 
-import android.support.v4.view.ViewPager;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import com.dev.nguyenvantung.fg_app.R;
-import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDong;
-import com.dev.nguyenvantung.fg_app.data.repository.HoatDongRepository;
-import com.dev.nguyenvantung.fg_app.data.source.local.HoatDongLocalDataSource;
-import com.dev.nguyenvantung.fg_app.data.source.remote.HoatDongRemoteDataSource;
-import com.dev.nguyenvantung.fg_app.ui.main.fragment.adapter.MainAdapter;
-import com.dev.nguyenvantung.fg_app.ui.main.fragment.coming.HoatDongComingFragment;
-import com.dev.nguyenvantung.fg_app.ui.main.fragment.end.HoatDongEndFragment;
-import com.dev.nguyenvantung.fg_app.ui.main.fragment.end.HoatDongEndedConstract;
-import com.dev.nguyenvantung.fg_app.ui.main.fragment.end.HoatDongEndedPresenter;
-import com.dev.nguyenvantung.fg_app.utils.AppConstants;
-import com.dev.nguyenvantung.fg_app.utils.AppPref;
-import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.Toast;
 
-import java.util.List;
+import com.dev.nguyenvantung.fg_app.R;
+import com.dev.nguyenvantung.fg_app.ui.lcdoan.LCDoanFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements HoatDongEndedConstract.View{
-    @BindView(R.id.main_viewpager)
-    public ViewPager main_viewpager;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
+    private static final String TAG = "MainActivity";
+    @BindView(R.id.main_drawlayout)
+    public DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle mToggle;
+    @BindView(R.id.main_navigation_view)
+    public NavigationView mainNavigationView;
+    @BindView(R.id.main_img_menu)
+    public ImageView img_menu;
+    @BindView(R.id.main_framelayout)
+    public FrameLayout frameLayout;
+    private FragmentManager mFragmentManager;
 
-    private HoatDongEndedConstract.Presenter mPresenter;
-    private com.dev.nguyenvantung.fg_app.ui.main.fragment.coming.HoatDongComingConstract.View mViewComing;
+    private Fragment mActive;
+    private Fragment hoatDongFragment = HoatDongFragment.getInstance(),
+            lcdoanFragment = LCDoanFragment.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,26 +46,62 @@ public class MainActivity extends AppCompatActivity implements HoatDongEndedCons
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        initViewPager();
-        mViewComing = HoatDongComingFragment.getMview();
+        mFragmentManager = getSupportFragmentManager();
+        mFragmentManager.beginTransaction().add(frameLayout.getId(), hoatDongFragment)
+                .add(frameLayout.getId(), lcdoanFragment).hide(lcdoanFragment).commit();
+        mActive = HoatDongFragment.getInstance();
 
-        AppPref.getInstance(this).putApiToken(AppConstants.TOKEN);
-        HoatDongRepository hoatDongRepository = new HoatDongRepository(HoatDongLocalDataSource.getInstance(),
-                HoatDongRemoteDataSource.getInstance(this));
-        mPresenter = new HoatDongEndedPresenter(hoatDongRepository, SchedulerProvider.getInstance());
-        mPresenter.setView(this);
-        mPresenter.listHoatDong(AppConstants.BEARER + AppPref.getInstance(this).getApiToken());
+        initDrawerLayout();
+        img_menu.setOnClickListener(this);
     }
 
-    private void initViewPager() {
-        MainAdapter mainAdapter = new MainAdapter(getSupportFragmentManager());
-        mainAdapter.addFragment(HoatDongEndFragment.getInstance());
-        mainAdapter.addFragment(HoatDongComingFragment.getInstance());
-        main_viewpager.setAdapter(mainAdapter);
+    private void initDrawerLayout(){
+        mToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
+        drawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+        mainNavigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void nextFragment(Fragment fragment){
+        mFragmentManager.beginTransaction().hide(mActive).show(fragment).commit();
+        mActive = fragment;
     }
 
     @Override
-    public void setListHoatDong(List<HoatDong> listHoatDong) {
-        mViewComing.setData(listHoatDong);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_navigation, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
+        if (mToggle.onOptionsItemSelected(item)){
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.main_img_menu:
+                drawerLayout.openDrawer(Gravity.START);
+                break;
+        }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()){
+            case R.id.mnu_hoatdong:
+                nextFragment(hoatDongFragment);
+                break;
+            case R.id.mnu_lcdoan:
+                nextFragment(lcdoanFragment);
+                break;
+        }
+        drawerLayout.closeDrawer(Gravity.START);
+        return false;
     }
 }
