@@ -22,6 +22,7 @@ public class HoatDongEndedPresenter implements HoatDongEndedConstract.Presenter 
 
     @Override
     public void listHoatDong(String token) {
+        mView.showProgressBar();
         mHoatDongRepository.listHoatDong(token)
                 .subscribeOn(mSchedulerProvider.io())
                 .observeOn(mSchedulerProvider.ui())
@@ -48,10 +49,12 @@ public class HoatDongEndedPresenter implements HoatDongEndedConstract.Presenter 
     }
 
    private void handleSuccess(HoatDongResponse hoatDongResponse) {
+        mView.dismissProgressBar();
         mView.setListHoatDong(hoatDongResponse.getData());
    }
 
     private void handleError(Throwable e) {
+        mView.dismissProgressBar();
         Log.d(TAG, e.toString());
     }
 }
