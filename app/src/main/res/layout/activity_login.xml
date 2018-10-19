@@ -192,7 +192,7 @@
         android:gravity="center"
         android:text="@string/login"
         android:textAllCaps="false"
-        android:background="@drawable/bg_button_login"
+        android:background="@drawable/bg_button"
         android:layout_marginLeft="@dimen/margin_lefr_right"
         android:layout_marginRight="@dimen/margin_lefr_right"
         android:layout_marginTop="@dimen/margin_16"
