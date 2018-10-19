@@ -14,7 +14,7 @@ public class BaseModel {
     @Expose
     private UpdatedAt updatedAt;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 

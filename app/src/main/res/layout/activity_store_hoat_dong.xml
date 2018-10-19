@@ -25,6 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <EditText
+                android:id="@+id/store_hoatdong_ed_name"
                 android:hint="@string/name_hoatdong"
                 android:gravity="center"
                 android:textColor="@color/colorBlack"
@@ -49,6 +50,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
+                    android:id="@+id/store_hoatdong_txt_start"
                     android:text="13/05/1998"
                     android:textColor="@color/colorBlack"
                     android:layout_gravity="center_vertical"
@@ -59,7 +61,7 @@
             </LinearLayout>
 
             <com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar
-                android:id="@+id/store_hoatdong_collapsing"
+                android:id="@+id/store_hoatdong_collapsing_start"
                 android:layout_marginLeft="@dimen/margin_default"
                 android:layout_marginRight="@dimen/margin_default"
                 app:textColor="@color/colorWhite"
@@ -84,6 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
+                    android:id="@+id/store_hoatdong_txt_end"
                     android:text="13/05/1998"
                     android:textColor="@color/colorBlack"
                     android:layout_gravity="center_vertical"
@@ -93,6 +96,7 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
             <com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar
+                android:id="@+id/store_hoatdong_collapsing_end"
                 android:layout_marginLeft="@dimen/margin_default"
                 android:layout_marginRight="@dimen/margin_default"
                 app:textColor="@color/colorWhite"
@@ -123,6 +127,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                     <Spinner
+                        android:id="@+id/store_hoatdong_sp_hocky"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
@@ -142,6 +147,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                     <Spinner
+                        android:id="@+id/store_hoatdong_sp_type"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
@@ -159,6 +165,7 @@
                 android:layout_height="wrap_content" />
 
             <EditText
+                android:id="@+id/store_hoatdong_ed_desc"
                 android:layout_margin="@dimen/margin_default"
                 android:minLines="6"
                 android:padding="@dimen/padding_default"
@@ -170,6 +177,7 @@
                 android:layout_height="wrap_content" />
 
             <Button
+                android:id="@+id/store_hoatdong_btn_create"
                 android:text="@string/create_hoatdong"
                 android:textColor="@color/colorBlack"
                 android:textAllCaps="false"
