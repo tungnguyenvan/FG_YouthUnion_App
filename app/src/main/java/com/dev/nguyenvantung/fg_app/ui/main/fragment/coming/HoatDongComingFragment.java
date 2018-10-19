@@ -2,10 +2,10 @@ package com.dev.nguyenvantung.fg_app.ui.main.fragment.coming;
 
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,12 +24,15 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HoatDongComingFragment extends Fragment implements com.dev.nguyenvantung.fg_app.ui.main.fragment.coming.HoatDongComingConstract.View {
+public class HoatDongComingFragment extends Fragment implements
+        HoatDongComingConstract.View, View.OnClickListener {
     private static HoatDongComingFragment instance;
     private static final String TAG = "HoatDongComing: ";
     private HoatDongEndedConstract.Presenter mPresenter;
     @BindView(R.id.rv_hoatdong_coming)
     protected RecyclerView rv_hoatdong_end;
+    @BindView(R.id.store_hoatdong)
+    protected FloatingActionButton store_hoatdong;
 
     private static com.dev.nguyenvantung.fg_app.ui.main.fragment.coming.HoatDongComingConstract.View mView;
 
@@ -60,6 +63,7 @@ public class HoatDongComingFragment extends Fragment implements com.dev.nguyenva
         View view = inflater.inflate(R.layout.fragment_coming, container, false);
         ButterKnife.bind(this,view);
         initRecycleview();
+        store_hoatdong.setOnClickListener(this);
         return view;
     }
 
@@ -73,10 +77,23 @@ public class HoatDongComingFragment extends Fragment implements com.dev.nguyenva
         rv_hoatdong_end.setAdapter(hoatDongAdapter);
     }
 
+    private void storeHoatDong(){
+
+    }
+
     @Override
     public void setData(List<HoatDong> listHoatdong) {
         if (this.listHoatDong == null) this.listHoatDong = new ArrayList<>();
         this.listHoatDong.addAll(listHoatdong);
         hoatDongAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.store_hoatdong:
+                storeHoatDong();
+                break;
+        }
     }
 }
