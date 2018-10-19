@@ -26,4 +26,11 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="create_hoatdong">Tạo hoạt động</string>
+    <string name="title_desc">Mô tả:</string>
+    <string name="title_type">Loại:</string>
+    <string name="title_hocky">Học kỳ:</string>
+    <string name="title_end">Kết thúc:</string>
+    <string name="title_start">Bắt đầu:</string>
+    <string name="name_hoatdong">Tên hoạt động</string>
 </resources>
