@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.dev.nguyenvantung.fg_app.data.source.remote.api.ApiLCDoan;
 import com.dev.nguyenvantung.fg_app.data.source.remote.api.ApiHoatDong;
+import com.dev.nguyenvantung.fg_app.data.source.remote.api.ApiLCDoanDetail;
 import com.dev.nguyenvantung.fg_app.data.source.remote.api.ApiLogin;
 import com.dev.nguyenvantung.fg_app.data.source.remote.api.ApiUser;
 import com.dev.nguyenvantung.fg_app.utils.AppConstants;
@@ -13,6 +14,14 @@ public class AppServiceClient extends ServiceClient {
     private static ApiLCDoan mApiLCDoan;
     private static ApiHoatDong mApiHoatDong;
     private static ApiLogin mApiLogin;
+    private static ApiLCDoanDetail mApiLCDoanDetail;
+
+    public static ApiLCDoanDetail getLCDoanDetailRemoteInstance(Context context){
+        if (mApiLCDoanDetail == null){
+            mApiLCDoanDetail = createService(context, AppConstants.END_POINT, ApiLCDoanDetail.class);
+        }
+        return mApiLCDoanDetail;
+    }
 
     public static ApiUser getUserRemoteInstance(Context context){
         if (mApiUser == null){

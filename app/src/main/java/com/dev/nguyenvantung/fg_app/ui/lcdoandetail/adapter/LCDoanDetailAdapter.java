@@ -1,4 +1,4 @@
-package com.dev.nguyenvantung.fg_app.ui.lcdoan.adapter;
+package com.dev.nguyenvantung.fg_app.ui.lcdoandetail.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -9,20 +9,22 @@ import android.widget.TextView;
 
 import com.dev.nguyenvantung.fg_app.R;
 import com.dev.nguyenvantung.fg_app.data.model.lcdoan.LCDoan;
+import com.dev.nguyenvantung.fg_app.data.model.user.User;
+import com.dev.nguyenvantung.fg_app.ui.lcdoan.adapter.LCDoanAdapter;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class LCDoanAdapter extends RecyclerView.Adapter<LCDoanAdapter.ViewHolder> {
-    private List<LCDoan> listLCDoan;
+public class LCDoanDetailAdapter extends RecyclerView.Adapter<LCDoanDetailAdapter.ViewHolder>{
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.item_lcdoan_txt_name)
-        public TextView txt_name;
-        @BindView(R.id.item_lcdoan_txt_desc)
-        public TextView txt_desc;
+    List<User> listUser;
+
+    public class ViewHolder extends RecyclerView.ViewHolder{
+
+        @BindView(R.id.item_lcdoan_detail_txt_username)
+        TextView txt_name;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -30,25 +32,25 @@ public class LCDoanAdapter extends RecyclerView.Adapter<LCDoanAdapter.ViewHolder
         }
     }
 
-    public LCDoanAdapter(List<LCDoan> listLCDoan){
-        this.listLCDoan = listLCDoan;
+    public LCDoanDetailAdapter (List<User> listUser) {
+        this.listUser = listUser;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new ViewHolder(LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.item_lcdoan, viewGroup, false));
+        return new LCDoanDetailAdapter.ViewHolder(LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.item_lcdoan_detail, viewGroup, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        viewHolder.txt_name.setText(listLCDoan.get(i).getName());
-        viewHolder.txt_desc.setText(listLCDoan.get(i).getDesc());
+            viewHolder.txt_name.setText(listUser.get(i).getUsername());
     }
 
     @Override
     public int getItemCount() {
-        return listLCDoan.size();
+        return listUser.size();
     }
+
 }
