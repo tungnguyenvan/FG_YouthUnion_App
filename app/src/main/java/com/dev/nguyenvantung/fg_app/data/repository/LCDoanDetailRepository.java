@@ -1,5 +1,6 @@
 package com.dev.nguyenvantung.fg_app.data.repository;
 
+
 import com.dev.nguyenvantung.fg_app.data.source.LCDoanDetailDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.lcdoandetail.LCDoanDetailResponse;
 
@@ -18,5 +19,10 @@ public class LCDoanDetailRepository implements LCDoanDetailDataSource.LocalDataS
     @Override
     public Single<LCDoanDetailResponse> listUser(String token) {
         return mRemoteDataSource.listUser(token);
+    }
+
+    @Override
+    public Single<LCDoanDetailResponse> getLCDoan(String token, int id) {
+        return mRemoteDataSource.getLCDoan(token, id);
     }
 }

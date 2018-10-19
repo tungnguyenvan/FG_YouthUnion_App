@@ -1,5 +1,6 @@
 package com.dev.nguyenvantung.fg_app.ui.lcdoan;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,10 +17,13 @@ import com.dev.nguyenvantung.fg_app.data.repository.LCDoanRepository;
 import com.dev.nguyenvantung.fg_app.data.source.local.LCDoanLocalDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.LCDoanRemoteDataSource;
 import com.dev.nguyenvantung.fg_app.ui.lcdoan.adapter.LCDoanAdapter;
+import com.dev.nguyenvantung.fg_app.ui.lcdoandetail.LCDoanDetailActivity;
 import com.dev.nguyenvantung.fg_app.utils.AppConstants;
 import com.dev.nguyenvantung.fg_app.utils.AppPref;
+import com.dev.nguyenvantung.fg_app.utils.navigator.Navigator;
 import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,7 +71,7 @@ public class LCDoanFragment extends Fragment implements LCDoanConstact.View{
 
     private void initRecyclerView() {
         listLCDoan = new ArrayList<>();
-        lcDoanAdapter = new LCDoanAdapter(listLCDoan);
+        lcDoanAdapter = new LCDoanAdapter(listLCDoan, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext().getApplicationContext(),
                 LinearLayoutManager.VERTICAL, false);
         rv_lcdoan.setHasFixedSize(true);
@@ -79,5 +83,13 @@ public class LCDoanFragment extends Fragment implements LCDoanConstact.View{
     public void setListLCDoan(List<LCDoan> listLCDoan) {
         this.listLCDoan.addAll(listLCDoan);
         lcDoanAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void nextPage(int id) {
+        Bundle bundle = new Bundle();
+        bundle.putInt(AppConstants.ID_LCD, id);
+        Navigator navigator = new Navigator(this);
+        navigator.startActivity(LCDoanDetailActivity.class, bundle);
     }
 }

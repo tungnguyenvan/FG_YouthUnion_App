@@ -59,7 +59,7 @@ public class HoatDongEndFragment extends Fragment implements HoatDongEndedConstr
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_end, container, false);
         ButterKnife.bind(this, view);
-        initRecycleview();
+        initRecyclerView();
 
         HoatDongRepository hoatDongRepository = new HoatDongRepository(HoatDongLocalDataSource.getInstance(),
                 HoatDongRemoteDataSource.getInstance(getContext()));
@@ -70,7 +70,7 @@ public class HoatDongEndFragment extends Fragment implements HoatDongEndedConstr
         return view;
     }
 
-    private void initRecycleview() {
+    private void initRecyclerView() {
         listHoatDong = new ArrayList<>();
         hoatDongAdapter = new HoatDongAdapter(listHoatDong);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),

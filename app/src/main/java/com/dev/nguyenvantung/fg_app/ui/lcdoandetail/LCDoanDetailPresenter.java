@@ -8,10 +8,11 @@ import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
 
 import io.reactivex.SingleObserver;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.exceptions.CompositeException;
 
 public class LCDoanDetailPresenter implements LCDoanDetailConstract.Presenter{
 
-    private static final String TAG = "LCDoanDetail";
+    private static final String TAG = LCDoanDetailPresenter.class.getName();
     private LCDoanDetailConstract.View mView;
     private LCDoanDetailRepository mRepository;
     private SchedulerProvider mSchedulerProvider;
@@ -21,8 +22,51 @@ public class LCDoanDetailPresenter implements LCDoanDetailConstract.Presenter{
         this.mSchedulerProvider = mSchedulerProvider;
     }
 
+    private void handleSuccess(LCDoanDetailResponse lcDoanDetailResponse) {
+//        mView.setListUser(lcDoanDetailResponse.getData());
+    }
+
+    private void handleError(Throwable e) {
+        Log.e(TAG, e.getMessage());
+    }
+
+    private void handleGetLCDoanSuccess(LCDoanDetailResponse lcDoanDetailResponse){
+        mView.dimissProgressbar();
+        mView.setLCDoan(lcDoanDetailResponse.getLcDoan());
+    }
+
+    private void handleGetLCDoanError(Throwable e){
+        mView.dimissProgressbar();
+        Log.e(TAG, e.getMessage());
+    }
+
     @Override
-    public void ListUser(String token) {
+    public void getLCDoan(String token, int id) {
+        mView.showProgressbar();
+        mRepository.getLCDoan(token, id)
+                .subscribeOn(mSchedulerProvider.io())
+                .observeOn(mSchedulerProvider.ui())
+                .subscribe(new SingleObserver<LCDoanDetailResponse>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(LCDoanDetailResponse lcDoanDetailResponse) {
+                        handleGetLCDoanSuccess(lcDoanDetailResponse);
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        handleGetLCDoanError(e);
+                    }
+                });
+    }
+
+    @Override
+    public void listUser(String token) {
         mRepository.listUser(token)
                 .subscribeOn(mSchedulerProvider.io())
                 .observeOn(mSchedulerProvider.ui())
@@ -34,22 +78,14 @@ public class LCDoanDetailPresenter implements LCDoanDetailConstract.Presenter{
 
                     @Override
                     public void onSuccess(LCDoanDetailResponse lcDoanDetailResponse) {
-                        handleSuccess(lcDoanDetailResponse);
+//                        handleSuccess(lcDoanDetailResponse);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        handleError(e);
+//                        handleError(e);
                     }
                 });
-    }
-
-    private void handleError(Throwable e) {
-        Log.e(TAG, e.toString());
-    }
-
-    private void handleSuccess(LCDoanDetailResponse lcDoanDetailResponse) {
-        mView.setListUser(lcDoanDetailResponse.getData());
     }
 
     @Override

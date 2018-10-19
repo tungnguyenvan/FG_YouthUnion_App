@@ -21,7 +21,7 @@
         </activity>
         <activity android:name=".ui.user.UserActivity" />
         <activity android:name=".ui.dashboard.DashboardActivity" />
-        <activity android:name=".ui.lcdoandetail.LCDoanDetailActivity"></activity>
+        <activity android:name=".ui.lcdoandetail.LCDoanDetailActivity"/>
     </application>
 
 </manifest>

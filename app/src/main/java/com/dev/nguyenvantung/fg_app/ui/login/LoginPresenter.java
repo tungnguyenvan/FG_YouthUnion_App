@@ -1,5 +1,7 @@
 package com.dev.nguyenvantung.fg_app.ui.login;
 
+import android.util.Log;
+
 import com.dev.nguyenvantung.fg_app.data.model.login.LoginRequesst;
 import com.dev.nguyenvantung.fg_app.data.repository.LoginRepository;
 import com.dev.nguyenvantung.fg_app.data.source.remote.LoginRemoteDataSource;
@@ -38,6 +40,7 @@ public class LoginPresenter implements LoginConstact.Presenter{
     }
 
     private void handleError(Throwable e){
+        Log.e(TAG, e.toString());
         mView.dimissProgressbarDialog();
         mView.loginFails();
     }

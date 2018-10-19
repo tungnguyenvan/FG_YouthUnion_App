@@ -2,6 +2,7 @@ package com.dev.nguyenvantung.fg_app.data.source.remote;
 
 import android.content.Context;
 
+import com.dev.nguyenvantung.fg_app.data.model.lcdoan.LCDoan;
 import com.dev.nguyenvantung.fg_app.data.source.LCDoanDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.LCDoanDetailDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.api.ApiLCDoanDetail;
@@ -30,4 +31,10 @@ public class LCDoanDetailRemoteDataSource implements LCDoanDetailDataSource.Remo
     public Single<LCDoanDetailResponse> listUser(String token) {
         return mApiLCDoanDetail.listUser(token);
     }
+
+    @Override
+    public Single<LCDoanDetailResponse> getLCDoan(String token, int id) {
+        return mApiLCDoanDetail.LCDoan(token, id);
+    }
+
 }

@@ -1,0 +1,218 @@
+[33mcommit 23caa684432e581580d94fd8ec67de2e63197dde[m[33m ([m[1;36mHEAD -> [m[1;32mFragmentHoatDongEnded[m[33m, [m[1;32mLCDoanDetail[m[33m)[m
+Author: quoctuan1998 <quoctuan1998@gmail.com>
+Date:   Fri Oct 19 08:56:51 2018 +0700
+
+    create LCDoanDetail
+
+[33mcommit 83f4a2b766f8cdac79851ea1b17e9befade7ae49[m[33m ([m[1;31mtuan/FragmentHoatDongEnded[m[33m)[m
+Author: quoctuan1998 <quoctuan1998@gmail.com>
+Date:   Thu Oct 18 14:41:04 2018 +0700
+
+    Update Progressbar loading
+
+[33mcommit ef7a13e5137a0031344648341a8ec3c1ead7c2ae[m
+Merge: f474da1 efee14d
+Author: quoctuan1998 <quoctuan1998@gmail.com>
+Date:   Thu Oct 18 14:41:27 2018 +0700
+
+    Merge branch 'develop' of https://github.com/tungnguyenvan/YouthUnion_App into develop
+
+[33mcommit efee14d74e877580bf1ee2096246ba29aecdc0b7[m
+Merge: 0d231f4 596bd53
+Author: Nguyen Van Tung <nguyentungtungtungnguyen@gmail.com>
+Date:   Thu Oct 18 14:40:01 2018 +0700
+
+    Merge pull request #12 from tungnguyenvan/update_login_2
+    
+    save status login
+
+[33mcommit 596bd531a71d4ca0a9461ef2a642f966e661d953[m
+Author: nguyen van tung <nguyentungtungtungnguyen@gmail.com>
+Date:   Thu Oct 18 14:39:21 2018 +0700
+
+    save status login
+
+[33mcommit f474da10d3222611bd113738311da6f0109e37e0[m
+Author: quoctuan1998 <quoctuan1998@gmail.com>
+Date:   Thu Oct 18 14:35:13 2018 +0700
+
+    Revert "Update Progressbar Loading"
+    
+    This reverts commit 84d15d50f42eb3bde33b317a63351f8e212155ec.
+
+[33mcommit 84d15d50f42eb3bde33b317a63351f8e212155ec[m
+Author: quoctuan1998 <quoctuan1998@gmail.com>
+Date:   Thu Oct 18 14:33:24 2018 +0700
+
+    Update Progressbar Loading
+
+[33mcommit 0d231f448cbf6142fed5f5be2bb8c6f042937189[m
+Merge: 4cc543f 5f95fa4
+Author: Nguyen Van Tung <nguyentungtungtungnguyen@gmail.com>
+Date:   Thu Oct 18 13:51:08 2018 +0700
+
+    Merge pull request #11 from tungnguyenvan/update_login
+    
+    update finish activity when next activity
+
+[33mcommit 5f95fa406fc6242405c524e26f5dc2037a3a3a55[m
+Author: nguyen van tung <nguyentungtungtungnguyen@gmail.com>
+Date:   Thu Oct 18 13:50:43 2018 +0700
+
+    update finish activity when next activity
+
+[33mcommit 4cc543fb76ae4de0173a2b7dab7d91e235fd3195[m
+Merge: 0cdd832 0bac3be
+Author: Nguyen Van Tung <nguyentungtungtungnguyen@gmail.com>
+Date:   Thu Oct 18 13:44:37 2018 +0700
+
+    Merge pull request #10 from tungnguyenvan/update_interface
+    
+    update interface app
+
+[33mcommit 0bac3beb085dc8043710c6b2484f9a7ff5329961[m
+Author: nguyen van tung <nguyentungtungtungnguyen@gmail.com>
+Date:   Thu Oct 18 13:43:06 2018 +0700
+
+    update interface app
+
+[33mcommit 0cdd832935dc3299f3ba46132c9d741cffc7b409[m
+Merge: 964e2df 0c03b29
+Author: Nguyen Van Tung <nguyentungtungtungnguyen@gmail.com>
+Date:   Wed Oct 17 15:28:26 2018 +0700
+
+    Merge pull request #9 from tungnguyenvan/update_token
+    
+    update get or put token
+
+[33mcommit 0c03b290005f2112c4d33f685016f7b847610a61[m
+Author: nguyen van tung <nguyentungtungtungnguyen@gmail.com>
+Date:   Wed Oct 17 15:28:07 2018 +0700
+
+    update get or put token
+
+[33mcommit 964e2dfb2ed2ec6eef8378f60c5a2047b5b88d95[m
+Merge: beb4e32 46432de
+Author: Nguyen Van Tung <nguyentungtungtungnguyen@gmail.com>
+Date:   Tue Oct 16 13:50:10 2018 +0700
+
+    Merge pull request #8 from tungnguyenvan/login
+    
+    login
+
+[33mcommit 46432de9d4a57ddad7cc25e26061e7088242d83e[m
+Author: tung nguyen van <nguyentungtungtungnguyen@gmail.com>
+Date:   Tue Oct 16 13:48:58 2018 +0700
+
+    login
+
+[33mcommit beb4e32bff045ad0289dd6d7d4d9a6ea2bfd30e3[m
+Merge: 6c4c9e0 221d953
+Author: Nguyen Van Tung <nguyentungtungtungnguyen@gmail.com>
+Date:   Mon Oct 15 12:45:47 2018 +0700
+
+    Merge pull request #7 from QuocTuan1998/FragmentHoatDongEnded
+    
+    update FragmentHoatDongEnded
+
+[33mcommit 221d95317963682b6605b9b612fbeabb3bbf16a2[m
+Author: quoctuan1998 <quoctuan1998@gmail.com>
+Date:   Mon Oct 15 10:46:09 2018 +0700
+
+    update FragmentHoatDongEnded
+
+[33mcommit 6c4c9e0006ed3101d0750ef37f00e61797644fe3[m
+Merge: 8151fa7 8698407
+Author: Nguyen Van Tung <nguyentungtungtungnguyen@gmail.com>
+Date:   Sat Oct 13 10:16:27 2018 +0700
+
+    Merge pull request #6 from tungnguyenvan/interface_login
+    
+    create interface user
+
+[33mcommit 8698407c11f08d7da418554b1c2fcd1d7a990445[m
+Author: nguyen van tung <nguyentungtungtungnguyen@gmail.com>
+Date:   Sat Oct 13 09:47:49 2018 +0700
+
+    create interface user
+
+[33mcommit 8151fa7109a13507ea07df1e01b5f9e21a43b165[m[33m ([m[1;32mFragmentHoatDongComing[m[33m)[m
+Merge: 96e8e24 b83060d
+Author: Nguyen Van Tung <nguyentungtungtungnguyen@gmail.com>
+Date:   Sat Oct 13 09:09:40 2018 +0700
+
+    Merge pull request #5 from QuocTuan1998/FragmentHoatDongEnded
+    
+    update FragmentHoatDongEnded
+
+[33mcommit b83060d9e91b8c50a69265483a53bbd2d27c54b8[m
+Author: quoctuan1998 <quoctuan1998@gmail.com>
+Date:   Sat Oct 13 09:05:14 2018 +0700
+
+    update FragmentHoatDongEnded
+
+[33mcommit 96e8e24603cefe55a0375cbf2e14db5b7640beb3[m
+Merge: 2903ac1 16d3850
+Author: Nguyen Van Tung <nguyentungtungtungnguyen@gmail.com>
+Date:   Sat Oct 13 09:04:04 2018 +0700
+
+    Merge pull request #4 from QuocTuan1998/FragmentHoatDongEnded
+    
+    Create HoatDong Ended
+
+[33mcommit 16d385051b1f53519dab74bab1b43399ac16c768[m
+Author: quoctuan1998 <quoctuan1998@gmail.com>
+Date:   Fri Oct 12 17:21:29 2018 +0700
+
+    Create HoatDong Ended
+
+[33mcommit 2903ac19c48bc7e0accc0c657b700c9a56a52cbe[m
+Merge: ced1128 653396b
+Author: Nguyen Van Tung <nguyentungtungtungnguyen@gmail.com>
+Date:   Fri Oct 12 12:25:39 2018 +0700
+
+    Merge pull request #3 from tungnguyenvan/activity_lcdoan
+    
+    create activity LCDoan and getData
+
+[33mcommit 653396b3145027651d1d63b75a4f22f3af1c22b1[m
+Author: nguyen van tung <nguyentungtungtungnguyen@gmail.com>
+Date:   Fri Oct 12 12:24:23 2018 +0700
+
+    create activity LCDoan and getData
+
+[33mcommit ced112800a11025e34093adf5ee4dc0519fbbb5f[m
+Merge: c198058 9e4ce38
+Author: Nguyen Van Tung <nguyentungtungtungnguyen@gmail.com>
+Date:   Fri Oct 12 12:22:43 2018 +0700
+
+    Merge pull request #2 from tungnguyenvan/update_model
+    
+    update model
+
+[33mcommit 9e4ce38ef759134090ed690c8f370d153c544537[m
+Author: nguyen van tung <nguyentungtungtungnguyen@gmail.com>
+Date:   Fri Oct 12 12:22:05 2018 +0700
+
+    update model
+
+[33mcommit c198058f9e6e58c43c50e5801f87a099fe4f1e47[m
+Merge: daa5b79 9a8d041
+Author: Nguyen Van Tung <nguyentungtungtungnguyen@gmail.com>
+Date:   Fri Oct 12 12:18:28 2018 +0700
+
+    Merge pull request #1 from tungnguyenvan/add_lib
+    
+    add library design
+
+[33mcommit 9a8d041a82a59d41a585169964fce85a17e8749b[m
+Author: nguyen van tung <nguyentungtungtungnguyen@gmail.com>
+Date:   Fri Oct 12 12:17:44 2018 +0700
+
+    add library design
+
+[33mcommit daa5b792bf5b98bc1abf9ae4170abfe32202d2a5[m
+Author: nguyen van tung <nguyentungtungtungnguyen@gmail.com>
+Date:   Thu Oct 11 19:15:06 2018 +0700
+
+    first commit
