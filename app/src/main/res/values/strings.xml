@@ -33,4 +33,5 @@
     <string name="title_end">Kết thúc:</string>
     <string name="title_start">Bắt đầu:</string>
     <string name="name_hoatdong">Tên hoạt động</string>
+    <string name="connect_to_server">Đang kết nối đến server</string>
 </resources>
