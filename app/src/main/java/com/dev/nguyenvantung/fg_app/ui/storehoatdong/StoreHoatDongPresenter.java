@@ -1,35 +1,27 @@
 package com.dev.nguyenvantung.fg_app.ui.storehoatdong;
 
-import com.dev.nguyenvantung.fg_app.data.repository.HoatDongTypeRepository;
-import com.dev.nguyenvantung.fg_app.data.source.remote.response.hoatdongtype.HoatDongTypeResponse;
+import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDong;
+import com.dev.nguyenvantung.fg_app.data.repository.StoreHoatDongRepository;
 import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
 
 public class StoreHoatDongPresenter implements StoreHoatDongConstact.Presenter {
-    private static final String TAG = "StoreHoatDongPresenter";
-    private StoreHoatDongConstact.View mView;
-    private HoatDongTypeRepository mHoatDongTypeRepository;
+    private static final String TAG = StoreHoatDongPresenter.class.getName();
+    private StoreHoatDongConstact.Presenter mPresenter;
+    private StoreHoatDongRepository mRepository;
     private SchedulerProvider mSchedulerProvider;
 
-    public StoreHoatDongPresenter(HoatDongTypeRepository mHoatDongTypeRepository, SchedulerProvider mSchedulerProvider) {
-        this.mHoatDongTypeRepository = mHoatDongTypeRepository;
+    public StoreHoatDongPresenter(StoreHoatDongRepository mRepository, SchedulerProvider mSchedulerProvider){
+        this.mRepository = mRepository;
         this.mSchedulerProvider = mSchedulerProvider;
     }
 
     @Override
-    public void listHoatDongType(String token) {
-        mView.showProgressbar();
-        mHoatDongTypeRepository.listHoatDongType(token)
-                .subscribeOn(mSchedulerProvider.io())
-                .observeOn(mSchedulerProvider.ui())
-                .subscribe(hoatDongTypeResponse -> handleHoatDongTypeSuccess(hoatDongTypeResponse),
-                        error -> handleHoatDongTypeError(error));
+    public void storeHoatDong(HoatDong token) {
+
     }
 
-    private void handleHoatDongTypeSuccess(HoatDongTypeResponse hoatDongTypeResponse){
-        mView.dimissProgressbar();
-    }
+    @Override
+    public void setView(StoreHoatDongConstact.View mView) {
 
-    private void handleHoatDongTypeError(Throwable error){
-        mView.dimissProgressbar();
     }
 }
