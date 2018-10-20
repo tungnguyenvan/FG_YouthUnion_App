@@ -31,32 +31,32 @@ public class AppPref {
 
     public void putEmail(String email){
         SharedPreferences.Editor editor = preference.edit();
-        editor.putString(AppConstants.EMAIL_PREF, email);
+        editor.putString(AppConstants.EMAIL, email);
         editor.commit();
     }
 
     public String getEmail(){
-        return preference.getString(AppConstants.EMAIL_PREF, "");
+        return preference.getString(AppConstants.EMAIL, "");
     }
 
     public void putPassword(String password){
         SharedPreferences.Editor editor = preference.edit();
-        editor.putString(AppConstants.PASSWORD_PREF, password);
+        editor.putString(AppConstants.PASSWORD, password);
         editor.commit();
     }
 
     public String getPassword(){
-        return preference.getString(AppConstants.PASSWORD_PREF, "");
+        return preference.getString(AppConstants.PASSWORD, "");
     }
 
     public void putRememberMe(boolean checked){
         SharedPreferences.Editor editor = preference.edit();
-        if (checked) editor.putBoolean(AppConstants.REMEMBER_PREF, false);
-        else editor.putBoolean(AppConstants.REMEMBER_PREF, true);
+        if (checked) editor.putBoolean(AppConstants.ISREMEMBER, false);
+        else editor.putBoolean(AppConstants.ISREMEMBER, true);
         editor.commit();
     }
 
     public boolean getRemember(){
-        return preference.getBoolean(AppConstants.REMEMBER_PREF, false);
+        return preference.getBoolean(AppConstants.ISREMEMBER, false);
     }
 }

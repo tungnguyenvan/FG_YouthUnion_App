@@ -9,6 +9,7 @@ import io.reactivex.Single;
 public interface LCDoanConstact {
     interface View{
         void setListLCDoan(List<LCDoan> listLCDoan);
+        void nextPage(int id);
     }
     interface Presenter{
         void listLCDoan(String token);
