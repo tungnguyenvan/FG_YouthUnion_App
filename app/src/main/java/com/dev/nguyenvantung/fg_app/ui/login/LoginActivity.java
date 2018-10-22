@@ -2,7 +2,6 @@ package com.dev.nguyenvantung.fg_app.ui.login;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,19 +27,18 @@ import butterknife.ButterKnife;
 
 public class LoginActivity extends AppCompatActivity implements LoginConstact.View, View.OnClickListener {
     private static final String TAG = "LoginActivity";
-    @BindView(R.id.login_btn_signin)
+    @BindView(R.id.login_btn_sigin)
     public Button btnSigin;
-    @BindView(R.id.login_edt_email)
+    @BindView(R.id.login_txt_email)
     public EditText edEmail;
-    @BindView(R.id.login_edt_password)
+    @BindView(R.id.login_txt_password)
     public EditText edPassword;
-    @BindView(R.id.login_cb_remember)
+    @BindView(R.id.login_remenber_me)
     public CheckBox loginRemenberMe;
 
     private ProgressDialog mProgressDialog;
     private Validation mValidation;
     private LoginConstact.Presenter mPresenter;
-    private AnimationDrawable mAnimationDrawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,19 +59,6 @@ public class LoginActivity extends AppCompatActivity implements LoginConstact.Vi
         initView();
         //check login
         checkLogin();
-        //run animation
-        runAnimation();
-    }
-
-    private void runAnimation() {
-        mAnimationDrawable = (AnimationDrawable) btnSigin.getBackground();
-        setAnimationFadeDuration();
-        mAnimationDrawable.start();
-    }
-
-    private void setAnimationFadeDuration() {
-        mAnimationDrawable.setEnterFadeDuration(5000);
-        mAnimationDrawable.setExitFadeDuration(2000);
     }
 
     private void checkLogin() {
