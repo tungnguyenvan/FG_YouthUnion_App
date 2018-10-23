@@ -1,7 +1,5 @@
 package com.dev.nguyenvantung.fg_app.ui.lcdoan.adapter;
 
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -50,7 +48,7 @@ public class LCDoanAdapter extends RecyclerView.Adapter<LCDoanAdapter.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         return new ViewHolder(LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.item_lcdoan, viewGroup, false));
+                .inflate(R.layout.item_rv_lcdoan, viewGroup, false));
     }
 
     @Override
