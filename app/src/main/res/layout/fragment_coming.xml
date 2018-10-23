@@ -9,10 +9,19 @@
     <!-- TODO: Update blank fragment layout -->
     <include layout="@layout/header" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_hoatdong_coming"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_hoatdong_coming"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <ProgressBar
+            android:id="@+id/coming_progress"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/store_hoatdong"

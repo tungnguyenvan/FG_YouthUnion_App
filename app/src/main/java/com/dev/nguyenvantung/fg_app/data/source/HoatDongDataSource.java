@@ -1,5 +1,6 @@
 package com.dev.nguyenvantung.fg_app.data.source;
 
+import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDong;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.hoatdong.HoatDongResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.user.UserResponse;
 
@@ -11,5 +12,6 @@ public interface HoatDongDataSource {
     }
     interface RemoteDataSource{
         Single<HoatDongResponse> listHoatDong(String token);
+        Single<HoatDongResponse> listHoatDongComming(String token);
     }
 }
