@@ -7,16 +7,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
+    <include layout="@layout/header"/>
+    <Spinner
+        android:id="@+id/lcdoan_sp"
+        android:layout_marginTop="@dimen/margin_default"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <android.support.v7.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </android.support.design.widget.AppBarLayout>
-
+        android:layout_height="wrap_content"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_lcdoan"
+        android:layout_marginTop="@dimen/margin_default"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </LinearLayout>
