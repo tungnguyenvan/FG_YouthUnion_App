@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,19 +61,15 @@ public class LoginActivity extends AppCompatActivity implements LoginConstact.Vi
         initView();
         //check login
         checkLogin();
-        //run animation
-        runAnimation();
+        //run Animation
+        runAnim();
     }
 
-    private void runAnimation() {
+    private void runAnim() {
         mAnimationDrawable = (AnimationDrawable) btnSigin.getBackground();
-        setAnimationFadeDuration();
-        mAnimationDrawable.start();
-    }
-
-    private void setAnimationFadeDuration() {
         mAnimationDrawable.setEnterFadeDuration(5000);
-        mAnimationDrawable.setExitFadeDuration(2000);
+        mAnimationDrawable.setExitFadeDuration(5000);
+        mAnimationDrawable.start();
     }
 
     private void checkLogin() {
