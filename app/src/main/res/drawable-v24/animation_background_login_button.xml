@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item android:drawable="@drawable/gradient_first"
+        android:duration="6000">
+    <shape android:shape="rectangle">
+        <corners android:topRightRadius="190dp"
+            android:topLeftRadius="190dp" />
+    </shape>
+    </item>
+
+    <item android:drawable="@drawable/gradient_second"
+        android:duration="6000">
+        <shape android:shape="rectangle">
+            <corners android:topRightRadius="190dp"
+                android:topLeftRadius="190dp" />
+        </shape>
+    </item>
+
+    <item android:drawable="@drawable/gradient_third"
+        android:duration="6000">
+        <shape android:shape="rectangle">
+            <corners android:topRightRadius="190dp"
+                android:topLeftRadius="190dp" />
+        </shape>
+    </item>
+
+</animation-list>
