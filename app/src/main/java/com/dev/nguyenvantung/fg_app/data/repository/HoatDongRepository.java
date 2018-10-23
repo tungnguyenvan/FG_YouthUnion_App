@@ -18,4 +18,9 @@ public class HoatDongRepository implements HoatDongDataSource.LocalDataSource, H
     public Single<HoatDongResponse> listHoatDong(String token) {
         return mRemoteDataSource.listHoatDong(token);
     }
+
+    @Override
+    public Single<HoatDongResponse> listHoatDongComming(String token) {
+        return mRemoteDataSource.listHoatDongComming(token);
+    }
 }

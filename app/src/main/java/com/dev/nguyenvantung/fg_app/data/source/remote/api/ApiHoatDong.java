@@ -10,4 +10,6 @@ import retrofit2.http.Header;
 public interface ApiHoatDong {
     @GET("hoatdongs/")
     Single<HoatDongResponse> listHoatDong(@Header("Authorization") String token);
+    @GET("comingup/hoatdongs")
+    Single<HoatDongResponse> listHoatDongComing(@Header("Authorization") String token);
 }
