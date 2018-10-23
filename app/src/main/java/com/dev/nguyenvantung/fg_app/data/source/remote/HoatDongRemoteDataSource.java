@@ -25,8 +25,8 @@ public class HoatDongRemoteDataSource implements HoatDongDataSource.RemoteDataSo
     }
 
     @Override
-    public Single<HoatDongResponse> listHoatDong(String token) {
-        return mApiHoatDong.listHoatDong(token);
+    public Single<HoatDongResponse> listHoatDongFinished(String token) {
+        return mApiHoatDong.listHoatDongFinished(token);
     }
 
     @Override

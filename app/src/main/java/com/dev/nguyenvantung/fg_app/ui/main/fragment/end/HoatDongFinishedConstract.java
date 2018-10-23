@@ -6,15 +6,15 @@ import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDong;
 
 import java.util.List;
 
-public interface HoatDongEndedConstract {
+public interface HoatDongFinishedConstract {
     interface View{
-        void setListHoatDong(List<HoatDong> listHoatDong);
+        void setListHoatDongFinished(List<HoatDong> listHoatDongFinished);
         void showProgressBar();
         void dismissProgressBar();
     }
 
     interface Presenter{
-        void listHoatDong(String token);
-        void setView(HoatDongEndedConstract.View view);
+        void listHoatDongFinished(String token);
+        void setView(HoatDongFinishedConstract.View view);
     }
 }
