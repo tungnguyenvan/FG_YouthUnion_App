@@ -119,7 +119,7 @@ public class LoginActivity extends AppCompatActivity implements LoginConstact.Vi
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.login_btn_sigin:
+            case R.id.login_btn_signin:
                 if (checkValidation()) login();
                 break;
         }

@@ -1,10 +1,9 @@
-<RelativeLayout android:layout_height="match_parent"
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
                 android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
 
     >
-
-
 
     <View
         android:layout_marginTop="-30dp"
@@ -37,7 +36,7 @@
         android:layout_alignParentTop="true"
         android:layout_height="250dp"
         android:layout_width="250dp"
-        android:background="@drawable/quater_circle_right"
+        android:background="@drawable/quarter_circle_right"
         >
 
         <TextView
@@ -66,16 +65,16 @@
 
     <EditText
         android:id="@+id/login_edt_email"
-        android:layout_below="@+id/baloon_login"
-        android:layout_marginTop="20dp"
+
+        android:layout_centerInParent="true"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
         android:background="@drawable/edt_custom"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:inputType="textEmailAddress"
-        android:hint="    email"
-
+        android:hint="email"
+        android:paddingLeft="20dp"
         android:textSize="19sp"
         />
 
@@ -90,7 +89,8 @@
         android:layout_height="50dp"
         android:inputType="textPassword"
         android:textSize="19sp"
-        android:hint="    password"
+        android:hint="password"
+        android:paddingLeft="20dp"
         />
 
 
@@ -102,6 +102,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="SIGN IN"
+
             android:background="@drawable/animation_background_login_button"
             android:textColor="#fff"
             android:textSize="19sp"
@@ -120,7 +121,8 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="#e932c67c"
-        android:text=" Remember me"
+        android:text="Remember me"
+        android:paddingLeft="7dp"
         />
 
 
