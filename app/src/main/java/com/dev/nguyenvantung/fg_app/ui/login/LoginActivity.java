@@ -2,6 +2,7 @@ package com.dev.nguyenvantung.fg_app.ui.login;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,18 +28,19 @@ import butterknife.ButterKnife;
 
 public class LoginActivity extends AppCompatActivity implements LoginConstact.View, View.OnClickListener {
     private static final String TAG = "LoginActivity";
-    @BindView(R.id.login_btn_sigin)
+    @BindView(R.id.login_btn_signin)
     public Button btnSigin;
-    @BindView(R.id.login_txt_email)
+    @BindView(R.id.login_edt_email)
     public EditText edEmail;
-    @BindView(R.id.login_txt_password)
+    @BindView(R.id.login_edt_password)
     public EditText edPassword;
-    @BindView(R.id.login_remenber_me)
+    @BindView(R.id.login_cb_remember)
     public CheckBox loginRemenberMe;
 
     private ProgressDialog mProgressDialog;
     private Validation mValidation;
     private LoginConstact.Presenter mPresenter;
+    private AnimationDrawable mAnimationDrawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,15 @@ public class LoginActivity extends AppCompatActivity implements LoginConstact.Vi
         initView();
         //check login
         checkLogin();
+        //run Animation
+        runAnim();
+    }
+
+    private void runAnim() {
+        mAnimationDrawable = (AnimationDrawable) btnSigin.getBackground();
+        mAnimationDrawable.setEnterFadeDuration(5000);
+        mAnimationDrawable.setExitFadeDuration(5000);
+        mAnimationDrawable.start();
     }
 
     private void checkLogin() {
@@ -103,7 +114,7 @@ public class LoginActivity extends AppCompatActivity implements LoginConstact.Vi
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.login_btn_sigin:
+            case R.id.login_btn_signin:
                 if (checkValidation()) login();
                 break;
         }
