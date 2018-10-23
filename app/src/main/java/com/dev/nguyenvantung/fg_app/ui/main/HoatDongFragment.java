@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import com.dev.nguyenvantung.fg_app.R;
 import com.dev.nguyenvantung.fg_app.ui.main.fragment.adapter.ViewPagerHoatDongAdapter;
 import com.dev.nguyenvantung.fg_app.ui.main.fragment.coming.HoatDongComingFragment;
-import com.dev.nguyenvantung.fg_app.ui.main.fragment.end.HoatDongEndFragment;
+import com.dev.nguyenvantung.fg_app.ui.main.fragment.end.HoatDongFinishedFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,8 +53,8 @@ public class HoatDongFragment extends Fragment {
 
     private void initViewPager() {
         ViewPagerHoatDongAdapter mainAdapter = new ViewPagerHoatDongAdapter(getFragmentManager());
-        mainAdapter.addFragment(HoatDongEndFragment.getInstance());
         mainAdapter.addFragment(HoatDongComingFragment.getInstance());
+        mainAdapter.addFragment(HoatDongFinishedFragment.getInstance());
         viewpager.setAdapter(mainAdapter);
     }
 

@@ -1,7 +1,6 @@
 package com.dev.nguyenvantung.fg_app.ui.main.fragment.coming;
 
 import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDong;
-import com.dev.nguyenvantung.fg_app.ui.main.fragment.end.HoatDongEndedConstract;
 
 import java.util.List;
 

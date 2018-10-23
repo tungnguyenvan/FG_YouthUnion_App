@@ -11,7 +11,7 @@ public interface HoatDongDataSource {
 
     }
     interface RemoteDataSource{
-        Single<HoatDongResponse> listHoatDong(String token);
+        Single<HoatDongResponse> listHoatDongFinished(String token);
         Single<HoatDongResponse> listHoatDongComming(String token);
     }
 }

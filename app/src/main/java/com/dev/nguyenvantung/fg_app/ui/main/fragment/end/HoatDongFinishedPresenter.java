@@ -9,21 +9,21 @@ import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
 import io.reactivex.SingleObserver;
 import io.reactivex.disposables.Disposable;
 
-public class HoatDongEndedPresenter implements HoatDongEndedConstract.Presenter {
+public class HoatDongFinishedPresenter implements HoatDongFinishedConstract.Presenter {
     public static final String TAG = "HDEndedPresenter: ";
-    private HoatDongEndedConstract.View mView;
+    private HoatDongFinishedConstract.View mView;
     private HoatDongRepository mHoatDongRepository;
     private SchedulerProvider mSchedulerProvider;
 
-    public HoatDongEndedPresenter(HoatDongRepository mHoatDongRepository, SchedulerProvider mSchedulerProvider) {
+    public HoatDongFinishedPresenter(HoatDongRepository mHoatDongRepository, SchedulerProvider mSchedulerProvider) {
         this.mHoatDongRepository = mHoatDongRepository;
         this.mSchedulerProvider = mSchedulerProvider;
     }
 
     @Override
-    public void listHoatDong(String token) {
+    public void listHoatDongFinished(String token) {
         mView.showProgressBar();
-        mHoatDongRepository.listHoatDong(token)
+        mHoatDongRepository.listHoatDongFinished(token)
                 .subscribeOn(mSchedulerProvider.io())
                 .observeOn(mSchedulerProvider.ui())
                 .subscribe(new SingleObserver<HoatDongResponse>() {
@@ -44,13 +44,13 @@ public class HoatDongEndedPresenter implements HoatDongEndedConstract.Presenter 
                 });
     }
 
-    public void setView(HoatDongEndedConstract.View view) {
+    public void setView(HoatDongFinishedConstract.View view) {
         this.mView = view;
     }
 
    private void handleSuccess(HoatDongResponse hoatDongResponse) {
         mView.dismissProgressBar();
-        mView.setListHoatDong(hoatDongResponse.getData());
+        mView.setListHoatDongFinished(hoatDongResponse.getData());
    }
 
     private void handleError(Throwable e) {
