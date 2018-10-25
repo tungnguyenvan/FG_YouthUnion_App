@@ -3,6 +3,7 @@ package com.dev.nguyenvantung.fg_app.data.source.remote.service;
 import android.content.Context;
 
 import com.dev.nguyenvantung.fg_app.data.source.remote.api.ApiKhoa;
+import com.dev.nguyenvantung.fg_app.data.source.remote.api.ApiHoatDongType;
 import com.dev.nguyenvantung.fg_app.data.source.remote.api.ApiLCDoan;
 import com.dev.nguyenvantung.fg_app.data.source.remote.api.ApiHoatDong;
 import com.dev.nguyenvantung.fg_app.data.source.remote.api.ApiLCDoanDetail;
@@ -17,6 +18,7 @@ public class AppServiceClient extends ServiceClient {
     private static ApiLogin mApiLogin;
     private static ApiLCDoanDetail mApiLCDoanDetail;
     private static ApiKhoa mApiKhoa;
+    private static ApiHoatDongType mApiHoatDongType;
 
     public static ApiKhoa getKhoaRemoteInstance(Context context) {
         if (mApiKhoa == null) {
@@ -57,5 +59,12 @@ public class AppServiceClient extends ServiceClient {
             mApiLogin = createService(context, AppConstants.END_POINT, ApiLogin.class);
         }
         return mApiLogin;
+    }
+
+    public static ApiHoatDongType getHoatDongTypeRemoteInstance(Context context){
+        if (mApiHoatDongType == null){
+            mApiHoatDongType = createService(context, AppConstants.END_POINT, ApiHoatDongType.class);
+        }
+        return mApiHoatDongType;
     }
 }

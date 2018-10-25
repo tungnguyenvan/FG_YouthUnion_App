@@ -30,6 +30,11 @@ public class DateHelper {
         return date;
     }
 
+    public String dateStringToRequest(String date){
+        String[] arr = date.split("/");
+        return arr[2] + "-" + arr[1] + "-" + arr[0];
+    }
+
    public static class date {
         private int day;
         private int month;
