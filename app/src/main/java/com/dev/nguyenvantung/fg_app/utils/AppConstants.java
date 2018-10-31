@@ -14,4 +14,6 @@ public class AppConstants {
     public static final String ID_LCD = "id_lcd";
     public static final String ID = "id";
 
+    public static final int REQUEST_CODE_STORE_HOATDONG = 1;
+
 }

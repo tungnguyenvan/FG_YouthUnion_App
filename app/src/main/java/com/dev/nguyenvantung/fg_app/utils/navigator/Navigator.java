@@ -1,6 +1,7 @@
 package com.dev.nguyenvantung.fg_app.utils.navigator;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,7 +11,9 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
+import android.util.Pair;
 import android.util.Patterns;
+import android.view.View;
 
 import com.google.common.base.Preconditions;
 
