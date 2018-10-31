@@ -1,25 +1,32 @@
 package com.dev.nguyenvantung.fg_app.ui.main.fragment.coming;
 
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.dev.nguyenvantung.fg_app.R;
 import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDong;
+import com.dev.nguyenvantung.fg_app.data.model.hoatdong.StoreHoatDong;
 import com.dev.nguyenvantung.fg_app.data.repository.HoatDongRepository;
 import com.dev.nguyenvantung.fg_app.data.source.local.HoatDongLocalDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.HoatDongRemoteDataSource;
 import com.dev.nguyenvantung.fg_app.ui.main.fragment.adapter.HoatDongAdapter;
+import com.dev.nguyenvantung.fg_app.ui.storehoatdong.StoreHoatDongActivity;
 import com.dev.nguyenvantung.fg_app.utils.AppConstants;
 import com.dev.nguyenvantung.fg_app.utils.AppPref;
+import com.dev.nguyenvantung.fg_app.utils.navigator.Navigator;
 import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
 
 import java.util.ArrayList;
@@ -42,7 +49,8 @@ public class HoatDongComingFragment extends Fragment implements
     protected FloatingActionButton store_hoatdong;
     @BindView(R.id.coming_progress)
     protected ProgressBar progressBar;
-    private static HoatDongComingConstract.View mView;
+    @BindView(R.id.btn_store_hoatdong)
+    protected Button btn_store;
 
     private HoatDongAdapter hoatDongAdapter;
     private List<HoatDong> listHoatDongComing;
@@ -55,13 +63,6 @@ public class HoatDongComingFragment extends Fragment implements
             instance = new HoatDongComingFragment();
         }
         return instance;
-    }
-
-    public static HoatDongComingConstract.View getMview() {
-        if (mView == null){
-            mView = new HoatDongComingFragment();
-        }
-        return mView;
     }
 
     @Override
@@ -78,6 +79,7 @@ public class HoatDongComingFragment extends Fragment implements
         mPresenter.setView(this);
 
         store_hoatdong.setOnClickListener(this);
+        btn_store.setOnClickListener(this);
         return view;
     }
 
@@ -100,6 +102,10 @@ public class HoatDongComingFragment extends Fragment implements
         switch (v.getId()){
             case R.id.store_hoatdong:
                 storeHoatDong();
+                break;
+            case R.id.btn_store_hoatdong:
+                Intent intent = new Intent(getActivity(), StoreHoatDongActivity.class);
+                new Navigator(getActivity()).startActivityForResult(intent, AppConstants.REQUEST_CODE_STORE_HOATDONG);
                 break;
         }
     }

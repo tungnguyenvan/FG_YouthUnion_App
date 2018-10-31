@@ -19,7 +19,8 @@ public class CalendaHelper implements CollapsibleCalendar.CalendarListener {
     @Override
     public void onDaySelect() {
         Day day = collapsibleCalendar.getSelectedDay();
-        textView.setText(day.getDay() + "/" + day.getMonth() + 1 + "/" + day.getYear());
+        int month = day.getMonth() + 1;
+        textView.setText(day.getDay() + "/" + month + "/" + day.getYear());
         Log.d("select : ", textView.getText().toString());
     }
 

@@ -26,6 +26,8 @@ import com.dev.nguyenvantung.fg_app.data.source.remote.response.hoatdong.HoatDon
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.storehoatdong.StoreHoatDongResponse;
 import com.dev.nguyenvantung.fg_app.ui.main.fragment.adapter.HoatDongAdapter;
 import com.dev.nguyenvantung.fg_app.ui.storehoatdong.adapter.HoatDongTypeAdapter;
+import com.dev.nguyenvantung.fg_app.utils.AppConstants;
+import com.dev.nguyenvantung.fg_app.utils.AppPref;
 import com.dev.nguyenvantung.fg_app.utils.helper.CalendaHelper;
 import com.dev.nguyenvantung.fg_app.utils.helper.DateHelper;
 import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
@@ -97,37 +99,11 @@ public class StoreHoatDongActivity extends AppCompatActivity
         hoatDongTypes = new ArrayList<>();
         hoatDongTypeAdapter = new HoatDongTypeAdapter(hoatDongTypes, this);
         store_hoatdong_sp_type.setAdapter(hoatDongTypeAdapter);
-        mPresenter.listHoatDongType("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjYyOWQ5ZTc2N2NkMWMyYzQ0ZDA1MzBiNzE2YjE2MzNiZjFiODUwMTFkNTdhNDMxMGI5ODkyZTQzN2FlZDM2YjVlZGM3ZGU2NTEzYWM2MzM3In0.eyJhdWQiOiIxIiwianRpIjoiNjI5ZDllNzY3Y2QxYzJjNDRkMDUzMGI3MTZiMTYzM2JmMWI4NTAxMWQ1N2E0MzEwYjk4OTJlNDM3YWVkMzZiNWVkYzdkZTY1MTNhYzYzMzciLCJpYXQiOjE1NDA1MTMzMDEsIm5iZiI6MTU0MDUxMzMwMSwiZXhwIjoxNTcyMDQ5MzAxLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.OL2PcbO0xeGvIbXJtULK0OA0H2v-WTBfrLGAAZFgmgQDEtpUa9xg4MCZK7P1oHp2A_kHpe8QnV9TDQjI31mzSXrStI19i99D7zVCSQGBnAVWj3JD5-jp7IFOmZeypZhJrv08yzcnYApJIcdNo5HAWSBFrgceW-NVMA1aOohnyIZDGGlVMRlLHg6QNwn4YgcjyxCYop3xB3pFigGHuVfDdExfPqc61MiJtclQndncG19fThaHQjxyjfpSLonVp8VUSyibyonCMCrMtotoAGrOQaFZmCqCstEFJUz6g1ayCLTt28lPaUjzTG7-Q5LYUFL0DCu9O9wpw2aujGzcT6iX0KBx1JyGCwmbYqroZ9U7OK4bB5qwPXORHPAmOw9KTlfmdNLHp_nWGkiv7BtwskwPvYfilf9DHZLbFPvIIzqKKKFYWv9gYPdCZKz7-XwkGQgsezAtWq_PDwPELlUHYQ_ScsZWP0ALIQxH88pqEOlC4F4qQlVz3f-6gpHJi3yCMXQEF694ivP6Thc-I4QW54ICZC73LHxTg2LIHUA_BMwmGfCY-x5gwANuOSVhmSgFe7sbfggMQN2G6j16U7FtrNYK25GCslL8AMMwFG-i9DxaQKwzDnRKBYfbJQsfNJIOzy-HESGYLUD1unaMCWRh4icEXnj_OKp0qaA5XnbW_405Bpc");
+        mPresenter.listHoatDongType(AppConstants.BEARER + AppPref.getInstance(this).getApiToken());
 
-        calendar_start.setCalendarListener(new CollapsibleCalendar.CalendarListener() {
-            @Override
-            public void onDaySelect() {
-                Day day = calendar_start.getSelectedDay();
-                txt_start.setText(day.getDay() + "/" + day.getMonth() + 1 + "/" + day.getYear());
-                Log.d("select : ", txt_start.getText().toString());
-            }
 
-            @Override
-            public void onItemClick(View view) {
-
-            }
-
-            @Override
-            public void onDataUpdate() {
-
-            }
-
-            @Override
-            public void onMonthChange() {
-
-            }
-
-            @Override
-            public void onWeekChange(int i) {
-
-            }
-        });
-        calendar_start.setCalendarListener(new CalendaHelper(calendar_end, txt_end));
+        calendar_start.setCalendarListener(new CalendaHelper(calendar_start, txt_start));
+        calendar_end.setCalendarListener(new CalendaHelper(calendar_end, txt_end));
     }
 
     private void initProgressDialog(){
@@ -143,9 +119,9 @@ public class StoreHoatDongActivity extends AppCompatActivity
                 ed_desc.getText().toString(),
                 dateHelper.dateStringToRequest(txt_start.getText().toString()),
                 dateHelper.dateStringToRequest(txt_end.getText().toString()),
-                store_hoatdong_sp_type.getSelectedItemPosition()
+                store_hoatdong_sp_type.getSelectedItemPosition() + 1
         );
-        mPresenter.storeHoatDong("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjYyOWQ5ZTc2N2NkMWMyYzQ0ZDA1MzBiNzE2YjE2MzNiZjFiODUwMTFkNTdhNDMxMGI5ODkyZTQzN2FlZDM2YjVlZGM3ZGU2NTEzYWM2MzM3In0.eyJhdWQiOiIxIiwianRpIjoiNjI5ZDllNzY3Y2QxYzJjNDRkMDUzMGI3MTZiMTYzM2JmMWI4NTAxMWQ1N2E0MzEwYjk4OTJlNDM3YWVkMzZiNWVkYzdkZTY1MTNhYzYzMzciLCJpYXQiOjE1NDA1MTMzMDEsIm5iZiI6MTU0MDUxMzMwMSwiZXhwIjoxNTcyMDQ5MzAxLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.OL2PcbO0xeGvIbXJtULK0OA0H2v-WTBfrLGAAZFgmgQDEtpUa9xg4MCZK7P1oHp2A_kHpe8QnV9TDQjI31mzSXrStI19i99D7zVCSQGBnAVWj3JD5-jp7IFOmZeypZhJrv08yzcnYApJIcdNo5HAWSBFrgceW-NVMA1aOohnyIZDGGlVMRlLHg6QNwn4YgcjyxCYop3xB3pFigGHuVfDdExfPqc61MiJtclQndncG19fThaHQjxyjfpSLonVp8VUSyibyonCMCrMtotoAGrOQaFZmCqCstEFJUz6g1ayCLTt28lPaUjzTG7-Q5LYUFL0DCu9O9wpw2aujGzcT6iX0KBx1JyGCwmbYqroZ9U7OK4bB5qwPXORHPAmOw9KTlfmdNLHp_nWGkiv7BtwskwPvYfilf9DHZLbFPvIIzqKKKFYWv9gYPdCZKz7-XwkGQgsezAtWq_PDwPELlUHYQ_ScsZWP0ALIQxH88pqEOlC4F4qQlVz3f-6gpHJi3yCMXQEF694ivP6Thc-I4QW54ICZC73LHxTg2LIHUA_BMwmGfCY-x5gwANuOSVhmSgFe7sbfggMQN2G6j16U7FtrNYK25GCslL8AMMwFG-i9DxaQKwzDnRKBYfbJQsfNJIOzy-HESGYLUD1unaMCWRh4icEXnj_OKp0qaA5XnbW_405Bpc",
+        mPresenter.storeHoatDong(AppConstants.BEARER + AppPref.getInstance(this).getApiToken(),
                 hoatDongRequest);
 
     }
