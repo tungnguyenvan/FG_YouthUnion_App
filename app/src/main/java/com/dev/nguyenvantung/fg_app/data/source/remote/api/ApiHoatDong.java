@@ -22,5 +22,5 @@ public interface ApiHoatDong {
     @GET("hoatdongs/")
     Single<HoatDongResponse> listHoatDong(@Header("Authorization") String token);
     @POST("hoatdongs/")
-    Single<StoreHoatDongResponse> store(@Header(AppConstants.AUTHORIZATION) String token, @Body HoatDongRequest hoatDongRequest);
+    Single<HoatDongResponse> store(@Header(AppConstants.AUTHORIZATION) String token, @Body HoatDongRequest hoatDongRequest);
 }

@@ -6,6 +6,7 @@ import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDong;
 import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDongRequest;
 import com.dev.nguyenvantung.fg_app.data.source.StoreHoatDongDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.api.ApiHoatDong;
+import com.dev.nguyenvantung.fg_app.data.source.remote.response.hoatdong.HoatDongResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.storehoatdong.StoreHoatDongResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.service.AppServiceClient;
 
@@ -27,7 +28,7 @@ public class StoreHoatDongRemoteDataSource implements StoreHoatDongDataSource.Re
     }
 
     @Override
-    public Single<StoreHoatDongResponse> store(String token, HoatDongRequest hoatDongRequest) {
+    public Single<HoatDongResponse> store(String token, HoatDongRequest hoatDongRequest) {
         return mApiHoatDong.store(token, hoatDongRequest);
     }
 }

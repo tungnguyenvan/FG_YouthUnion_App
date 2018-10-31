@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,10 +22,14 @@ import com.dev.nguyenvantung.fg_app.data.source.local.HoatDongTypeLocalDataSourc
 import com.dev.nguyenvantung.fg_app.data.source.local.StoreHoatDongLocalDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.HoatDongTypeRemoteDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.StoreHoatDongRemoteDataSource;
+import com.dev.nguyenvantung.fg_app.data.source.remote.response.hoatdong.HoatDongResponse;
+import com.dev.nguyenvantung.fg_app.data.source.remote.response.storehoatdong.StoreHoatDongResponse;
 import com.dev.nguyenvantung.fg_app.ui.main.fragment.adapter.HoatDongAdapter;
 import com.dev.nguyenvantung.fg_app.ui.storehoatdong.adapter.HoatDongTypeAdapter;
+import com.dev.nguyenvantung.fg_app.utils.helper.CalendaHelper;
 import com.dev.nguyenvantung.fg_app.utils.helper.DateHelper;
 import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
+import com.shrikanthravi.collapsiblecalendarview.data.Day;
 import com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar;
 
 import java.text.ParseException;
@@ -37,7 +42,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class StoreHoatDongActivity extends AppCompatActivity
-        implements StoreHoatDongConstact.View, View.OnClickListener{
+        implements StoreHoatDongConstact.View, View.OnClickListener {
     private static final String TAG = StoreHoatDongActivity.class.getName();
     @BindView(R.id.toolbar)
     public Toolbar toolbar;
@@ -92,7 +97,37 @@ public class StoreHoatDongActivity extends AppCompatActivity
         hoatDongTypes = new ArrayList<>();
         hoatDongTypeAdapter = new HoatDongTypeAdapter(hoatDongTypes, this);
         store_hoatdong_sp_type.setAdapter(hoatDongTypeAdapter);
-        mPresenter.listHoatDongType("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjZhNzA3Mzk0ZWI3MWJmOTE3YTJlMTViYzNhM2M1YTMzNDZmNWNmZTkxYzIxNTc5ZDA2NWI4MzQ4OWY4M2ZlMGJiMmMyYTgwOWU5ZTI1NzExIn0.eyJhdWQiOiIxIiwianRpIjoiNmE3MDczOTRlYjcxYmY5MTdhMmUxNWJjM2EzYzVhMzM0NmY1Y2ZlOTFjMjE1NzlkMDY1YjgzNDg5ZjgzZmUwYmIyYzJhODA5ZTllMjU3MTEiLCJpYXQiOjE1NDA0Njk3OTIsIm5iZiI6MTU0MDQ2OTc5MiwiZXhwIjoxNTcyMDA1NzkyLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.p36L-zUohoNQzko6rRc834-h4ME2_2yIy8Llq3xMeCdPsS_BP3ia3K39Vqmhw7BYIYd8aY-ycfj9sAJEGDb6EeH6rhSPjqM0aL5G7UnYZTU3Nxj-m5UTfr__C65rX52JJPFJJgS3XcjdvVPUW1k5fGA-MzUg_bBlKW-9BjPiguJvqHftC_6mkBrA6WtzgP7J1BEVb1nkTLJpe9BawLyD_F59bq6bWffjad3f5Lg4myn1HMto-DZDNPYfKWKkwvMYu9XqBfBWQTwtxZgnYB7QxV6v5pVIiAzX66Q0QJQRXoiTe0F5uXWBoVIr0izSQX7T3ybPhEGqeawC0Jp6G9sdfV2_RwRBLPvWW-joUYqwZrzp8I-Fbg0XVmSnqYEfqrBHUaMOZCUUl2PpybhdHUBTPSqdp1Togu1DGbEGPLOXS3r-HdlWqeHuBRh7PA8582GSXvyVJFpEehG0YSsVPwuGVsX8LBKsIubSgV8O5UZBdpKodU8ZvgT1t21pZoLI6Ipsc3hlboSIHvWTThA8VfQTrt-IjxR28jjpJNL0K4_-1dRkJRfsNvF78XJVwF1eOUOlTPu7_GRJ1x2lB9wInlOBaWn5ChUFgjrvZykfkX57F-7iVEMRdaMLP3Gb4oLMyztFWZOprF_5RXahAeTXmiWcvOmVeBPJ-JaWipP7gwFEyBw");
+        mPresenter.listHoatDongType("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjYyOWQ5ZTc2N2NkMWMyYzQ0ZDA1MzBiNzE2YjE2MzNiZjFiODUwMTFkNTdhNDMxMGI5ODkyZTQzN2FlZDM2YjVlZGM3ZGU2NTEzYWM2MzM3In0.eyJhdWQiOiIxIiwianRpIjoiNjI5ZDllNzY3Y2QxYzJjNDRkMDUzMGI3MTZiMTYzM2JmMWI4NTAxMWQ1N2E0MzEwYjk4OTJlNDM3YWVkMzZiNWVkYzdkZTY1MTNhYzYzMzciLCJpYXQiOjE1NDA1MTMzMDEsIm5iZiI6MTU0MDUxMzMwMSwiZXhwIjoxNTcyMDQ5MzAxLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.OL2PcbO0xeGvIbXJtULK0OA0H2v-WTBfrLGAAZFgmgQDEtpUa9xg4MCZK7P1oHp2A_kHpe8QnV9TDQjI31mzSXrStI19i99D7zVCSQGBnAVWj3JD5-jp7IFOmZeypZhJrv08yzcnYApJIcdNo5HAWSBFrgceW-NVMA1aOohnyIZDGGlVMRlLHg6QNwn4YgcjyxCYop3xB3pFigGHuVfDdExfPqc61MiJtclQndncG19fThaHQjxyjfpSLonVp8VUSyibyonCMCrMtotoAGrOQaFZmCqCstEFJUz6g1ayCLTt28lPaUjzTG7-Q5LYUFL0DCu9O9wpw2aujGzcT6iX0KBx1JyGCwmbYqroZ9U7OK4bB5qwPXORHPAmOw9KTlfmdNLHp_nWGkiv7BtwskwPvYfilf9DHZLbFPvIIzqKKKFYWv9gYPdCZKz7-XwkGQgsezAtWq_PDwPELlUHYQ_ScsZWP0ALIQxH88pqEOlC4F4qQlVz3f-6gpHJi3yCMXQEF694ivP6Thc-I4QW54ICZC73LHxTg2LIHUA_BMwmGfCY-x5gwANuOSVhmSgFe7sbfggMQN2G6j16U7FtrNYK25GCslL8AMMwFG-i9DxaQKwzDnRKBYfbJQsfNJIOzy-HESGYLUD1unaMCWRh4icEXnj_OKp0qaA5XnbW_405Bpc");
+
+        calendar_start.setCalendarListener(new CollapsibleCalendar.CalendarListener() {
+            @Override
+            public void onDaySelect() {
+                Day day = calendar_start.getSelectedDay();
+                txt_start.setText(day.getDay() + "/" + day.getMonth() + 1 + "/" + day.getYear());
+                Log.d("select : ", txt_start.getText().toString());
+            }
+
+            @Override
+            public void onItemClick(View view) {
+
+            }
+
+            @Override
+            public void onDataUpdate() {
+
+            }
+
+            @Override
+            public void onMonthChange() {
+
+            }
+
+            @Override
+            public void onWeekChange(int i) {
+
+            }
+        });
+        calendar_start.setCalendarListener(new CalendaHelper(calendar_end, txt_end));
     }
 
     private void initProgressDialog(){
@@ -106,11 +141,11 @@ public class StoreHoatDongActivity extends AppCompatActivity
         HoatDongRequest hoatDongRequest = new HoatDongRequest(
                 ed_name.getText().toString(),
                 ed_desc.getText().toString(),
-                "2018-10-24",
-                "2018-10-25",
+                dateHelper.dateStringToRequest(txt_start.getText().toString()),
+                dateHelper.dateStringToRequest(txt_end.getText().toString()),
                 store_hoatdong_sp_type.getSelectedItemPosition()
         );
-        mPresenter.storeHoatDong("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjZhNzA3Mzk0ZWI3MWJmOTE3YTJlMTViYzNhM2M1YTMzNDZmNWNmZTkxYzIxNTc5ZDA2NWI4MzQ4OWY4M2ZlMGJiMmMyYTgwOWU5ZTI1NzExIn0.eyJhdWQiOiIxIiwianRpIjoiNmE3MDczOTRlYjcxYmY5MTdhMmUxNWJjM2EzYzVhMzM0NmY1Y2ZlOTFjMjE1NzlkMDY1YjgzNDg5ZjgzZmUwYmIyYzJhODA5ZTllMjU3MTEiLCJpYXQiOjE1NDA0Njk3OTIsIm5iZiI6MTU0MDQ2OTc5MiwiZXhwIjoxNTcyMDA1NzkyLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.p36L-zUohoNQzko6rRc834-h4ME2_2yIy8Llq3xMeCdPsS_BP3ia3K39Vqmhw7BYIYd8aY-ycfj9sAJEGDb6EeH6rhSPjqM0aL5G7UnYZTU3Nxj-m5UTfr__C65rX52JJPFJJgS3XcjdvVPUW1k5fGA-MzUg_bBlKW-9BjPiguJvqHftC_6mkBrA6WtzgP7J1BEVb1nkTLJpe9BawLyD_F59bq6bWffjad3f5Lg4myn1HMto-DZDNPYfKWKkwvMYu9XqBfBWQTwtxZgnYB7QxV6v5pVIiAzX66Q0QJQRXoiTe0F5uXWBoVIr0izSQX7T3ybPhEGqeawC0Jp6G9sdfV2_RwRBLPvWW-joUYqwZrzp8I-Fbg0XVmSnqYEfqrBHUaMOZCUUl2PpybhdHUBTPSqdp1Togu1DGbEGPLOXS3r-HdlWqeHuBRh7PA8582GSXvyVJFpEehG0YSsVPwuGVsX8LBKsIubSgV8O5UZBdpKodU8ZvgT1t21pZoLI6Ipsc3hlboSIHvWTThA8VfQTrt-IjxR28jjpJNL0K4_-1dRkJRfsNvF78XJVwF1eOUOlTPu7_GRJ1x2lB9wInlOBaWn5ChUFgjrvZykfkX57F-7iVEMRdaMLP3Gb4oLMyztFWZOprF_5RXahAeTXmiWcvOmVeBPJ-JaWipP7gwFEyBw",
+        mPresenter.storeHoatDong("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjYyOWQ5ZTc2N2NkMWMyYzQ0ZDA1MzBiNzE2YjE2MzNiZjFiODUwMTFkNTdhNDMxMGI5ODkyZTQzN2FlZDM2YjVlZGM3ZGU2NTEzYWM2MzM3In0.eyJhdWQiOiIxIiwianRpIjoiNjI5ZDllNzY3Y2QxYzJjNDRkMDUzMGI3MTZiMTYzM2JmMWI4NTAxMWQ1N2E0MzEwYjk4OTJlNDM3YWVkMzZiNWVkYzdkZTY1MTNhYzYzMzciLCJpYXQiOjE1NDA1MTMzMDEsIm5iZiI6MTU0MDUxMzMwMSwiZXhwIjoxNTcyMDQ5MzAxLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.OL2PcbO0xeGvIbXJtULK0OA0H2v-WTBfrLGAAZFgmgQDEtpUa9xg4MCZK7P1oHp2A_kHpe8QnV9TDQjI31mzSXrStI19i99D7zVCSQGBnAVWj3JD5-jp7IFOmZeypZhJrv08yzcnYApJIcdNo5HAWSBFrgceW-NVMA1aOohnyIZDGGlVMRlLHg6QNwn4YgcjyxCYop3xB3pFigGHuVfDdExfPqc61MiJtclQndncG19fThaHQjxyjfpSLonVp8VUSyibyonCMCrMtotoAGrOQaFZmCqCstEFJUz6g1ayCLTt28lPaUjzTG7-Q5LYUFL0DCu9O9wpw2aujGzcT6iX0KBx1JyGCwmbYqroZ9U7OK4bB5qwPXORHPAmOw9KTlfmdNLHp_nWGkiv7BtwskwPvYfilf9DHZLbFPvIIzqKKKFYWv9gYPdCZKz7-XwkGQgsezAtWq_PDwPELlUHYQ_ScsZWP0ALIQxH88pqEOlC4F4qQlVz3f-6gpHJi3yCMXQEF694ivP6Thc-I4QW54ICZC73LHxTg2LIHUA_BMwmGfCY-x5gwANuOSVhmSgFe7sbfggMQN2G6j16U7FtrNYK25GCslL8AMMwFG-i9DxaQKwzDnRKBYfbJQsfNJIOzy-HESGYLUD1unaMCWRh4icEXnj_OKp0qaA5XnbW_405Bpc",
                 hoatDongRequest);
 
     }
@@ -133,7 +168,7 @@ public class StoreHoatDongActivity extends AppCompatActivity
     }
 
     @Override
-    public void createHoatDongSuccess(HoatDong hoatDong) {
+    public void createHoatDongSuccess(HoatDongResponse hoatDong) {
         Toast.makeText(this, ed_name.getText().toString() + " Tạo thành công!", Toast.LENGTH_SHORT).show();
     }
 
