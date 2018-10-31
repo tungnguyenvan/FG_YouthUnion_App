@@ -7,6 +7,7 @@ import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDongRequest;
 import com.dev.nguyenvantung.fg_app.data.repository.HoatDongTypeRepository;
 import com.dev.nguyenvantung.fg_app.data.repository.StoreHoatDongRepository;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.HoatDongType.HoatDongTypeReponse;
+import com.dev.nguyenvantung.fg_app.data.source.remote.response.hoatdong.HoatDongResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.storehoatdong.StoreHoatDongResponse;
 import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
 
@@ -42,9 +43,9 @@ public class StoreHoatDongPresenter implements StoreHoatDongConstact.Presenter {
     public void storeHoatDong(String token, HoatDongRequest hoatDongRequest) {
         mView.showProgressbar();
         mRepository.store(token, hoatDongRequest)
-                .observeOn(mSchedulerProvider.io())
+                .subscribeOn(mSchedulerProvider.io())
                 .observeOn(mSchedulerProvider.ui())
-                .subscribe(storeHoatDongResponse -> handleSuccess(storeHoatDongResponse),
+                .subscribe(hoatDongResponse -> handleSuccess(hoatDongResponse),
                         e -> handleError(e));
     }
 
@@ -58,8 +59,8 @@ public class StoreHoatDongPresenter implements StoreHoatDongConstact.Presenter {
         mView.dimissProgressbar();
     }
 
-    private void handleSuccess(StoreHoatDongResponse storeHoatDongResponse){
-        mView.createHoatDongSuccess(storeHoatDongResponse.getData());
+    private void handleSuccess(HoatDongResponse hoatDongResponse){
+        mView.createHoatDongSuccess(hoatDongResponse);
         mView.dimissProgressbar();
     }
 
