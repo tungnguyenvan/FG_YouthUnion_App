@@ -15,7 +15,7 @@ public interface LCDoanDetailConstract {
 
     interface Presenter {
         void getLCDoan(String token, int id);
-        void listUser(String token);
+        void listUserLCDoan(String token, int id);
         void setView(LCDoanDetailConstract.View mView);
     }
 }

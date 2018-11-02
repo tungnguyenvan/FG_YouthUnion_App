@@ -1,5 +1,7 @@
 package com.dev.nguyenvantung.fg_app.data.repository;
 
+import android.util.Log;
+
 import com.dev.nguyenvantung.fg_app.data.source.UserDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.user.UserResponse;
 
@@ -18,5 +20,10 @@ public class UserRepository implements UserDataSource.LocalDataSource, UserDataS
     @Override
     public Single<UserResponse> listUser(String token) {
         return mRemoteDataSource.listUser(token);
+    }
+
+    @Override
+    public Single<UserResponse> listUserLCDoan(String token, int id) {
+        return mRemoteDataSource.listUserLCDoan(token, id);
     }
 }

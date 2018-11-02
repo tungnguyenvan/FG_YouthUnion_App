@@ -10,19 +10,9 @@ import java.util.List;
 
 public class LCDoanDetailResponse {
 
-    private UserResponse listUser;
-
     @SerializedName("data")
     @Expose
     private LCDoan lcDoan;
-
-    public UserResponse getListUser() {
-        return listUser;
-    }
-
-    public void setListUser(UserResponse listUser) {
-        this.listUser = listUser;
-    }
 
     public LCDoan getLcDoan() {
         return lcDoan;
