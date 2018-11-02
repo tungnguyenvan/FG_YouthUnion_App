@@ -41,6 +41,11 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
         <LinearLayout
+            android:id="@+id/item_hoatdong_layout"
+            android:transitionName="@string/share_hoatdong"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground"
             android:orientation="vertical"
             android:padding="@dimen/padding_default"
             android:layout_width="match_parent"

@@ -21,8 +21,9 @@
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.user.UserActivity" />
         <activity android:name=".ui.dashboard.DashboardActivity" />
-        <activity android:name=".ui.lcdoandetail.LCDoanDetailActivity"/>
-        <activity android:name=".ui.storehoatdong.StoreHoatDongActivity"/>
+        <activity android:name=".ui.lcdoandetail.LCDoanDetailActivity" />
+        <activity android:name=".ui.storehoatdong.StoreHoatDongActivity" />
+        <activity android:name=".ui.hoatdongdetail.HoatDongDetailActivity"></activity>
     </application>
 
 </manifest>

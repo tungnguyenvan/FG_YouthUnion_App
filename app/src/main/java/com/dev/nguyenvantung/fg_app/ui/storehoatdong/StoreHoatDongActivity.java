@@ -145,7 +145,6 @@ public class StoreHoatDongActivity extends AppCompatActivity
 
     @Override
     public void createHoatDongSuccess(HoatDongResponse hoatDong) {
-        Toast.makeText(this, ed_name.getText().toString() + " Tạo thành công!", Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -1,14 +1,21 @@
 package com.dev.nguyenvantung.fg_app.ui.main.fragment.adapter;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.dev.nguyenvantung.fg_app.R;
 import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDong;
+import com.dev.nguyenvantung.fg_app.ui.hoatdongdetail.HoatDongDetailActivity;
 import com.dev.nguyenvantung.fg_app.utils.helper.DateHelper;
 
 import java.text.SimpleDateFormat;
@@ -17,12 +24,14 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HoatDongAdapter extends RecyclerView.Adapter<HoatDongAdapter.ViewHolder>{
+public class HoatDongAdapter extends RecyclerView.Adapter<HoatDongAdapter.ViewHolder> {
     private static final String TAG = "HoatDongAdapter ";
     private List<HoatDong> listHoatDong;
     private SimpleDateFormat fm = new SimpleDateFormat("yyyy/MM/dd");
     private DateHelper dateHelper = new DateHelper();
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    private Context context;
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.item_hoatdong_txt_name)
         TextView txt_name;
         @BindView(R.id.item_hoatdong_txt_desc)
@@ -31,15 +40,29 @@ public class HoatDongAdapter extends RecyclerView.Adapter<HoatDongAdapter.ViewHo
         TextView txt_from_date;
         @BindView(R.id.item_hoatdong_txt_to_date)
         TextView txt_to_date;
+        @BindView(R.id.item_hoatdong_layout)
+        LinearLayout layout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+
+            layout.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(context, HoatDongDetailActivity.class);
+            Pair[] pairs = new Pair[1];
+            pairs[0] = new Pair(layout, context.getResources().getString(R.string.share_hoatdong));
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context, pairs);
+            context.startActivity(intent, options.toBundle());
         }
     }
 
-    public HoatDongAdapter(List<HoatDong> listHoatDong) {
+    public HoatDongAdapter(List<HoatDong> listHoatDong, Context context) {
         this.listHoatDong = listHoatDong;
+        this.context = context;
     }
 
     @NonNull
