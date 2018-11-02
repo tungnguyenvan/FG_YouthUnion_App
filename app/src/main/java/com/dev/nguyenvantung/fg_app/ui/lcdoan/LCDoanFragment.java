@@ -136,9 +136,5 @@ public class LCDoanFragment extends Fragment implements LCDoanConstact.View{
         navigator.startActivity(LCDoanDetailActivity.class, bundle);
     }
 
-    @Override
-    public void listLCDoanById(List<LCDoan> listLCDoan) {
-
-    }
 
 }
