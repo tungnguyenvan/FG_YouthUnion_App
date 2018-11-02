@@ -39,7 +39,7 @@
     </LinearLayout>
     <Button
         android:id="@+id/btn_store_hoatdong"
-        android:transitionName="@string/share_store_hoatdong"
+        android:transitionName="@string/share_hoatdong"
         android:drawablePadding="@dimen/margin_default"
         android:drawableLeft="@drawable/ic_add_white_24dp"
         android:textColor="@color/colorWhite"

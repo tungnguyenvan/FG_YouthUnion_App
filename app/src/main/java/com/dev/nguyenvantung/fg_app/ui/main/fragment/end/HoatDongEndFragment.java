@@ -29,10 +29,10 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HoatDongFinishedFragment extends Fragment implements HoatDongFinishedConstract.View{
-    private static HoatDongFinishedFragment instance;
-    private static final String TAG = "HoatDongFinishedFragment: ";
-    private HoatDongFinishedConstract.Presenter mPresenter;
+public class HoatDongEndFragment extends Fragment implements HoatDongEndedConstract.View{
+    private static HoatDongEndFragment instance;
+    private static final String TAG = "HoatDongEndFragment: ";
+    private HoatDongEndedConstract.Presenter mPresenter;
     // RecycleView
     @BindView(R.id.rv_hoatdong_end)
     protected RecyclerView rv_hoatdong_end;
@@ -42,13 +42,13 @@ public class HoatDongFinishedFragment extends Fragment implements HoatDongFinish
     private HoatDongAdapter hoatDongAdapter;
     private List<HoatDong> listHoatDong;
 
-    public HoatDongFinishedFragment() {
+    public HoatDongEndFragment() {
         // Required empty public constructor
     }
 
     public static Fragment getInstance(){
         if (instance == null){
-            instance = new HoatDongFinishedFragment();
+            instance = new HoatDongEndFragment();
         }
         return instance;
     }
@@ -57,15 +57,15 @@ public class HoatDongFinishedFragment extends Fragment implements HoatDongFinish
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_finished, container, false);
+        View view = inflater.inflate(R.layout.fragment_end, container, false);
         ButterKnife.bind(this, view);
         initRecyclerView();
 
         HoatDongRepository hoatDongRepository = new HoatDongRepository(HoatDongLocalDataSource.getInstance(),
                 HoatDongRemoteDataSource.getInstance(getContext()));
-        mPresenter = new HoatDongFinishedPresenter(hoatDongRepository, SchedulerProvider.getInstance());
+        mPresenter = new HoatDongEndedPresenter(hoatDongRepository, SchedulerProvider.getInstance());
         mPresenter.setView(this);
-        mPresenter.listHoatDongFinished(AppConstants.BEARER + AppPref.getInstance(getContext()).getApiToken());
+        mPresenter.listHoatDong(AppConstants.BEARER + AppPref.getInstance(getContext()).getApiToken());
 
         return view;
     }
@@ -82,7 +82,7 @@ public class HoatDongFinishedFragment extends Fragment implements HoatDongFinish
 
 
     @Override
-    public void setListHoatDongFinished(List<HoatDong> listHoatDong) {
+    public void setListHoatDong(List<HoatDong> listHoatDong) {
         this.listHoatDong.addAll(listHoatDong);
         hoatDongAdapter.notifyDataSetChanged();
     }

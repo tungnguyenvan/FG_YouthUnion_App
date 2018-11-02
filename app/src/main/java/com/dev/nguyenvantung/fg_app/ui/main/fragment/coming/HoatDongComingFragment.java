@@ -85,7 +85,7 @@ public class HoatDongComingFragment extends Fragment implements
 
     private void initRecycleview() {
         listHoatDongComing = new ArrayList<>();
-        hoatDongAdapter = new HoatDongAdapter(listHoatDongComing);
+        hoatDongAdapter = new HoatDongAdapter(listHoatDongComing, getContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),
                 LinearLayoutManager.VERTICAL, false);
         rv_hoatdong_coming.setHasFixedSize(true);
