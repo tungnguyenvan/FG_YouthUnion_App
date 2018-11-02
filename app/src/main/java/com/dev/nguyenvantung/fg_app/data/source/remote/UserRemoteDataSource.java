@@ -29,4 +29,9 @@ public class UserRemoteDataSource implements UserDataSource.RemoteDataSource {
     public Single<UserResponse> listUser(String token) {
         return mApiUser.listUser(token);
     }
+
+    @Override
+    public Single<UserResponse> listUserLCDoan(String token, int id) {
+        return mApiUser.listUserLCDoan(token, id);
+    }
 }

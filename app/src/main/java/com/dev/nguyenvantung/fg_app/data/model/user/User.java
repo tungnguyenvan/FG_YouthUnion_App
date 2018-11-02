@@ -46,4 +46,8 @@ public class User extends BaseModel{
         return role;
     }
 
+    @Override
+    public String toString() {
+        return this.username + "---" + this.email;
+    }
 }

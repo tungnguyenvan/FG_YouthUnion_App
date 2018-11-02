@@ -3,31 +3,26 @@ package com.dev.nguyenvantung.fg_app.ui.lcdoandetail;
 import android.util.Log;
 
 import com.dev.nguyenvantung.fg_app.data.repository.LCDoanDetailRepository;
+import com.dev.nguyenvantung.fg_app.data.repository.UserRepository;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.lcdoandetail.LCDoanDetailResponse;
+import com.dev.nguyenvantung.fg_app.data.source.remote.response.user.UserResponse;
 import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
 
 import io.reactivex.SingleObserver;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.exceptions.CompositeException;
 
 public class LCDoanDetailPresenter implements LCDoanDetailConstract.Presenter{
 
     private static final String TAG = LCDoanDetailPresenter.class.getName();
     private LCDoanDetailConstract.View mView;
-    private LCDoanDetailRepository mRepository;
+    private LCDoanDetailRepository mLCDoanDetailRepository;
+    private UserRepository mUserRepository;
     private SchedulerProvider mSchedulerProvider;
 
-    public LCDoanDetailPresenter(LCDoanDetailRepository mRepository, SchedulerProvider mSchedulerProvider) {
-        this.mRepository = mRepository;
+    public LCDoanDetailPresenter(LCDoanDetailRepository mRepository,UserRepository mUserRepository, SchedulerProvider mSchedulerProvider) {
+        this.mLCDoanDetailRepository = mRepository;
+        this.mUserRepository = mUserRepository;
         this.mSchedulerProvider = mSchedulerProvider;
-    }
-
-    private void handleSuccess(LCDoanDetailResponse lcDoanDetailResponse) {
-//        mView.setListUser(lcDoanDetailResponse.getData());
-    }
-
-    private void handleError(Throwable e) {
-        Log.e(TAG, e.getMessage());
     }
 
     private void handleGetLCDoanSuccess(LCDoanDetailResponse lcDoanDetailResponse){
@@ -35,15 +30,10 @@ public class LCDoanDetailPresenter implements LCDoanDetailConstract.Presenter{
         mView.setLCDoan(lcDoanDetailResponse.getLcDoan());
     }
 
-    private void handleGetLCDoanError(Throwable e){
-        mView.dimissProgressbar();
-        Log.e(TAG, e.getMessage());
-    }
-
     @Override
     public void getLCDoan(String token, int id) {
         mView.showProgressbar();
-        mRepository.getLCDoan(token, id)
+        mLCDoanDetailRepository.getLCDoan(token, id)
                 .subscribeOn(mSchedulerProvider.io())
                 .observeOn(mSchedulerProvider.ui())
                 .subscribe(new SingleObserver<LCDoanDetailResponse>() {
@@ -60,32 +50,41 @@ public class LCDoanDetailPresenter implements LCDoanDetailConstract.Presenter{
 
                     @Override
                     public void onError(Throwable e) {
-                        handleGetLCDoanError(e);
+                        handleError(e);
                     }
                 });
     }
 
     @Override
-    public void listUser(String token) {
-        mRepository.listUser(token)
+    public void listUserLCDoan(String token, int id) {
+        mUserRepository.listUserLCDoan(token, id)
                 .subscribeOn(mSchedulerProvider.io())
                 .observeOn(mSchedulerProvider.ui())
-                .subscribe(new SingleObserver<LCDoanDetailResponse>() {
+                .subscribe(new SingleObserver<UserResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onSuccess(LCDoanDetailResponse lcDoanDetailResponse) {
-//                        handleSuccess(lcDoanDetailResponse);
+                    public void onSuccess(UserResponse userResponse) {
+                        handleGetListUser(userResponse);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-//                        handleError(e);
+                        handleError(e);
                     }
                 });
+    }
+
+    private void handleError(Throwable e) {
+        Log.d(TAG, e.getMessage());
+    }
+
+    private void handleGetListUser(UserResponse userResponse) {
+        mView.dimissProgressbar();
+        mView.setListUser(userResponse.getData());
     }
 
     @Override

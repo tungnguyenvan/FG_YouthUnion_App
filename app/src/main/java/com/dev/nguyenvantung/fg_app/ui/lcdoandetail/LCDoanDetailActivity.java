@@ -15,10 +15,14 @@ import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDong;
 import com.dev.nguyenvantung.fg_app.data.model.lcdoan.LCDoan;
 import com.dev.nguyenvantung.fg_app.data.model.user.User;
 import com.dev.nguyenvantung.fg_app.data.repository.LCDoanDetailRepository;
+import com.dev.nguyenvantung.fg_app.data.repository.UserRepository;
+import com.dev.nguyenvantung.fg_app.data.source.UserDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.local.LCDoanDetailLocalDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.local.LCDoanLocalDataSource;
+import com.dev.nguyenvantung.fg_app.data.source.local.UserLocalDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.LCDoanDetailRemoteDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.LCDoanRemoteDataSource;
+import com.dev.nguyenvantung.fg_app.data.source.remote.UserRemoteDataSource;
 import com.dev.nguyenvantung.fg_app.ui.lcdoandetail.adapter.LCDoanDetailAdapter;
 import com.dev.nguyenvantung.fg_app.ui.main.fragment.adapter.HoatDongAdapter;
 import com.dev.nguyenvantung.fg_app.utils.AppConstants;
@@ -58,13 +62,15 @@ public class LCDoanDetailActivity extends AppCompatActivity implements LCDoanDet
         Bundle bundle = new Bundle();
         bundle = getIntent().getExtras();
         int id = bundle.getInt(AppConstants.ID_LCD);
-
+        Log.d(TAG, id + "");
         LCDoanDetailRepository lcDoanDetailRepository = new LCDoanDetailRepository(LCDoanDetailLocalDataSource.getInstance(),
                 LCDoanDetailRemoteDataSource.getInstance(this));
-        mPresenter = new LCDoanDetailPresenter(lcDoanDetailRepository, SchedulerProvider.getInstance());
+        UserRepository userRepository = new UserRepository(UserLocalDataSource.getInstance(), UserRemoteDataSource.getInstance(this));
+
+        mPresenter = new LCDoanDetailPresenter(lcDoanDetailRepository, userRepository, SchedulerProvider.getInstance());
         mPresenter.setView(this);
         mPresenter.getLCDoan(AppConstants.BEARER + AppPref.getInstance(this).getApiToken(), id);
-
+        mPresenter.listUserLCDoan(AppConstants.BEARER + AppPref.getInstance(this).getApiToken(), id);
     }
 
     private void initRecyclerView() {
@@ -99,9 +105,10 @@ public class LCDoanDetailActivity extends AppCompatActivity implements LCDoanDet
 
     @Override
     public void setListUser(List<User> listUser) {
+        Log.d(TAG, listUser.get(0).toString());
         this.listUser.addAll(listUser);
-        adapter.notifyDataSetChanged();
     }
+
 
     @Override
     public void setLCDoan(LCDoan lcDoan) {

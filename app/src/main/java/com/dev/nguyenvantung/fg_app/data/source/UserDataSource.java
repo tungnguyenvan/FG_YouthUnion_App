@@ -11,5 +11,6 @@ public interface UserDataSource {
     }
     interface RemoteDataSource{
         Single<UserResponse> listUser(String token);
+        Single<UserResponse> listUserLCDoan(String token, int id);
     }
 }
