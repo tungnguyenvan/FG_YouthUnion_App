@@ -39,4 +39,12 @@
     <string name="checkin">Điểm danh</string>
     <string name="check_in_success">diểm danh thành công</string>
     <string name="joined">đã tham gia</string>
+    <string name="not_update_yet">chưa cập nhật</string>
+    <string name="full_name">Họ và tên :</string>
+    <string name="gender">Giới tính :</string>
+    <string name="date_of_birth">Ngày sinh :</string>
+    <string name="phone_number">Số điện thoại :</string>
+    <string name="address">Địa chỉ :</string>
+    <string name="classes">Lớp :</string>
+    <string name="info">Thông tin cá nhân</string>
 </resources>

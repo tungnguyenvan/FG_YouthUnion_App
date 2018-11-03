@@ -1,22 +1,22 @@
 package com.dev.nguyenvantung.fg_app.data.source.remote.response.user;
 
-import com.dev.nguyenvantung.fg_app.data.model.userdetail.UserDetail;
+import com.dev.nguyenvantung.fg_app.data.model.user.User;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.BaseResponse;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class UserResponse extends BaseResponse {
+import java.util.List;
+
+public class UsersResponse extends BaseResponse{
     @SerializedName("data")
     @Expose
-    private UserDetail data;
+    private List<User> data = null;
 
-    public UserDetail getData() {
+    public List<User> getData() {
         return data;
     }
 
-    public void setData(UserDetail data) {
+    public void setData(List<User> data) {
         this.data = data;
     }
-
 }
-

@@ -2,6 +2,7 @@ package com.dev.nguyenvantung.fg_app.data.source.remote.api;
 
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.khoa.KhoaResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.lcdoan.LCDoanResponse;
+import com.dev.nguyenvantung.fg_app.data.source.remote.response.lcdoandetail.LCDoanDetailResponse;
 import com.dev.nguyenvantung.fg_app.utils.AppConstants;
 
 import io.reactivex.Single;
@@ -14,5 +15,5 @@ public interface ApiLCDoan {
     Single<LCDoanResponse> listLCDoan(@Header(AppConstants.AUTHORIZATION) String token);
 
     @GET("lcdoans/{id}")
-    Single<LCDoanResponse> listLCDById(@Header(AppConstants.AUTHORIZATION) String token, @Path(AppConstants.ID) int id);
+    Single<LCDoanDetailResponse> LCDoan(@Header(AppConstants.AUTHORIZATION) String token, @Path(AppConstants.ID) int id);
 }
