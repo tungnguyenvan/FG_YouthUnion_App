@@ -1,7 +1,7 @@
 package com.dev.nguyenvantung.fg_app.utils;
 
 public class AppConstants {
-    public static final String END_POINT = "http://172.20.12.223/Laravel/FG-YouthUnion/public/api/v1/";
+    public static final String END_POINT = "http://192.168.1.7/Laravel/FG-YouthUnion/public/api/v1/";
     public static final String BEARER = "Bearer ";
     public static final String AUTHORIZATION = "Authorization";
     public static final String APP_PREF = "app_pref";
