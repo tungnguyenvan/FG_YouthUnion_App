@@ -1,14 +1,12 @@
 package com.dev.nguyenvantung.fg_app.ui.main.fragment.coming;
 
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -130,11 +128,9 @@ public class HoatDongComingFragment extends Fragment implements
 
     @Override
     public void hoatDongDetail(View view, int id) {
+        Navigator navigator = new Navigator(getActivity());
         Intent intent = new Intent(getContext(), HoatDongDetailActivity.class);
         intent.putExtra(AppConstants.ID, id);
-        Pair[] pairs = new Pair[1];
-        pairs[0] = new Pair(view, getContext().getResources().getString(R.string.share_hoatdong));
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), pairs);
-        startActivity(intent, options.toBundle());
+        navigator.startActivity(intent, view, getString(R.string.share_hoatdong));
     }
 }

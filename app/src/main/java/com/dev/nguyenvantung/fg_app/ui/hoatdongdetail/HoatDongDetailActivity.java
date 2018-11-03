@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,6 +59,9 @@ public class HoatDongDetailActivity extends AppCompatActivity implements HoatDon
     @BindView(R.id.hoatdong_detail_img_edit)
     public ImageView imgEdit;
 
+    @BindView(R.id.hoatdong_detail_btn_joined)
+    public Button btnJoined;
+
     private HoatDongDetailContract.Presenter mPresenter;
     private AppPref appPref;
 
@@ -84,6 +88,7 @@ public class HoatDongDetailActivity extends AppCompatActivity implements HoatDon
         toolbar.setTitle(R.string.checkin);
 
         imgEdit.setOnClickListener(view -> editHoatDong());
+        btnJoined.setOnClickListener(view -> joined());
 
         users = new ArrayList<>();
         hoatDongDetailAdapter = new HoatDongDetailAdapter(users, this);
@@ -95,6 +100,10 @@ public class HoatDongDetailActivity extends AppCompatActivity implements HoatDon
 
     private void editHoatDong() {
         // TODO: 11/3/2018 Edit Hoat Dong
+    }
+
+    private void joined(){
+
     }
 
     private void initPresenter() {

@@ -21,38 +21,26 @@ public class HoatDongComingPresenter implements HoatDongComingConstract.Presente
     }
 
     @Override
+    public void setView(HoatDongComingConstract.View view) {
+        this.mView = view;
+    }
+
+    @Override
     public void listHoatDongComing(String token) {
+        mView.showProgressBar();
         mRepository.listHoatDongComming(token)
                 .subscribeOn(mSchedulerProvider.io())
                 .observeOn(mSchedulerProvider.ui())
-                .subscribe(new SingleObserver<HoatDongsResponse>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onSuccess(HoatDongsResponse hoatDongsResponse) {
-                        Log.d(TAG, "success");
-                        handleHoatDongComingSuccess(hoatDongsResponse);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        handleHoatDongComingError(e);
-                    }
-                });
+                .subscribe(hoatDongsResponse -> handleSuccess(hoatDongsResponse),
+                        error -> handleError(error));
     }
 
-    private void handleHoatDongComingSuccess(HoatDongsResponse hoatDongsResponse) {
+    private void handleSuccess(HoatDongsResponse hoatDongsResponse) {
+        mView.dismissProgressBar();
         mView.setListHoatDongComing(hoatDongsResponse.getData());
     }
 
-    private void handleHoatDongComingError(Throwable e) {
+    private void handleError(Throwable e) {
         Log.e(TAG, e.toString());
-    }
-    @Override
-    public void setView(HoatDongComingConstract.View view) {
-        this.mView = view;
     }
 }
