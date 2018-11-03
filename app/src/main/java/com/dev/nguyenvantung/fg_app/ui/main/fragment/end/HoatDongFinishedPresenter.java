@@ -6,9 +6,6 @@ import com.dev.nguyenvantung.fg_app.data.repository.HoatDongRepository;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.hoatdong.HoatDongsResponse;
 import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
 
-import io.reactivex.SingleObserver;
-import io.reactivex.disposables.Disposable;
-
 public class HoatDongFinishedPresenter implements HoatDongFinishedConstract.Presenter {
     public static final String TAG = "HDEndedPresenter: ";
     private HoatDongFinishedConstract.View mView;
@@ -20,32 +17,18 @@ public class HoatDongFinishedPresenter implements HoatDongFinishedConstract.Pres
         this.mSchedulerProvider = mSchedulerProvider;
     }
 
+    public void setView(HoatDongFinishedConstract.View view) {
+        this.mView = view;
+    }
+
     @Override
     public void listHoatDongFinished(String token) {
         mView.showProgressBar();
         mHoatDongRepository.listHoatDongFinished(token)
                 .subscribeOn(mSchedulerProvider.io())
                 .observeOn(mSchedulerProvider.ui())
-                .subscribe(new SingleObserver<HoatDongsResponse>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onSuccess(HoatDongsResponse hoatDongsResponse) {
-                        handleSuccess(hoatDongsResponse);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        handleError(e);
-                    }
-                });
-    }
-
-    public void setView(HoatDongFinishedConstract.View view) {
-        this.mView = view;
+                .subscribe(hoatDongsResponse -> handleSuccess(hoatDongsResponse),
+                        error -> handleError(error));
     }
 
    private void handleSuccess(HoatDongsResponse hoatDongsResponse) {

@@ -48,6 +48,13 @@ public class Navigator {
         startActivity(intent);
     }
 
+    public void startActivity(Intent intent, View view, String transitionName){
+        Pair[] pairs = new Pair[1];
+        pairs[0] = new Pair(view, transitionName);
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(mActivity, pairs);
+        mActivity.startActivity(intent, options.toBundle());
+    }
+
     public void startActivityAtRoot(@NonNull Class<? extends Activity> clazz) {
         Intent intent = new Intent(mActivity, clazz);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

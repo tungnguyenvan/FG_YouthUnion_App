@@ -1,12 +1,7 @@
 package com.dev.nguyenvantung.fg_app.ui.main.fragment.adapter;
 
-import android.app.Activity;
-import android.app.ActivityOptions;
-import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +10,6 @@ import android.widget.TextView;
 
 import com.dev.nguyenvantung.fg_app.R;
 import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDong;
-import com.dev.nguyenvantung.fg_app.ui.hoatdongdetail.HoatDongDetailActivity;
 import com.dev.nguyenvantung.fg_app.ui.main.fragment.coming.HoatDongComingConstract;
 import com.dev.nguyenvantung.fg_app.ui.main.fragment.end.HoatDongFinishedConstract;
 import com.dev.nguyenvantung.fg_app.utils.helper.DateHelper;

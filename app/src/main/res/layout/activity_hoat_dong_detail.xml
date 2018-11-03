@@ -119,6 +119,7 @@
         android:layout_height="match_parent"/>
 
     <Button
+        android:id="@+id/hoatdong.detail.btn.joined"
         android:transitionName="@string/share_hoatdong"
         android:drawablePadding="@dimen/margin_default"
         android:drawableLeft="@drawable/ic_edit_white_24dp"
