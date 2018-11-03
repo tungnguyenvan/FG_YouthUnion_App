@@ -4,37 +4,30 @@ import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.dev.nguyenvantung.fg_app.R;
-import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDong;
 import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDongRequest;
 import com.dev.nguyenvantung.fg_app.data.model.hoatdongtype.HoatDongType;
+import com.dev.nguyenvantung.fg_app.data.repository.HoatDongRepository;
 import com.dev.nguyenvantung.fg_app.data.repository.HoatDongTypeRepository;
-import com.dev.nguyenvantung.fg_app.data.repository.StoreHoatDongRepository;
+import com.dev.nguyenvantung.fg_app.data.source.local.HoatDongLocalDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.local.HoatDongTypeLocalDataSource;
-import com.dev.nguyenvantung.fg_app.data.source.local.StoreHoatDongLocalDataSource;
+import com.dev.nguyenvantung.fg_app.data.source.remote.HoatDongRemoteDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.HoatDongTypeRemoteDataSource;
-import com.dev.nguyenvantung.fg_app.data.source.remote.StoreHoatDongRemoteDataSource;
-import com.dev.nguyenvantung.fg_app.data.source.remote.response.hoatdong.HoatDongResponse;
-import com.dev.nguyenvantung.fg_app.data.source.remote.response.storehoatdong.StoreHoatDongResponse;
-import com.dev.nguyenvantung.fg_app.ui.main.fragment.adapter.HoatDongAdapter;
+import com.dev.nguyenvantung.fg_app.data.source.remote.response.hoatdong.HoatDongsResponse;
 import com.dev.nguyenvantung.fg_app.ui.storehoatdong.adapter.HoatDongTypeAdapter;
 import com.dev.nguyenvantung.fg_app.utils.AppConstants;
 import com.dev.nguyenvantung.fg_app.utils.AppPref;
 import com.dev.nguyenvantung.fg_app.utils.helper.CalendaHelper;
 import com.dev.nguyenvantung.fg_app.utils.helper.DateHelper;
 import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
-import com.shrikanthravi.collapsiblecalendarview.data.Day;
 import com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -81,8 +74,8 @@ public class StoreHoatDongActivity extends AppCompatActivity
 
         HoatDongTypeRepository hoatDongTypeRepository = new HoatDongTypeRepository(HoatDongTypeLocalDataSource.getInstance(),
                 HoatDongTypeRemoteDataSource.getTnstance(this));
-        StoreHoatDongRepository storeHoatDongRepository = new StoreHoatDongRepository(StoreHoatDongLocalDataSource.getInstance(),
-                StoreHoatDongRemoteDataSource.getInstance(this));
+        HoatDongRepository storeHoatDongRepository = new HoatDongRepository(HoatDongLocalDataSource.getInstance(),
+                HoatDongRemoteDataSource.getInstance(this));
         mPresenter = new StoreHoatDongPresenter(hoatDongTypeRepository, storeHoatDongRepository,
                 SchedulerProvider.getInstance());
         mPresenter.setView(this);
@@ -144,7 +137,7 @@ public class StoreHoatDongActivity extends AppCompatActivity
     }
 
     @Override
-    public void createHoatDongSuccess(HoatDongResponse hoatDong) {
+    public void createHoatDongSuccess(HoatDongsResponse hoatDong) {
     }
 
     @Override

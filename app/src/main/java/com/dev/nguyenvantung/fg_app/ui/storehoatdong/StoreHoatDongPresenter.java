@@ -2,26 +2,21 @@ package com.dev.nguyenvantung.fg_app.ui.storehoatdong;
 
 import android.util.Log;
 
-import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDong;
 import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDongRequest;
+import com.dev.nguyenvantung.fg_app.data.repository.HoatDongRepository;
 import com.dev.nguyenvantung.fg_app.data.repository.HoatDongTypeRepository;
-import com.dev.nguyenvantung.fg_app.data.repository.StoreHoatDongRepository;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.HoatDongType.HoatDongTypeReponse;
-import com.dev.nguyenvantung.fg_app.data.source.remote.response.hoatdong.HoatDongResponse;
-import com.dev.nguyenvantung.fg_app.data.source.remote.response.storehoatdong.StoreHoatDongResponse;
+import com.dev.nguyenvantung.fg_app.data.source.remote.response.hoatdong.HoatDongsResponse;
 import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
-
-import io.reactivex.SingleObserver;
-import io.reactivex.disposables.Disposable;
 
 public class StoreHoatDongPresenter implements StoreHoatDongConstact.Presenter {
     private static final String TAG = StoreHoatDongPresenter.class.getName();
-    private StoreHoatDongRepository mRepository;
+    private HoatDongRepository mRepository;
     private HoatDongTypeRepository mHoatDongTypeRepository;
     private SchedulerProvider mSchedulerProvider;
     private StoreHoatDongConstact.View mView;
 
-    public StoreHoatDongPresenter(HoatDongTypeRepository mHoatDongTypeRepository, StoreHoatDongRepository mRepository, SchedulerProvider mSchedulerProvider){
+    public StoreHoatDongPresenter(HoatDongTypeRepository mHoatDongTypeRepository, HoatDongRepository mRepository, SchedulerProvider mSchedulerProvider){
         this.mHoatDongTypeRepository = mHoatDongTypeRepository;
 
 
@@ -59,8 +54,8 @@ public class StoreHoatDongPresenter implements StoreHoatDongConstact.Presenter {
         mView.dimissProgressbar();
     }
 
-    private void handleSuccess(HoatDongResponse hoatDongResponse){
-        mView.createHoatDongSuccess(hoatDongResponse);
+    private void handleSuccess(HoatDongsResponse hoatDongsResponse){
+        mView.createHoatDongSuccess(hoatDongsResponse);
         mView.dimissProgressbar();
     }
 

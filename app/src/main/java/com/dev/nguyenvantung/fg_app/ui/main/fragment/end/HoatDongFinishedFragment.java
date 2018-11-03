@@ -1,10 +1,12 @@
 package com.dev.nguyenvantung.fg_app.ui.main.fragment.end;
 
 
+import android.app.ActivityOptions;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +17,11 @@ import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDong;
 import com.dev.nguyenvantung.fg_app.data.repository.HoatDongRepository;
 import com.dev.nguyenvantung.fg_app.data.source.local.HoatDongLocalDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.HoatDongRemoteDataSource;
+import com.dev.nguyenvantung.fg_app.ui.hoatdongdetail.HoatDongDetailActivity;
 import com.dev.nguyenvantung.fg_app.ui.main.fragment.adapter.HoatDongAdapter;
 import com.dev.nguyenvantung.fg_app.utils.AppConstants;
 import com.dev.nguyenvantung.fg_app.utils.AppPref;
+import com.dev.nguyenvantung.fg_app.utils.navigator.Navigator;
 import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
 
 import java.util.ArrayList;
@@ -72,7 +76,7 @@ public class HoatDongFinishedFragment extends Fragment implements HoatDongFinish
 
     private void initRecyclerView() {
         listHoatDong = new ArrayList<>();
-        hoatDongAdapter = new HoatDongAdapter(listHoatDong, getContext());
+        hoatDongAdapter = new HoatDongAdapter(listHoatDong, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),
                 LinearLayoutManager.VERTICAL, false);
         rv_hoatdong_end.setHasFixedSize(true);
@@ -95,5 +99,18 @@ public class HoatDongFinishedFragment extends Fragment implements HoatDongFinish
     @Override
     public void dismissProgressBar() {
         progressBar.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void hoatDongDetail(View view, int id) {
+        Navigator navigator = new Navigator(getActivity());
+        Pair[] pairs = new Pair[1];
+        pairs[0] = new Pair(view, getContext().getResources().getString(R.string.share_hoatdong));
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), pairs);
+
+        Bundle bundle = options.toBundle();
+//        bundle.putInt(AppConstants.ID, id);
+
+        navigator.startActivity(HoatDongDetailActivity.class, bundle);
     }
 }

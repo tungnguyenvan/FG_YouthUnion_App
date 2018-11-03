@@ -11,7 +11,7 @@
     <string name="your_password">Your password</string>
     <string name="remember_me">Remember Me</string>
     <string name="login">Login</string>
-    <string name="messageConnectToServe">Đang kết nối đên Serve, Vui lòng chờ</string>
+    <string name="messageConnectToServe">Đang kết nối đên Server, Vui lòng chờ</string>
     <string name="errorEmail">Bạn cần nhập đúng địng dạng Email</string>
     <string name="errorPassword">Độ dài mật khẩu cần 6 đến 12 kí tự</string>
     <string name="open">Open</string>
@@ -36,4 +36,7 @@
     <string name="connect_to_server">Đang kết nối đến server</string>
     <string name="addHoatDong">Thêm hoạt động</string>
     <string name="share_hoatdong">shareHoatDong</string>
+    <string name="checkin">Điểm danh</string>
+    <string name="check_in_success">diểm danh thành công</string>
+    <string name="joined">đã tham gia</string>
 </resources>

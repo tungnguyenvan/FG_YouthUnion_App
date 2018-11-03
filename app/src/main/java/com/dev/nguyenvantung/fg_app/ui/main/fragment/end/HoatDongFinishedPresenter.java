@@ -3,7 +3,7 @@ package com.dev.nguyenvantung.fg_app.ui.main.fragment.end;
 import android.util.Log;
 
 import com.dev.nguyenvantung.fg_app.data.repository.HoatDongRepository;
-import com.dev.nguyenvantung.fg_app.data.source.remote.response.hoatdong.HoatDongResponse;
+import com.dev.nguyenvantung.fg_app.data.source.remote.response.hoatdong.HoatDongsResponse;
 import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
 
 import io.reactivex.SingleObserver;
@@ -26,15 +26,15 @@ public class HoatDongFinishedPresenter implements HoatDongFinishedConstract.Pres
         mHoatDongRepository.listHoatDongFinished(token)
                 .subscribeOn(mSchedulerProvider.io())
                 .observeOn(mSchedulerProvider.ui())
-                .subscribe(new SingleObserver<HoatDongResponse>() {
+                .subscribe(new SingleObserver<HoatDongsResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onSuccess(HoatDongResponse hoatDongResponse) {
-                        handleSuccess(hoatDongResponse);
+                    public void onSuccess(HoatDongsResponse hoatDongsResponse) {
+                        handleSuccess(hoatDongsResponse);
                     }
 
                     @Override
@@ -48,9 +48,9 @@ public class HoatDongFinishedPresenter implements HoatDongFinishedConstract.Pres
         this.mView = view;
     }
 
-   private void handleSuccess(HoatDongResponse hoatDongResponse) {
+   private void handleSuccess(HoatDongsResponse hoatDongsResponse) {
         mView.dismissProgressBar();
-        mView.setListHoatDongFinished(hoatDongResponse.getData());
+        mView.setListHoatDongFinished(hoatDongsResponse.getData());
    }
 
     private void handleError(Throwable e) {

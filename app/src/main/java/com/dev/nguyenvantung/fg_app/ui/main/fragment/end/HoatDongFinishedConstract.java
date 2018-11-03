@@ -11,6 +11,7 @@ public interface HoatDongFinishedConstract {
         void setListHoatDongFinished(List<HoatDong> listHoatDongFinished);
         void showProgressBar();
         void dismissProgressBar();
+        void hoatDongDetail(android.view.View view, int id);
     }
 
     interface Presenter{
