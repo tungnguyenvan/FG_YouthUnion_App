@@ -16,6 +16,8 @@ import android.widget.TextView;
 import com.dev.nguyenvantung.fg_app.R;
 import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDong;
 import com.dev.nguyenvantung.fg_app.ui.hoatdongdetail.HoatDongDetailActivity;
+import com.dev.nguyenvantung.fg_app.ui.main.fragment.coming.HoatDongComingConstract;
+import com.dev.nguyenvantung.fg_app.ui.main.fragment.end.HoatDongFinishedConstract;
 import com.dev.nguyenvantung.fg_app.utils.helper.DateHelper;
 
 import java.text.SimpleDateFormat;
@@ -29,7 +31,8 @@ public class HoatDongAdapter extends RecyclerView.Adapter<HoatDongAdapter.ViewHo
     private List<HoatDong> listHoatDong;
     private SimpleDateFormat fm = new SimpleDateFormat("yyyy/MM/dd");
     private DateHelper dateHelper = new DateHelper();
-    private Context context;
+    private HoatDongComingConstract.View viewComming;
+    private HoatDongFinishedConstract.View viewFinished;
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.item_hoatdong_txt_name)
@@ -52,17 +55,20 @@ public class HoatDongAdapter extends RecyclerView.Adapter<HoatDongAdapter.ViewHo
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(context, HoatDongDetailActivity.class);
-            Pair[] pairs = new Pair[1];
-            pairs[0] = new Pair(layout, context.getResources().getString(R.string.share_hoatdong));
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context, pairs);
-            context.startActivity(intent, options.toBundle());
+            if (viewComming != null) viewComming.hoatDongDetail(layout, listHoatDong.get(getAdapterPosition()).getId());
+            else viewFinished.hoatDongDetail(layout, listHoatDong.get(getAdapterPosition()).getId());
+
         }
     }
 
-    public HoatDongAdapter(List<HoatDong> listHoatDong, Context context) {
+    public HoatDongAdapter(List<HoatDong> listHoatDong, HoatDongComingConstract.View mView) {
         this.listHoatDong = listHoatDong;
-        this.context = context;
+        this.viewComming = mView;
+    }
+
+    public HoatDongAdapter(List<HoatDong> listHoatDong, HoatDongFinishedConstract.View mView){
+        this.listHoatDong = listHoatDong;
+        this.viewFinished = mView;
     }
 
     @NonNull

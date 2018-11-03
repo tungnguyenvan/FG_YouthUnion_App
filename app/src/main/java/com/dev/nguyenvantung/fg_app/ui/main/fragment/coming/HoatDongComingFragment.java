@@ -14,14 +14,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.dev.nguyenvantung.fg_app.R;
 import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDong;
-import com.dev.nguyenvantung.fg_app.data.model.hoatdong.StoreHoatDong;
 import com.dev.nguyenvantung.fg_app.data.repository.HoatDongRepository;
 import com.dev.nguyenvantung.fg_app.data.source.local.HoatDongLocalDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.HoatDongRemoteDataSource;
+import com.dev.nguyenvantung.fg_app.ui.hoatdongdetail.HoatDongDetailActivity;
 import com.dev.nguyenvantung.fg_app.ui.main.fragment.adapter.HoatDongAdapter;
 import com.dev.nguyenvantung.fg_app.ui.storehoatdong.StoreHoatDongActivity;
 import com.dev.nguyenvantung.fg_app.utils.AppConstants;
@@ -85,7 +84,7 @@ public class HoatDongComingFragment extends Fragment implements
 
     private void initRecycleview() {
         listHoatDongComing = new ArrayList<>();
-        hoatDongAdapter = new HoatDongAdapter(listHoatDongComing, getContext());
+        hoatDongAdapter = new HoatDongAdapter(listHoatDongComing, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),
                 LinearLayoutManager.VERTICAL, false);
         rv_hoatdong_coming.setHasFixedSize(true);
@@ -127,5 +126,15 @@ public class HoatDongComingFragment extends Fragment implements
     @Override
     public void dismissProgressBar() {
         progressBar.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void hoatDongDetail(View view, int id) {
+        Intent intent = new Intent(getContext(), HoatDongDetailActivity.class);
+        intent.putExtra(AppConstants.ID, id);
+        Pair[] pairs = new Pair[1];
+        pairs[0] = new Pair(view, getContext().getResources().getString(R.string.share_hoatdong));
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), pairs);
+        startActivity(intent, options.toBundle());
     }
 }

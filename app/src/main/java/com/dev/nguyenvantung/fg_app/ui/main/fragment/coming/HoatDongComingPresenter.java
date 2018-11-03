@@ -3,7 +3,7 @@ package com.dev.nguyenvantung.fg_app.ui.main.fragment.coming;
 import android.util.Log;
 
 import com.dev.nguyenvantung.fg_app.data.repository.HoatDongRepository;
-import com.dev.nguyenvantung.fg_app.data.source.remote.response.hoatdong.HoatDongResponse;
+import com.dev.nguyenvantung.fg_app.data.source.remote.response.hoatdong.HoatDongsResponse;
 import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
 
 import io.reactivex.SingleObserver;
@@ -25,16 +25,16 @@ public class HoatDongComingPresenter implements HoatDongComingConstract.Presente
         mRepository.listHoatDongComming(token)
                 .subscribeOn(mSchedulerProvider.io())
                 .observeOn(mSchedulerProvider.ui())
-                .subscribe(new SingleObserver<HoatDongResponse>() {
+                .subscribe(new SingleObserver<HoatDongsResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onSuccess(HoatDongResponse hoatDongResponse) {
+                    public void onSuccess(HoatDongsResponse hoatDongsResponse) {
                         Log.d(TAG, "success");
-                        handleHoatDongComingSuccess(hoatDongResponse);
+                        handleHoatDongComingSuccess(hoatDongsResponse);
                     }
 
                     @Override
@@ -44,8 +44,8 @@ public class HoatDongComingPresenter implements HoatDongComingConstract.Presente
                 });
     }
 
-    private void handleHoatDongComingSuccess(HoatDongResponse hoatDongResponse) {
-        mView.setListHoatDongComing(hoatDongResponse.getData());
+    private void handleHoatDongComingSuccess(HoatDongsResponse hoatDongsResponse) {
+        mView.setListHoatDongComing(hoatDongsResponse.getData());
     }
 
     private void handleHoatDongComingError(Throwable e) {
