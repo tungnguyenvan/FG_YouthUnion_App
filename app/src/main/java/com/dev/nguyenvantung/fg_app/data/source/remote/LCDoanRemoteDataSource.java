@@ -7,6 +7,7 @@ import com.dev.nguyenvantung.fg_app.data.source.remote.api.ApiKhoa;
 import com.dev.nguyenvantung.fg_app.data.source.remote.api.ApiLCDoan;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.khoa.KhoaResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.lcdoan.LCDoanResponse;
+import com.dev.nguyenvantung.fg_app.data.source.remote.response.lcdoandetail.LCDoanDetailResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.service.AppServiceClient;
 
 import io.reactivex.Single;
@@ -32,8 +33,8 @@ public class LCDoanRemoteDataSource implements LCDoanDataSource.RemoteDataSource
     }
 
     @Override
-    public Single<LCDoanResponse> listLCDById(String token, int id) {
-        return mApiLCDoan.listLCDById(token, id);
+    public Single<LCDoanDetailResponse> LCDoan(String token, int id) {
+        return mApiLCDoan.LCDoan(token, id);
     }
 
 
