@@ -2,8 +2,9 @@ package com.dev.nguyenvantung.fg_app.ui.lcdoandetail;
 
 import android.util.Log;
 
-import com.dev.nguyenvantung.fg_app.data.repository.LCDoanDetailRepository;
+import com.dev.nguyenvantung.fg_app.data.repository.LCDoanRepository;
 import com.dev.nguyenvantung.fg_app.data.repository.UserRepository;
+import com.dev.nguyenvantung.fg_app.data.source.remote.response.lcdoan.LCDoanResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.lcdoandetail.LCDoanDetailResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.user.UserResponse;
 import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
@@ -15,25 +16,21 @@ public class LCDoanDetailPresenter implements LCDoanDetailConstract.Presenter{
 
     private static final String TAG = LCDoanDetailPresenter.class.getName();
     private LCDoanDetailConstract.View mView;
-    private LCDoanDetailRepository mLCDoanDetailRepository;
+    private LCDoanRepository mLCDoanRepository;
     private UserRepository mUserRepository;
     private SchedulerProvider mSchedulerProvider;
 
-    public LCDoanDetailPresenter(LCDoanDetailRepository mRepository,UserRepository mUserRepository, SchedulerProvider mSchedulerProvider) {
-        this.mLCDoanDetailRepository = mRepository;
+    public LCDoanDetailPresenter(UserRepository mUserRepository, LCDoanRepository mLCDoanRepository, SchedulerProvider mSchedulerProvider) {
         this.mUserRepository = mUserRepository;
+        this.mLCDoanRepository = mLCDoanRepository;
         this.mSchedulerProvider = mSchedulerProvider;
     }
 
-    private void handleGetLCDoanSuccess(LCDoanDetailResponse lcDoanDetailResponse){
-        mView.dimissProgressbar();
-        mView.setLCDoan(lcDoanDetailResponse.getLcDoan());
-    }
 
     @Override
     public void getLCDoan(String token, int id) {
         mView.showProgressbar();
-        mLCDoanDetailRepository.getLCDoan(token, id)
+        mLCDoanRepository.LCDoan(token, id)
                 .subscribeOn(mSchedulerProvider.io())
                 .observeOn(mSchedulerProvider.ui())
                 .subscribe(new SingleObserver<LCDoanDetailResponse>() {
@@ -44,15 +41,19 @@ public class LCDoanDetailPresenter implements LCDoanDetailConstract.Presenter{
 
                     @Override
                     public void onSuccess(LCDoanDetailResponse lcDoanDetailResponse) {
-                        handleGetLCDoanSuccess(lcDoanDetailResponse);
-
+                        handleGetLCDoan(lcDoanDetailResponse);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        handleError(e);
+
                     }
                 });
+    }
+
+    private void handleGetLCDoan(LCDoanDetailResponse lcDoanDetailResponse) {
+        mView.dimissProgressbar();
+        mView.setLCDoan(lcDoanDetailResponse.getLcDoan());
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.dev.nguyenvantung.fg_app.ui.main.fragment.end;
+package com.dev.nguyenvantung.fg_app.ui.main.fragment.finished;
 
 import android.util.Log;
 

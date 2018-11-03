@@ -24,30 +24,6 @@ public class LCDoanPresenter implements LCDoanConstact.Presenter {
         this.mSchedulerProvider = mSchedulerProvider;
     }
 
-
-    @Override
-    public void ListLCDoanById(String token, int id) {
-        mLCDoanRepository.listLCDById(token, id)
-                .subscribeOn(mSchedulerProvider.io())
-                .observeOn(mSchedulerProvider.ui())
-                .subscribe(new SingleObserver<LCDoanResponse>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onSuccess(LCDoanResponse lcDoanResponse) {
-                        handleSuccessLCDoan(lcDoanResponse);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-                });
-    }
-
     @Override
     public void listKhoa(String token) {
         mKhoaRepositoty.listKhoa(token)
