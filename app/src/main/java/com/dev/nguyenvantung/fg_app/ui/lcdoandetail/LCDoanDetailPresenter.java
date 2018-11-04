@@ -7,6 +7,7 @@ import com.dev.nguyenvantung.fg_app.data.repository.UserRepository;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.lcdoan.LCDoanResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.lcdoandetail.LCDoanDetailResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.user.UserResponse;
+import com.dev.nguyenvantung.fg_app.data.source.remote.response.user.UsersResponse;
 import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
 
 import io.reactivex.SingleObserver;
@@ -61,32 +62,20 @@ public class LCDoanDetailPresenter implements LCDoanDetailConstract.Presenter{
         mUserRepository.listUserLCDoan(token, id)
                 .subscribeOn(mSchedulerProvider.io())
                 .observeOn(mSchedulerProvider.ui())
-                .subscribe(new SingleObserver<UserResponse>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
+                .subscribe(usersResponse -> handleSuccess(usersResponse),
+                        error -> handleError(error));
 
-                    }
+    }
 
-                    @Override
-                    public void onSuccess(UserResponse userResponse) {
-                        handleGetListUser(userResponse);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        handleError(e);
-                    }
-                });
+    private void handleSuccess(UsersResponse usersResponse) {
+        mView.dimissProgressbar();
+        mView.setListUser(usersResponse.getData());
     }
 
     private void handleError(Throwable e) {
         Log.d(TAG, e.getMessage());
     }
 
-    private void handleGetListUser(UserResponse userResponse) {
-        mView.dimissProgressbar();
-        mView.setListUser(userResponse.getData());
-    }
 
     @Override
     public void setView(LCDoanDetailConstract.View mView) {

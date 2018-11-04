@@ -8,7 +8,11 @@ import com.dev.nguyenvantung.fg_app.data.repository.UserRepository;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.checkin.CheckInResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.hoatdong.HoatDongResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.user.UserResponse;
+import com.dev.nguyenvantung.fg_app.data.source.remote.response.user.UsersResponse;
 import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
+
+import io.reactivex.SingleObserver;
+import io.reactivex.disposables.Disposable;
 
 public class HoatDongDetailPresenter implements HoatDongDetailContract.Presenter {
     private static final String TAG = HoatDongDetailPresenter.class.getName();
@@ -44,8 +48,13 @@ public class HoatDongDetailPresenter implements HoatDongDetailContract.Presenter
         mUserRepository.listUser(token)
                 .subscribeOn(mProvider.io())
                 .observeOn(mProvider.ui())
-                .subscribe(userResponse -> handleSuccess(userResponse),
+                .subscribe(usersResponse -> handleSuccess(usersResponse),
                         error -> handleError(error));
+    }
+
+    private void handleSuccess(UsersResponse usersResponse) {
+        mView.dimissProgresbar();
+        mView.setListUser(usersResponse.getData());
     }
 
     @Override
@@ -61,11 +70,6 @@ public class HoatDongDetailPresenter implements HoatDongDetailContract.Presenter
     private void handleSuccess(HoatDongResponse hoatDongResponse){
         mView.dimissProgresbar();
         mView.setHoatDong(hoatDongResponse.getData());
-    }
-
-    private void handleSuccess(UserResponse userResponse){
-        mView.dimissProgresbar();
-        mView.setListUser(userResponse.getData());
     }
 
     private void handleSuccess(CheckInResponse checkInResponse, int possion){

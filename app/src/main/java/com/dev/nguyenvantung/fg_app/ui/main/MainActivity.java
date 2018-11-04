@@ -1,6 +1,8 @@
 package com.dev.nguyenvantung.fg_app.ui.main;
 
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -15,16 +17,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dev.nguyenvantung.fg_app.R;
 import com.dev.nguyenvantung.fg_app.ui.lcdoan.LCDoanFragment;
+import com.dev.nguyenvantung.fg_app.ui.user.UserActivity;
+import com.dev.nguyenvantung.fg_app.utils.AppConstants;
+import com.dev.nguyenvantung.fg_app.utils.navigator.Navigator;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
-    private static final String TAG = "MainActivity";
+    private static final String TAG = MainActivity.class.getName();
     @BindView(R.id.main_drawlayout)
     public DrawerLayout drawerLayout;
     private ActionBarDrawerToggle mToggle;
@@ -35,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.main_framelayout)
     public FrameLayout frameLayout;
     private FragmentManager mFragmentManager;
-
     private Fragment mActive;
     private Fragment hoatDongFragment = HoatDongFragment.getInstance(),
             lcdoanFragment = LCDoanFragment.getInstance();
@@ -52,6 +58,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mActive = HoatDongFragment.getInstance();
 
         initDrawerLayout();
+
+        initNavHeaderLayout();
+
         img_menu.setOnClickListener(this);
     }
 
@@ -60,6 +69,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         drawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
         mainNavigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void initNavHeaderLayout() {
+        View header_view = mainNavigationView.inflateHeaderView(R.layout.navigation_header);
+        TextView txt_nav_name = header_view.findViewById(R.id.txt_nav_name);
+        txt_nav_name.setText(AppConstants.USER.getUsername());
+        LinearLayout nav_layout = header_view.findViewById(R.id.nav_layout);
+        nav_layout.setOnClickListener(this);
     }
 
     private void nextFragment(Fragment fragment){
@@ -75,7 +92,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
         if (mToggle.onOptionsItemSelected(item)){
             return true;
         }
@@ -87,6 +103,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()){
             case R.id.main_img_menu:
                 drawerLayout.openDrawer(Gravity.START);
+                break;
+            case R.id.nav_layout:
+                Navigator navigator = new Navigator(this);
+                navigator.startActivity(UserActivity.class);
                 break;
         }
     }
