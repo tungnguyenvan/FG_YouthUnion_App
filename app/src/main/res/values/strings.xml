@@ -47,4 +47,11 @@
     <string name="address">Địa chỉ :</string>
     <string name="classes">Lớp :</string>
     <string name="info">Thông tin cá nhân</string>
+    <string name="forgot_password">Quên mật khẩu?</string>
+    <string name="your_email_address">your email address</string>
+    <string name="login_fail">Đăng nhập thất bại, Vui lòng thử lại.</string>
+    <string name="created_by_fgdev">Created by: FGDev</string>
+    <string name="version">Version:</string>
+    <string name="share_view">shareView</string>
+>>>>>>> create activity Splash and update login
 </resources>
