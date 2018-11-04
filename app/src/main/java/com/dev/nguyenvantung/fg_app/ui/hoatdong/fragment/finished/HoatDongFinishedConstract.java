@@ -1,4 +1,4 @@
-package com.dev.nguyenvantung.fg_app.ui.main.fragment.finished;
+package com.dev.nguyenvantung.fg_app.ui.hoatdong.fragment.finished;
 
 
 

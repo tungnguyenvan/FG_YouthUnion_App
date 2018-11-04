@@ -1,4 +1,4 @@
-package com.dev.nguyenvantung.fg_app.ui.main.fragment.coming;
+package com.dev.nguyenvantung.fg_app.ui.hoatdong.fragment.coming;
 
 
 import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDong;

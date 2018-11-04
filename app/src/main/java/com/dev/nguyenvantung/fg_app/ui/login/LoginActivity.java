@@ -5,12 +5,10 @@ import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dev.nguyenvantung.fg_app.R;
@@ -42,12 +40,15 @@ public class LoginActivity extends AppCompatActivity implements LoginConstact.Vi
     private Validation mValidation;
     private LoginConstact.Presenter mPresenter;
     private AnimationDrawable mAnimationDrawable;
+    private AppPref mAppPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+        mAppPref = AppPref.getInstance(this);
 
         //set Presenter
         LoginRepository loginRepository = new LoginRepository(LoginRemoteDataSource.getInstance(this));
@@ -63,7 +64,7 @@ public class LoginActivity extends AppCompatActivity implements LoginConstact.Vi
         //check login
         checkLogin();
         //run Animation
-        runAnim();
+//        runAnim();
     }
 
     private void runAnim() {
@@ -74,14 +75,15 @@ public class LoginActivity extends AppCompatActivity implements LoginConstact.Vi
     }
 
     private void checkLogin() {
-        if (AppPref.getInstance(this).getRemember()){
+        if (mAppPref.getRemember()){
             login();
         }
     }
 
     private void initView() {
-        edEmail.setText(AppPref.getInstance(this).getEmail());
-        edPassword.setText(AppPref.getInstance(this).getPassword());
+        edEmail.setText(mAppPref.getEmail());
+        edPassword.setText(mAppPref.getPassword());
+        loginRemenberMe.setChecked(mAppPref.getRemember());
     }
 
     private void initProgressbar(){
@@ -139,6 +141,7 @@ public class LoginActivity extends AppCompatActivity implements LoginConstact.Vi
         appPref.putPassword(edPassword.getText().toString());
         appPref.putRememberMe(loginRemenberMe.isChecked());
         AppConstants.USER = mLoginResponse.getUser();
+
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
@@ -146,6 +149,6 @@ public class LoginActivity extends AppCompatActivity implements LoginConstact.Vi
 
     @Override
     public void loginFails() {
-        Toast.makeText(this, "Đăng nhập thất bại, Vui lòng thử lại.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.login_fail), Toast.LENGTH_SHORT).show();
     }
 }

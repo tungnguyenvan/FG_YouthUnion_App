@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dev.nguyenvantung.fg_app.R;
+import com.dev.nguyenvantung.fg_app.ui.hoatdong.HoatDongFragment;
 import com.dev.nguyenvantung.fg_app.ui.lcdoan.LCDoanFragment;
 import com.dev.nguyenvantung.fg_app.ui.user.UserActivity;
 import com.dev.nguyenvantung.fg_app.utils.AppConstants;

@@ -47,4 +47,10 @@
     <string name="address">Địa chỉ :</string>
     <string name="classes">Lớp :</string>
     <string name="info">Thông tin cá nhân</string>
+    <string name="created_by_fgdev">Created by: FGDev</string>
+    <string name="version">Version: </string>
+    <string name="share_view">share_view</string>
+    <string name="your_email_address">Your email address</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="login_fail">Đăng nhập thất bại</string>
 </resources>

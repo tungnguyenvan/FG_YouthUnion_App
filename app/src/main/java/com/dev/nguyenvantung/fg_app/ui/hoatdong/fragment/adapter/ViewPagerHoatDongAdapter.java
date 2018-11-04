@@ -1,4 +1,4 @@
-package com.dev.nguyenvantung.fg_app.ui.main.fragment.adapter;
+package com.dev.nguyenvantung.fg_app.ui.hoatdong.fragment.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
