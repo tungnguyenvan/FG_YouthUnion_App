@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import com.dev.nguyenvantung.fg_app.R;
 import com.dev.nguyenvantung.fg_app.data.model.login.LoginRequesst;
-import com.dev.nguyenvantung.fg_app.data.repository.LoginRepository;
-import com.dev.nguyenvantung.fg_app.data.source.remote.LoginRemoteDataSource;
+import com.dev.nguyenvantung.fg_app.data.repository.AuthRepository;
+import com.dev.nguyenvantung.fg_app.data.source.remote.AuthRemoteDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.login.LoginResponse;
 import com.dev.nguyenvantung.fg_app.ui.login.LoginActivity;
 import com.dev.nguyenvantung.fg_app.ui.main.MainActivity;
@@ -59,8 +59,8 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
     }
 
     private void initPresenter() {
-        LoginRepository loginRepository = new LoginRepository(LoginRemoteDataSource.getInstance(this));
-        mPresenter = new SplashPresenter(loginRepository, SchedulerProvider.getInstance());
+        AuthRepository authRepository = new AuthRepository(AuthRemoteDataSource.getInstance(this));
+        mPresenter = new SplashPresenter(authRepository, SchedulerProvider.getInstance());
         mPresenter.setView(this);
     }
 

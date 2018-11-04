@@ -3,18 +3,18 @@ package com.dev.nguyenvantung.fg_app.ui.splash;
 import android.util.Log;
 
 import com.dev.nguyenvantung.fg_app.data.model.login.LoginRequesst;
-import com.dev.nguyenvantung.fg_app.data.repository.LoginRepository;
+import com.dev.nguyenvantung.fg_app.data.repository.AuthRepository;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.login.LoginResponse;
 import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
 
 public class SplashPresenter implements SplashContract.Presenter {
     private static final String TAG = SplashPresenter.class.getName();
     private SplashContract.View mView;
-    private LoginRepository mLoginRepository;
+    private AuthRepository mAuthRepository;
     private SchedulerProvider mSchedulerProvider;
 
-    public SplashPresenter(LoginRepository mLoginRepository, SchedulerProvider mSchedulerProvider){
-        this.mLoginRepository = mLoginRepository;
+    public SplashPresenter(AuthRepository mAuthRepository, SchedulerProvider mSchedulerProvider){
+        this.mAuthRepository = mAuthRepository;
         this.mSchedulerProvider = mSchedulerProvider;
     }
 
@@ -25,7 +25,7 @@ public class SplashPresenter implements SplashContract.Presenter {
 
     @Override
     public void login(LoginRequesst mLoginRequesst) {
-        mLoginRepository.login(mLoginRequesst)
+        mAuthRepository.login(mLoginRequesst)
                 .subscribeOn(mSchedulerProvider.io())
                 .observeOn(mSchedulerProvider.ui())
                 .subscribe(loginResponse -> handleSuccess(loginResponse),

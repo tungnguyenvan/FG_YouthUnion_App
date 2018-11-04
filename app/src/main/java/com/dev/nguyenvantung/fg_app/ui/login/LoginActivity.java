@@ -13,8 +13,8 @@ import android.widget.Toast;
 
 import com.dev.nguyenvantung.fg_app.R;
 import com.dev.nguyenvantung.fg_app.data.model.login.LoginRequesst;
-import com.dev.nguyenvantung.fg_app.data.repository.LoginRepository;
-import com.dev.nguyenvantung.fg_app.data.source.remote.LoginRemoteDataSource;
+import com.dev.nguyenvantung.fg_app.data.repository.AuthRepository;
+import com.dev.nguyenvantung.fg_app.data.source.remote.AuthRemoteDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.login.LoginResponse;
 import com.dev.nguyenvantung.fg_app.ui.main.MainActivity;
 import com.dev.nguyenvantung.fg_app.utils.AppConstants;
@@ -51,8 +51,8 @@ public class LoginActivity extends AppCompatActivity implements LoginConstact.Vi
         mAppPref = AppPref.getInstance(this);
 
         //set Presenter
-        LoginRepository loginRepository = new LoginRepository(LoginRemoteDataSource.getInstance(this));
-        mPresenter  = new LoginPresenter(loginRepository, SchedulerProvider.getInstance());
+        AuthRepository authRepository = new AuthRepository(AuthRemoteDataSource.getInstance(this));
+        mPresenter  = new LoginPresenter(authRepository, SchedulerProvider.getInstance());
         mPresenter.setView(this);
 
         //initProgress
