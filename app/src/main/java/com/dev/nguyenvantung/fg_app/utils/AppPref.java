@@ -51,8 +51,7 @@ public class AppPref {
 
     public void putRememberMe(boolean checked){
         SharedPreferences.Editor editor = preference.edit();
-        if (checked) editor.putBoolean(AppConstants.ISREMEMBER, false);
-        else editor.putBoolean(AppConstants.ISREMEMBER, true);
+        editor.putBoolean(AppConstants.ISREMEMBER, checked);
         editor.commit();
     }
 
