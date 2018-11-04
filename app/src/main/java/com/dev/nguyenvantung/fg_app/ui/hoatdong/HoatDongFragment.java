@@ -1,4 +1,4 @@
-package com.dev.nguyenvantung.fg_app.ui.main;
+package com.dev.nguyenvantung.fg_app.ui.hoatdong;
 
 
 import android.os.Bundle;
@@ -9,9 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.dev.nguyenvantung.fg_app.R;
-import com.dev.nguyenvantung.fg_app.ui.main.fragment.adapter.ViewPagerHoatDongAdapter;
-import com.dev.nguyenvantung.fg_app.ui.main.fragment.coming.HoatDongComingFragment;
-import com.dev.nguyenvantung.fg_app.ui.main.fragment.finished.HoatDongFinishedFragment;
+import com.dev.nguyenvantung.fg_app.ui.hoatdong.fragment.adapter.ViewPagerHoatDongAdapter;
+import com.dev.nguyenvantung.fg_app.ui.hoatdong.fragment.coming.HoatDongComingFragment;
+import com.dev.nguyenvantung.fg_app.ui.hoatdong.fragment.finished.HoatDongFinishedFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

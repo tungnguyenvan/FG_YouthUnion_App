@@ -1,4 +1,4 @@
-package com.dev.nguyenvantung.fg_app.ui.main.fragment.coming;
+package com.dev.nguyenvantung.fg_app.ui.hoatdong.fragment.coming;
 
 
 import android.content.Intent;
@@ -19,7 +19,7 @@ import com.dev.nguyenvantung.fg_app.data.repository.HoatDongRepository;
 import com.dev.nguyenvantung.fg_app.data.source.local.HoatDongLocalDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.HoatDongRemoteDataSource;
 import com.dev.nguyenvantung.fg_app.ui.hoatdongdetail.HoatDongDetailActivity;
-import com.dev.nguyenvantung.fg_app.ui.main.fragment.adapter.HoatDongAdapter;
+import com.dev.nguyenvantung.fg_app.ui.hoatdong.fragment.adapter.HoatDongAdapter;
 import com.dev.nguyenvantung.fg_app.ui.storehoatdong.StoreHoatDongActivity;
 import com.dev.nguyenvantung.fg_app.utils.AppConstants;
 import com.dev.nguyenvantung.fg_app.utils.AppPref;
