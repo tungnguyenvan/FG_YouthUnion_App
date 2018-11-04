@@ -72,8 +72,9 @@ public class HoatDongComingFragment extends Fragment implements
 
         HoatDongRepository hoatDongRepository = new HoatDongRepository(HoatDongLocalDataSource.getInstance(), HoatDongRemoteDataSource.getInstance(getContext()));
         mPresenter = new HoatDongComingPresenter(hoatDongRepository, SchedulerProvider.getInstance());
-        mPresenter.listHoatDongComing(AppConstants.BEARER + AppPref.getInstance(getContext()).getApiToken());
         mPresenter.setView(this);
+        mPresenter.listHoatDongComing(AppConstants.BEARER + AppPref.getInstance(getContext()).getApiToken());
+
 
         store_hoatdong.setOnClickListener(this);
         btn_store.setOnClickListener(this);

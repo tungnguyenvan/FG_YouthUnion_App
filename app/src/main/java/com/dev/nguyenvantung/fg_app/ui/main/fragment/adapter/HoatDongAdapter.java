@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.dev.nguyenvantung.fg_app.R;
 import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDong;
 import com.dev.nguyenvantung.fg_app.ui.main.fragment.coming.HoatDongComingConstract;
-import com.dev.nguyenvantung.fg_app.ui.main.fragment.end.HoatDongFinishedConstract;
+import com.dev.nguyenvantung.fg_app.ui.main.fragment.finished.HoatDongFinishedConstract;
 import com.dev.nguyenvantung.fg_app.utils.helper.DateHelper;
 
 import java.text.SimpleDateFormat;

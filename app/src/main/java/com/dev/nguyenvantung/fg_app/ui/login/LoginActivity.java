@@ -19,6 +19,7 @@ import com.dev.nguyenvantung.fg_app.data.repository.LoginRepository;
 import com.dev.nguyenvantung.fg_app.data.source.remote.LoginRemoteDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.login.LoginResponse;
 import com.dev.nguyenvantung.fg_app.ui.main.MainActivity;
+import com.dev.nguyenvantung.fg_app.utils.AppConstants;
 import com.dev.nguyenvantung.fg_app.utils.AppPref;
 import com.dev.nguyenvantung.fg_app.utils.Validation;
 import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
@@ -137,7 +138,7 @@ public class LoginActivity extends AppCompatActivity implements LoginConstact.Vi
         appPref.putEmail(edEmail.getText().toString());
         appPref.putPassword(edPassword.getText().toString());
         appPref.putRememberMe(loginRemenberMe.isChecked());
-
+        AppConstants.USER = mLoginResponse.getUser();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
