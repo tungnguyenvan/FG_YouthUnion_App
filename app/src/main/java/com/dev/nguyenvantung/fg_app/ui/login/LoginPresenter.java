@@ -3,18 +3,17 @@ package com.dev.nguyenvantung.fg_app.ui.login;
 import android.util.Log;
 
 import com.dev.nguyenvantung.fg_app.data.model.login.LoginRequesst;
-import com.dev.nguyenvantung.fg_app.data.repository.LoginRepository;
-import com.dev.nguyenvantung.fg_app.data.source.remote.LoginRemoteDataSource;
+import com.dev.nguyenvantung.fg_app.data.repository.AuthRepository;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.login.LoginResponse;
 import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
 
 public class LoginPresenter implements LoginConstact.Presenter{
     private static final String TAG = "LoginPresenter";
     private LoginConstact.View mView;
-    private LoginRepository mRepository;
+    private AuthRepository mRepository;
     private SchedulerProvider mSchedulerProvider;
 
-    public LoginPresenter (LoginRepository mRepository, SchedulerProvider mSchedulerProvider){
+    public LoginPresenter (AuthRepository mRepository, SchedulerProvider mSchedulerProvider){
         this.mRepository = mRepository;
         this.mSchedulerProvider = mSchedulerProvider;
     }

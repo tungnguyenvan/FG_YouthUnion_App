@@ -6,6 +6,8 @@
             android:id="@+id/mnu_hoatdong"/>
         <item android:title="@string/LCDoan"
             android:id="@+id/mnu_lcdoan"/>
+        <item android:title="@string/log_out"
+            android:id="@+id/mnu_logout"/>
     </group>
 
     <item android:title="Support">

@@ -6,7 +6,7 @@ import com.dev.nguyenvantung.fg_app.data.source.remote.api.ApiKhoa;
 import com.dev.nguyenvantung.fg_app.data.source.remote.api.ApiHoatDongType;
 import com.dev.nguyenvantung.fg_app.data.source.remote.api.ApiLCDoan;
 import com.dev.nguyenvantung.fg_app.data.source.remote.api.ApiHoatDong;
-import com.dev.nguyenvantung.fg_app.data.source.remote.api.ApiLogin;
+import com.dev.nguyenvantung.fg_app.data.source.remote.api.ApiAuth;
 import com.dev.nguyenvantung.fg_app.data.source.remote.api.ApiUser;
 import com.dev.nguyenvantung.fg_app.utils.AppConstants;
 
@@ -14,7 +14,7 @@ public class AppServiceClient extends ServiceClient {
     private static ApiUser mApiUser;
     private static ApiLCDoan mApiLCDoan;
     private static ApiHoatDong mApiHoatDong;
-    private static ApiLogin mApiLogin;
+    private static ApiAuth mApiAuth;
     private static ApiKhoa mApiKhoa;
     private static ApiHoatDongType mApiHoatDongType;
 
@@ -45,11 +45,11 @@ public class AppServiceClient extends ServiceClient {
         return mApiHoatDong;
     }
 
-    public static ApiLogin getLoginRemoteInstance(Context context){
-        if (mApiLogin == null){
-            mApiLogin = createService(context, AppConstants.END_POINT, ApiLogin.class);
+    public static ApiAuth getLoginRemoteInstance(Context context){
+        if (mApiAuth == null){
+            mApiAuth = createService(context, AppConstants.END_POINT, ApiAuth.class);
         }
-        return mApiLogin;
+        return mApiAuth;
     }
 
     public static ApiHoatDongType getHoatDongTypeRemoteInstance(Context context){
