@@ -25,18 +25,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
+
     <LinearLayout
+        android:id="@+id/nav_layout"
+        android:clickable="true"
+        android:focusable="true"
         android:elevation="3dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_margin="@dimen/margin_default"
             android:layout_width="@dimen/width_height_avatar"
-            android:layout_height="@dimen/width_height_avatar" />
+            android:layout_height="@dimen/width_height_avatar"
+            android:src="@drawable/logo"/>
         <TextView
+            android:id="@+id/txt_nav_name"
             android:layout_margin="@dimen/margin_default"
             android:layout_gravity="bottom"
-            android:text="ten "
+            android:text="@string/not_update_yet"
+            android:textSize="24sp"
             android:textColor="@color/colorWhite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

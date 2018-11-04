@@ -6,11 +6,9 @@ import com.dev.nguyenvantung.fg_app.data.repository.UserRepository;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.user.UserResponse;
 import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
 
-import io.reactivex.SingleObserver;
-import io.reactivex.disposables.Disposable;
 
 public class UserPresenter implements UserConstact.Presenter {
-    public static final String TAG = "UserPresenter";
+    public static final String TAG = UserPresenter.class.getName();
     private UserConstact.View mView;
     private UserRepository mUserRepository;
     private SchedulerProvider mSchedulerProvider;
@@ -21,38 +19,27 @@ public class UserPresenter implements UserConstact.Presenter {
     }
 
     @Override
-    public void listUser(String token) {
-        mUserRepository.listUser(token)
-                .subscribeOn(mSchedulerProvider.io())
-                .observeOn(mSchedulerProvider.ui())
-                .subscribe(new SingleObserver<UserResponse>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onSuccess(UserResponse userResponse) {
-                        handleSuccess(userResponse);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        handleError(e);
-                    }
-                });
-    }
-
-    @Override
     public void setView(UserConstact.View view) {
         this.mView = view;
     }
 
+    @Override
+    public void userDetail(String token, int id) {
+        mView.showProgressBar();
+        mUserRepository.userDetail(token, id)
+                .subscribeOn(mSchedulerProvider.io())
+                .observeOn(mSchedulerProvider.ui())
+                .subscribe(userResponse -> handleSuccess(userResponse),
+                        error -> handleError(error));
+    }
+
     private void handleSuccess(UserResponse userResponse) {
-        mView.setListUser(userResponse.getData());
+        mView.dismissProgressBar();
+        mView.setUserDetail(userResponse);
     }
 
     private void handleError(Throwable e) {
+        mView.dismissProgressBar();
         Log.d(TAG, e.toString());
     }
 }

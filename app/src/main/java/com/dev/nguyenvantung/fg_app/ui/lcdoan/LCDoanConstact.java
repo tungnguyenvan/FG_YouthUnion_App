@@ -12,10 +12,8 @@ public interface LCDoanConstact {
         void setListKhoa(List<Khoa> listKhoa);
         void setListLCDoan(List<LCDoan> listLCDoan);
         void nextPage(int id);
-        void listLCDoanById(List<LCDoan> listLCDoan);
     }
     interface Presenter{
-        void ListLCDoanById(String token, int id);
         void listKhoa(String token);
         void listLCDoan(String token);
         void setView(LCDoanConstact.View mView);
