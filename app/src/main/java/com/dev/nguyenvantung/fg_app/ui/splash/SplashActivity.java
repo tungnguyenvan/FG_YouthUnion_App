@@ -5,6 +5,10 @@ import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -31,7 +35,10 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
     public TextView txtVersion;
 
     @BindView(R.id.splash_logo_layout)
-    public LinearLayout mLinearLayout;
+    public CardView mCardView;
+
+    @BindView(R.id.splash_img_logo)
+    public ImageView imgLogo;
 
     private AppPref mAppPref;
     private SplashContract.Presenter mPresenter;
@@ -46,6 +53,17 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
         mAppPref = AppPref.getInstance(this);
         mNavigator = new Navigator(this);
 
+        initViews();
+        initPresenter();
+        checkLogin();
+    }
+
+    private void initViews() {
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.animation_logo_splash);
+        imgLogo.startAnimation(animation);
+
+        mCardView.setTranslationZ(10);
+
         //set version
         try {
             String versionName = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
@@ -53,9 +71,6 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-
-        initPresenter();
-        checkLogin();
     }
 
     private void initPresenter() {
@@ -74,7 +89,7 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
 
     private void nextToLoginActivity() {
         Intent intent = new Intent(this, LoginActivity.class);
-        mNavigator.startActivity(intent, mLinearLayout, getString(R.string.share_view));
+        mNavigator.startActivity(intent, mCardView, getString(R.string.share_view));
         finish();
     }
 
