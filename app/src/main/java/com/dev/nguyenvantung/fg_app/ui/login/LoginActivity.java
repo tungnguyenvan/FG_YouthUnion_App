@@ -136,7 +136,7 @@ public class LoginActivity extends AppCompatActivity implements LoginConstact.Vi
     @Override
     public void loginSuccess(LoginResponse mLoginResponse) {
         AppPref appPref = AppPref.getInstance(this);
-        appPref.putApiToken(mLoginResponse.getAccess_token());
+        appPref.putApiToken(mLoginResponse.getAccessToken());
         appPref.putEmail(edEmail.getText().toString());
         appPref.putPassword(edPassword.getText().toString());
         appPref.putRememberMe(loginRemenberMe.isChecked());

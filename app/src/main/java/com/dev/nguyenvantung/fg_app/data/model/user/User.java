@@ -5,26 +5,19 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class User extends BaseModel{
-    @SerializedName("username")
-    @Expose
-    private String username;
     @SerializedName("email")
     @Expose
     private String email;
+    @SerializedName("username")
+    @Expose
+    private String username;
     @SerializedName("active")
     @Expose
     private Integer active;
-    @SerializedName("role")
+    @SerializedName("role_id")
     @Expose
-    private UserRole role;
+    private Integer roleId;
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public String getEmail() {
         return email;
@@ -32,6 +25,14 @@ public class User extends BaseModel{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Integer getActive() {
@@ -42,9 +43,14 @@ public class User extends BaseModel{
         this.active = active;
     }
 
-    public UserRole getRole() {
-        return role;
+    public Integer getRoleId() {
+        return roleId;
     }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
+    }
+
 
     @Override
     public String toString() {

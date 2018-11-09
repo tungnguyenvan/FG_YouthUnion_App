@@ -9,10 +9,10 @@ public class BaseModel {
     private Integer id;
     @SerializedName("created_at")
     @Expose
-    private CreatedAt createdAt;
+    private String createdAt;
     @SerializedName("updated_at")
     @Expose
-    private UpdatedAt updatedAt;
+    private String updatedAt;
 
     public int getId() {
         return id;
@@ -22,19 +22,19 @@ public class BaseModel {
         this.id = id;
     }
 
-    public CreatedAt getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(CreatedAt createdAt) {
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
 
-    public UpdatedAt getUpdatedAt() {
+    public String getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(UpdatedAt updatedAt) {
+    public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
 

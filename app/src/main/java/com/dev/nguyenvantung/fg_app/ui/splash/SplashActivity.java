@@ -101,7 +101,7 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
     @Override
     public void loginSuccess(LoginResponse mLoginResponse) {
         AppPref appPref = AppPref.getInstance(this);
-        appPref.putApiToken(mLoginResponse.getAccess_token());
+        appPref.putApiToken(mLoginResponse.getAccessToken());
         appPref.putEmail(appPref.getEmail());
         appPref.putPassword(appPref.getPassword());
         appPref.putRememberMe(appPref.getRemember());

@@ -1,46 +1,46 @@
 package com.dev.nguyenvantung.fg_app.data.source.remote.response.login;
 
-import com.dev.nguyenvantung.fg_app.data.model.base.BaseModel;
 import com.dev.nguyenvantung.fg_app.data.model.user.User;
+import com.dev.nguyenvantung.fg_app.data.source.remote.response.BaseResponse;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class LoginResponse extends BaseModel {
-    @Expose
+public class LoginResponse extends BaseResponse {
     @SerializedName("access_token")
-    private String access_token;
     @Expose
+    private String accessToken;
     @SerializedName("token_type")
-    private String token_type;
     @Expose
+    private String tokenType;
     @SerializedName("expires_at")
-    private String expires_at;
     @Expose
+    private String expiresAt;
     @SerializedName("user")
+    @Expose
     private User user;
 
-    public String getAccess_token() {
-        return access_token;
+    public String getAccessToken() {
+        return accessToken;
     }
 
-    public void setAccess_token(String access_token) {
-        this.access_token = access_token;
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 
-    public String getToken_type() {
-        return token_type;
+    public String getTokenType() {
+        return tokenType;
     }
 
-    public void setToken_type(String token_type) {
-        this.token_type = token_type;
+    public void setTokenType(String tokenType) {
+        this.tokenType = tokenType;
     }
 
-    public String getExpires_at() {
-        return expires_at;
+    public String getExpiresAt() {
+        return expiresAt;
     }
 
-    public void setExpires_at(String expires_at) {
-        this.expires_at = expires_at;
+    public void setExpiresAt(String expiresAt) {
+        this.expiresAt = expiresAt;
     }
 
     public User getUser() {
