@@ -1,34 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    android:layout_marginLeft="@dimen/margin_default"
-    android:layout_marginRight="@dimen/margin_default"
-    android:layout_marginTop="@dimen/padding_default"
-    app:cardCornerRadius="5dp"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    android:id="@+id/item.layout"
+    android:background="@color/colorWhite"
+    android:layout_marginTop="@dimen/margin_default"
+    android:paddingLeft="16dp"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <RelativeLayout
-        android:padding="@dimen/padding_default"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/item.user.name"
-            android:textColor="@color/colorBlack"
-            android:layout_centerVertical="true"
-            android:text="Đây là tên của một User"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
 
-        <Button
-            android:id="@+id/item.user.checkin"
-            android:background="@drawable/bg_button_contained"
-            android:textColor="@color/colorWhite"
-            android:textAllCaps="false"
-            android:text="checkin"
-            android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </RelativeLayout>
-</android.support.v7.widget.CardView>
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/item.img.avatar"
+        android:src="@drawable/logo"
+        android:layout_centerVertical="true"
+        android:layout_width="52dp"
+        android:layout_height="52dp" />
+
+    <TextView
+        android:id="@+id/item.user.name"
+        android:layout_marginRight="@dimen/margin_default"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_toRightOf="@id/item.img.avatar"
+        android:layout_toLeftOf="@id/item.user.checkin"
+        android:textColor="@color/colorBlack"
+        android:layout_centerVertical="true"
+        android:text="Đây là tên của một User"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/item.user.checkin"
+        android:layout_marginRight="@dimen/margin_default"
+        android:background="@drawable/bg_button_contained"
+        android:textColor="@color/colorWhite"
+        android:textAllCaps="false"
+        android:layout_centerVertical="true"
+        android:text="checkin"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_marginLeft="52dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="@dimen/margin_default"
+        android:layout_below="@id/item.user.checkin"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"/>
+</RelativeLayout>
