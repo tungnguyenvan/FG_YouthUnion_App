@@ -6,6 +6,9 @@ public class AppConstants {
     public static final String END_POINT = "http://192.168.1.5/Laravel/FG-YouthUnion/public/api/v1/";
     public static final String BEARER = "Bearer ";
     public static final String AUTHORIZATION = "Authorization";
+    public static final String SOURCEGIT = "https://github.com/tungnguyenvan/FG_YouthUnion_App";
+    public static final String CONTACTDEV = "https://www.facebook.com/tungcode13";
+    public static final String CONTACTDEVCODE = "fb://profile/100005222656509";
 
     public static final String APP_PREF = "app_pref";
     public static final String API_TOKEN = "apitoken";
@@ -19,5 +22,4 @@ public class AppConstants {
     public static final int REQUEST_CODE_STORE_HOATDONG = 1;
 
     public static User USER = null;
-
 }

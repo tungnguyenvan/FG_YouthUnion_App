@@ -55,6 +55,12 @@ public class Navigator {
         mActivity.startActivity(intent, options.toBundle());
     }
 
+    public void startActivity(Uri uri){
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(uri);
+        startActivity(intent);
+    }
+
     public void startActivityAtRoot(@NonNull Class<? extends Activity> clazz) {
         Intent intent = new Intent(mActivity, clazz);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

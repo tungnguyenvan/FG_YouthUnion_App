@@ -2,6 +2,7 @@ package com.dev.nguyenvantung.fg_app.ui.main;
 
 
 import android.app.ProgressDialog;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -123,6 +124,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mNavigator.startActivity(AboutActivity.class);
     }
 
+    private void source(){
+        mNavigator.startActivity(Uri.parse(AppConstants.SOURCEGIT));
+    }
+
+    private void contactDev(){
+        try {
+            mNavigator.startActivity(Uri.parse(AppConstants.CONTACTDEVCODE));
+        }catch (Exception e){
+            mNavigator.startActivity(Uri.parse(AppConstants.CONTACTDEV));
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_navigation, menu);
@@ -151,6 +164,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.mnu_about:
                 about();
+                break;
+            case R.id.mnu_github:
+                source();
+                break;
+            case R.id.mnu_fgdev_contact:
+                contactDev();
                 break;
         }
         drawerLayout.closeDrawer(Gravity.START);
