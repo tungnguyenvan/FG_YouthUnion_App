@@ -23,7 +23,6 @@ import android.widget.Toast;
 import com.dev.nguyenvantung.fg_app.R;
 import com.dev.nguyenvantung.fg_app.data.repository.AuthRepository;
 import com.dev.nguyenvantung.fg_app.data.source.remote.AuthRemoteDataSource;
-import com.dev.nguyenvantung.fg_app.ui.about.AboutActivity;
 import com.dev.nguyenvantung.fg_app.ui.hoatdong.HoatDongFragment;
 import com.dev.nguyenvantung.fg_app.ui.lcdoan.LCDoanFragment;
 import com.dev.nguyenvantung.fg_app.ui.login.LoginActivity;
@@ -119,10 +118,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mNavigator.startActivity(UserActivity.class);
     }
 
-    private void about() {
-        mNavigator.startActivity(AboutActivity.class);
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_navigation, menu);
@@ -148,9 +143,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.mnu_logout:
                 logOut();
-                break;
-            case R.id.mnu_about:
-                about();
                 break;
         }
         drawerLayout.closeDrawer(Gravity.START);

@@ -20,7 +20,7 @@
                 android:id="@+id/mnu_github"/>
             <item android:title="About"
                 android:icon="@drawable/ic_information"
-                android:id="@+id/mnu_about"/>
+                android:id="@+id/mnu_info"/>
         </menu>
     </item>
 </menu>

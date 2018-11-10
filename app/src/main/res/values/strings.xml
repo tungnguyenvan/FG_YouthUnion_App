@@ -54,5 +54,4 @@
     <string name="forgot_password">Forgot Password</string>
     <string name="login_fail">Đăng nhập thất bại</string>
     <string name="log_out">Đăng xuất</string>
-    <string name="about">Giới thiệu</string>
 </resources>
