@@ -16,10 +16,13 @@ import com.dev.nguyenvantung.fg_app.data.model.hoatdong.CheckInRequest;
 import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDong;
 import com.dev.nguyenvantung.fg_app.data.model.user.User;
 import com.dev.nguyenvantung.fg_app.data.repository.HoatDongRepository;
+import com.dev.nguyenvantung.fg_app.data.repository.UserHoatDongRepository;
 import com.dev.nguyenvantung.fg_app.data.repository.UserRepository;
 import com.dev.nguyenvantung.fg_app.data.source.local.HoatDongLocalDataSource;
+import com.dev.nguyenvantung.fg_app.data.source.local.UserHoatDongLoacalDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.local.UserLocalDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.HoatDongRemoteDataSource;
+import com.dev.nguyenvantung.fg_app.data.source.remote.UserHoatDongRemoteDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.UserRemoteDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.checkin.CheckInResponse;
 import com.dev.nguyenvantung.fg_app.ui.hoatdongdetail.adapter.HoatDongDetailAdapter;
@@ -35,7 +38,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class HoatDongDetailActivity extends AppCompatActivity implements HoatDongDetailContract.View {
-
     private static final String TAG = HoatDongDetailActivity.class.getName();
 
     @BindView(R.id.item_hoatdong_detail_txt_name)
@@ -109,13 +111,13 @@ public class HoatDongDetailActivity extends AppCompatActivity implements HoatDon
     private void initPresenter() {
         HoatDongRepository hoatDongRepository = new HoatDongRepository(HoatDongLocalDataSource.getInstance(),
                 HoatDongRemoteDataSource.getInstance(this));
-        UserRepository userRepository = new UserRepository(UserLocalDataSource.getInstance(),
-                UserRemoteDataSource.getInstance(this));
-        mPresenter = new HoatDongDetailPresenter(hoatDongRepository, userRepository, SchedulerProvider.getInstance());
+        UserHoatDongRepository userHoatDongRepository = new UserHoatDongRepository(UserHoatDongLoacalDataSource.getInstance(),
+                UserHoatDongRemoteDataSource.getInstance(this));
+        mPresenter = new HoatDongDetailPresenter(hoatDongRepository, userHoatDongRepository, SchedulerProvider.getInstance());
         mPresenter.setView(this);
 
         mPresenter.getHoatDong(AppConstants.BEARER + appPref.getApiToken(), idHoatDong);
-        mPresenter.listUser(AppConstants.BEARER + appPref.getApiToken());
+        mPresenter.listUserNotJoin(AppConstants.BEARER + appPref.getApiToken(), idHoatDong);
     }
 
     private void getData() {
@@ -165,7 +167,7 @@ public class HoatDongDetailActivity extends AppCompatActivity implements HoatDon
 
     @Override
     public void checkInSuccess(CheckInResponse checkInResponse, int possition) {
-        Toast.makeText(this, checkInResponse.getData().getUser().getUsername()
+        Toast.makeText(this, users.get(possition).getUsername()
                 + " " + getString(R.string.check_in_success), Toast.LENGTH_SHORT).show();
         users.remove(possition);
         hoatDongDetailAdapter.notifyDataSetChanged();
