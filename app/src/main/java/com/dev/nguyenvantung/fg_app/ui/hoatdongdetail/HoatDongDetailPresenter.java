@@ -4,7 +4,9 @@ import android.util.Log;
 
 import com.dev.nguyenvantung.fg_app.data.model.hoatdong.CheckInRequest;
 import com.dev.nguyenvantung.fg_app.data.repository.HoatDongRepository;
+import com.dev.nguyenvantung.fg_app.data.repository.UserHoatDongRepository;
 import com.dev.nguyenvantung.fg_app.data.repository.UserRepository;
+import com.dev.nguyenvantung.fg_app.data.source.UserHoatDongDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.checkin.CheckInResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.hoatdong.HoatDongResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.user.UserResponse;
@@ -18,12 +20,13 @@ public class HoatDongDetailPresenter implements HoatDongDetailContract.Presenter
     private static final String TAG = HoatDongDetailPresenter.class.getName();
     private HoatDongDetailContract.View mView;
     private HoatDongRepository mHoatDongRepository;
-    private UserRepository mUserRepository;
+    private UserHoatDongRepository mUserHoatDongRepository;
     private SchedulerProvider mProvider;
 
-    public HoatDongDetailPresenter(HoatDongRepository mHoatDongRepository, UserRepository mUserRepository, SchedulerProvider mProvider){
+    public HoatDongDetailPresenter(HoatDongRepository mHoatDongRepository, UserHoatDongRepository
+            mUserHoatDongRepository, SchedulerProvider mProvider) {
         this.mHoatDongRepository = mHoatDongRepository;
-        this.mUserRepository = mUserRepository;
+        this.mUserHoatDongRepository = mUserHoatDongRepository;
         this.mProvider = mProvider;
     }
 
@@ -43,9 +46,9 @@ public class HoatDongDetailPresenter implements HoatDongDetailContract.Presenter
     }
 
     @Override
-    public void listUser(String token) {
+    public void listUserNotJoin(String token, int id) {
         mView.showProgressbar();
-        mUserRepository.listUser(token)
+        mUserHoatDongRepository.listNotJoin(token, id)
                 .subscribeOn(mProvider.io())
                 .observeOn(mProvider.ui())
                 .subscribe(usersResponse -> handleSuccess(usersResponse),
@@ -68,7 +71,6 @@ public class HoatDongDetailPresenter implements HoatDongDetailContract.Presenter
     }
 
     private void handleSuccess(HoatDongResponse hoatDongResponse){
-        mView.dimissProgresbar();
         mView.setHoatDong(hoatDongResponse.getData());
     }
 

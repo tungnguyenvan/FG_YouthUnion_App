@@ -19,7 +19,7 @@ public class HoatDongDetailContract {
     interface Presenter{
         void setView(View mView);
         void getHoatDong(String token, int id);
-        void listUser(String token);
+        void listUserNotJoin(String token, int id);
         void checkIn(String token, CheckInRequest checkInRequest, int possition);
     }
 }

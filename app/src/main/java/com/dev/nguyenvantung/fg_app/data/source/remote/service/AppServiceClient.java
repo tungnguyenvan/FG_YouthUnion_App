@@ -8,6 +8,7 @@ import com.dev.nguyenvantung.fg_app.data.source.remote.api.ApiLCDoan;
 import com.dev.nguyenvantung.fg_app.data.source.remote.api.ApiHoatDong;
 import com.dev.nguyenvantung.fg_app.data.source.remote.api.ApiAuth;
 import com.dev.nguyenvantung.fg_app.data.source.remote.api.ApiUser;
+import com.dev.nguyenvantung.fg_app.data.source.remote.api.ApiUserHoatDong;
 import com.dev.nguyenvantung.fg_app.utils.AppConstants;
 
 public class AppServiceClient extends ServiceClient {
@@ -17,6 +18,7 @@ public class AppServiceClient extends ServiceClient {
     private static ApiAuth mApiAuth;
     private static ApiKhoa mApiKhoa;
     private static ApiHoatDongType mApiHoatDongType;
+    private static ApiUserHoatDong mApiUserHoatDong;
 
     public static ApiKhoa getKhoaRemoteInstance(Context context) {
         if (mApiKhoa == null) {
@@ -57,5 +59,13 @@ public class AppServiceClient extends ServiceClient {
             mApiHoatDongType = createService(context, AppConstants.END_POINT, ApiHoatDongType.class);
         }
         return mApiHoatDongType;
+    }
+
+    public static ApiUserHoatDong getUserHoatDongRemoteInstance(Context context){
+        if (mApiUserHoatDong == null){
+            mApiUserHoatDong = createService(context, AppConstants.END_POINT, ApiUserHoatDong.class);
+        }
+
+        return mApiUserHoatDong;
     }
 }

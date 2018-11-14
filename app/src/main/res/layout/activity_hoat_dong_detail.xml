@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout
     android:orientation="vertical"
-    android:transitionName="@string/share_hoatdong"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -17,6 +16,16 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <ImageView
+                android:transitionName="@string/share_hoatdong"
+                android:scaleType="centerCrop"
+                android:src="@drawable/hoatdong"
+                android:layout_width="match_parent"
+                android:layout_height="150dp" />
+            <View
+                android:background="#CCffffff"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"/>
             <LinearLayout
                 android:layout_marginTop="@dimen/height_toolbar_bottombar"
                 android:orientation="vertical"
@@ -80,7 +89,7 @@
                     android:background="@color/colorGray"
                     android:layout_width="match_parent"
                     android:layout_height="0.3dp"/>
-            </LinearLayout>
+        </LinearLayout>
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 app:layout_collapseMode="pin"
@@ -120,7 +129,6 @@
 
     <Button
         android:id="@+id/hoatdong.detail.btn.joined"
-        android:transitionName="@string/share_hoatdong"
         android:drawablePadding="@dimen/margin_default"
         android:drawableLeft="@drawable/ic_edit_white_24dp"
         android:textColor="@color/colorWhite"
