@@ -5,6 +5,7 @@ import android.content.Context;
 import com.dev.nguyenvantung.fg_app.data.source.UserHoatDongDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.api.ApiUserHoatDong;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.user.UsersResponse;
+import com.dev.nguyenvantung.fg_app.data.source.remote.response.userhoatdong.UserHoatDongResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.service.AppServiceClient;
 
 import io.reactivex.Single;
@@ -31,7 +32,7 @@ public class UserHoatDongRemoteDataSource implements UserHoatDongDataSource.Remo
     }
 
     @Override
-    public Single<UsersResponse> listJoined(String token, int id) {
+    public Single<UserHoatDongResponse> listJoined(String token, int id) {
         return mApiUserHoatDong.joined(token, id);
     }
 }

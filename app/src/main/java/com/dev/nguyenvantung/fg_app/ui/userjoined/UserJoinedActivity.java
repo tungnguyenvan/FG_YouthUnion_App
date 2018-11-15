@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.dev.nguyenvantung.fg_app.R;
 import com.dev.nguyenvantung.fg_app.data.model.user.User;
+import com.dev.nguyenvantung.fg_app.data.model.userhoatdong.UserHoatDong;
 import com.dev.nguyenvantung.fg_app.data.repository.UserHoatDongRepository;
 import com.dev.nguyenvantung.fg_app.data.source.local.UserHoatDongLoacalDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.UserHoatDongRemoteDataSource;
@@ -40,7 +41,7 @@ public class UserJoinedActivity extends AppCompatActivity implements UserJoinedC
     private int id;
     private UserJoinedContract.Presenter mPresenter;
     private UserJoinedAdapter mAdapter;
-    private List<User> users;
+    private List<UserHoatDong> users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,8 +97,8 @@ public class UserJoinedActivity extends AppCompatActivity implements UserJoinedC
     }
 
     @Override
-    public void setListUser(List<User> users) {
-        this.users.addAll(users);
+    public void setListUser(List<UserHoatDong> userHoatDongs) {
+        this.users.addAll(userHoatDongs);
         mAdapter.notifyDataSetChanged();
     }
 }

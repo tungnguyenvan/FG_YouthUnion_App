@@ -3,7 +3,7 @@ package com.dev.nguyenvantung.fg_app.ui.userjoined;
 import android.util.Log;
 
 import com.dev.nguyenvantung.fg_app.data.repository.UserHoatDongRepository;
-import com.dev.nguyenvantung.fg_app.data.source.remote.response.user.UsersResponse;
+import com.dev.nguyenvantung.fg_app.data.source.remote.response.userhoatdong.UserHoatDongResponse;
 import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
 
 public class UserJoinedPresenter implements UserJoinedContract.Presenter {
@@ -28,13 +28,13 @@ public class UserJoinedPresenter implements UserJoinedContract.Presenter {
         mUserHoatDongRepository.listJoined(token, id)
                 .subscribeOn(mSchedulerProvider.io())
                 .observeOn(mSchedulerProvider.ui())
-                .subscribe(usersResponse -> handleSuccess(usersResponse),
+                .subscribe(userHoatDongResponse -> handleSuccess(userHoatDongResponse),
                         error -> handleFail(error));
     }
 
-    public void handleSuccess(UsersResponse mUsersResponse){
+    public void handleSuccess(UserHoatDongResponse mUsersResponse){
         mView.dimissProgress();
-        Log.d(TAG, mUsersResponse.getData().size() + "");
+        Log.d(TAG, mUsersResponse.getData().size() + "-" + mUsersResponse.getData().get(1).getUser().getUsername());
         mView.setListUser(mUsersResponse.getData());
     }
 

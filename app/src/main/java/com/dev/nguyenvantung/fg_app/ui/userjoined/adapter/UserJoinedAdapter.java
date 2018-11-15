@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.dev.nguyenvantung.fg_app.R;
-import com.dev.nguyenvantung.fg_app.data.model.user.User;
+import com.dev.nguyenvantung.fg_app.data.model.userhoatdong.UserHoatDong;
 
 import java.util.List;
 
@@ -16,10 +16,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class UserJoinedAdapter extends RecyclerView.Adapter<UserJoinedAdapter.ViewHolder> {
-    private List<User> users;
+    private List<UserHoatDong> userHoatDongs;
 
-    public UserJoinedAdapter(List<User> users){
-        this.users = users;
+    public UserJoinedAdapter(List<UserHoatDong> userHoatDongs){
+        this.userHoatDongs = userHoatDongs;
     }
 
     @NonNull
@@ -31,12 +31,12 @@ public class UserJoinedAdapter extends RecyclerView.Adapter<UserJoinedAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        viewHolder.txtUserName.setText(users.get(i).getUsername());
+        viewHolder.txtUserName.setText(userHoatDongs.get(i).getUser().getUsername());
     }
 
     @Override
     public int getItemCount() {
-        return users.size();
+        return userHoatDongs.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
