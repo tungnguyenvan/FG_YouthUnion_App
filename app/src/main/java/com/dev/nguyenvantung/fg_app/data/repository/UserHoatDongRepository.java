@@ -1,6 +1,8 @@
 package com.dev.nguyenvantung.fg_app.data.repository;
 
+import com.dev.nguyenvantung.fg_app.data.model.hoatdong.CheckInRequest;
 import com.dev.nguyenvantung.fg_app.data.source.UserHoatDongDataSource;
+import com.dev.nguyenvantung.fg_app.data.source.remote.response.checkin.CheckInResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.user.UsersResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.userhoatdong.UserHoatDongResponse;
 
@@ -23,5 +25,10 @@ public class UserHoatDongRepository implements UserHoatDongDataSource.LocalDataS
     @Override
     public Single<UserHoatDongResponse> listJoined(String token, int id){
         return mRemote.listJoined(token, id);
+    }
+
+    @Override
+    public Single<CheckInResponse> checkIn(String token, CheckInRequest checkInRequest) {
+        return mRemote.checkIn(token, checkInRequest);
     }
 }

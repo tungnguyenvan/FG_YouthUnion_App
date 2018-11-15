@@ -19,6 +19,8 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_hoatdong_coming"
                 android:layout_width="match_parent"
+                android:paddingBottom="72dp"
+                android:clipToPadding="false"
                 android:layout_height="match_parent"/>
             <ProgressBar
                 android:id="@+id/coming_progress"
@@ -26,19 +28,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/store_hoatdong"
-            android:src="@drawable/ic_add_black_24dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
     </LinearLayout>
     <Button
         android:id="@+id/btn_store_hoatdong"
+        android:transformPivotY="10dp"
         android:transitionName="@string/share_hoatdong"
         android:drawablePadding="@dimen/margin_default"
         android:drawableLeft="@drawable/ic_add_white_24dp"

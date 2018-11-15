@@ -57,4 +57,9 @@
     <string name="about">Giới thiệu</string>
     <string name="get_id_error">Get ID from intent error</string>
     <string name="transition_joined">transition_joined</string>
+    <string name="store_hoatdong_success">Tạo hoạt động thành công!</string>
+    <string name="created_success">được tạo thành công!</string>
+    <string name="ok">Ok</string>
+    <string name="required">Cần phải có</string>
+    <string name="title_create_hoatdong">Tạo hoạt đông</string>
 </resources>

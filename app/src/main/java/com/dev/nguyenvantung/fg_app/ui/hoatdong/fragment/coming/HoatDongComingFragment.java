@@ -3,7 +3,6 @@ package com.dev.nguyenvantung.fg_app.ui.hoatdong.fragment.coming;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -35,17 +34,17 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HoatDongComingFragment extends Fragment implements
-        HoatDongComingConstract.View, View.OnClickListener {
+public class HoatDongComingFragment extends Fragment implements HoatDongComingConstract.View{
     private static HoatDongComingFragment instance;
     private static final String TAG = "HoatDongComing: ";
     private HoatDongComingConstract.Presenter mPresenter;
+
     @BindView(R.id.rv_hoatdong_coming)
     protected RecyclerView rv_hoatdong_coming;
-    @BindView(R.id.store_hoatdong)
-    protected FloatingActionButton store_hoatdong;
+
     @BindView(R.id.coming_progress)
     protected ProgressBar progressBar;
+
     @BindView(R.id.btn_store_hoatdong)
     protected Button btn_store;
 
@@ -76,8 +75,7 @@ public class HoatDongComingFragment extends Fragment implements
         mPresenter.listHoatDongComing(AppConstants.BEARER + AppPref.getInstance(getContext()).getApiToken());
 
 
-        store_hoatdong.setOnClickListener(this);
-        btn_store.setOnClickListener(this);
+        btn_store.setOnClickListener((v) -> storeHoatDong());
         return view;
     }
 
@@ -91,21 +89,9 @@ public class HoatDongComingFragment extends Fragment implements
         rv_hoatdong_coming.setAdapter(hoatDongAdapter);
     }
 
-    private void storeHoatDong(){
-
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.store_hoatdong:
-                storeHoatDong();
-                break;
-            case R.id.btn_store_hoatdong:
-                Intent intent = new Intent(getActivity(), StoreHoatDongActivity.class);
-                new Navigator(getActivity()).startActivityForResult(intent, AppConstants.REQUEST_CODE_STORE_HOATDONG);
-                break;
-        }
+    private void storeHoatDong() {
+        Intent intent = new Intent(getActivity(), StoreHoatDongActivity.class);
+        new Navigator(getActivity()).startActivityForResult(intent, AppConstants.REQUEST_CODE_STORE_HOATDONG);
     }
 
     @Override

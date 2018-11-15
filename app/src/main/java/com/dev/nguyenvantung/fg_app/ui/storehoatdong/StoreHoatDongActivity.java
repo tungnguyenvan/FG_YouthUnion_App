@@ -1,5 +1,6 @@
 package com.dev.nguyenvantung.fg_app.ui.storehoatdong;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import com.dev.nguyenvantung.fg_app.data.source.remote.response.hoatdong.HoatDon
 import com.dev.nguyenvantung.fg_app.ui.storehoatdong.adapter.HoatDongTypeAdapter;
 import com.dev.nguyenvantung.fg_app.utils.AppConstants;
 import com.dev.nguyenvantung.fg_app.utils.AppPref;
+import com.dev.nguyenvantung.fg_app.utils.Validation;
 import com.dev.nguyenvantung.fg_app.utils.helper.CalendaHelper;
 import com.dev.nguyenvantung.fg_app.utils.helper.DateHelper;
 import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
@@ -60,7 +62,7 @@ public class StoreHoatDongActivity extends AppCompatActivity
 
     private ProgressDialog mProgressDialog;
     private StoreHoatDongConstact.Presenter mPresenter;
-    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private Date date = new Date();
 
     private List<HoatDongType> hoatDongTypes;
@@ -84,6 +86,10 @@ public class StoreHoatDongActivity extends AppCompatActivity
     }
 
     private void initView() {
+        toolbar.setTitle(R.string.title_create_hoatdong);
+        toolbar.setNavigationIcon(R.drawable.ic_arraw_white);
+        toolbar.setNavigationOnClickListener(v -> onBackPressed());
+
         txt_start.setText(simpleDateFormat.format(date));
         txt_end.setText(simpleDateFormat.format(date));
 
@@ -106,16 +112,18 @@ public class StoreHoatDongActivity extends AppCompatActivity
     }
 
     private void createHoatDong(){
-        DateHelper dateHelper = new DateHelper();
         HoatDongRequest hoatDongRequest = new HoatDongRequest(
                 ed_name.getText().toString(),
                 ed_desc.getText().toString(),
-                dateHelper.dateStringToRequest(txt_start.getText().toString()),
-                dateHelper.dateStringToRequest(txt_end.getText().toString()),
-                store_hoatdong_sp_type.getSelectedItemPosition() + 1
-        );
-        mPresenter.storeHoatDong(AppConstants.BEARER + AppPref.getInstance(this).getApiToken(),
-                hoatDongRequest);
+                txt_start.getText().toString(),
+                txt_end.getText().toString(),
+                String.valueOf(store_hoatdong_sp_type.getSelectedItemPosition() + 1));
+
+        Validation validation = new Validation();
+        if (validation.checkStoreDataHoatDong(this, hoatDongRequest, ed_name, txt_start, txt_end,
+                store_hoatdong_sp_type, ed_desc))
+            mPresenter.storeHoatDong(AppConstants.BEARER + AppPref.getInstance(this).getApiToken(),
+                    hoatDongRequest);
 
     }
 
@@ -138,6 +146,12 @@ public class StoreHoatDongActivity extends AppCompatActivity
 
     @Override
     public void createHoatDongSuccess(HoatDongsResponse hoatDong) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.store_hoatdong_success));
+        builder.setMessage(ed_name.getText().toString() + " " + getString(R.string.created_success));
+        builder.setPositiveButton(getString(R.string.ok), ((dialog, which) -> onBackPressed()));
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
     @Override

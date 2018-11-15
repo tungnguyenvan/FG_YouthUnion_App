@@ -10,6 +10,7 @@ import com.dev.nguyenvantung.fg_app.data.source.remote.response.checkin.CheckInR
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.hoatdong.HoatDongResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.hoatdong.HoatDongsResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.service.AppServiceClient;
+import com.dev.nguyenvantung.fg_app.utils.AppConstants;
 
 import io.reactivex.Single;
 
@@ -40,16 +41,12 @@ public class HoatDongRemoteDataSource implements HoatDongDataSource.RemoteDataSo
 
     @Override
     public Single<HoatDongsResponse> store(String token, HoatDongRequest hoatDongRequest) {
-        return mApiHoatDong.store(token, hoatDongRequest);
+        return mApiHoatDong.store(AppConstants.HEADER_CONTENTTYPE_ACCEPT,
+                AppConstants.HEADER_CONTENTTYPE_ACCEPT, token, hoatDongRequest);
     }
 
     @Override
     public Single<HoatDongResponse> show(String toke, int id) {
         return mApiHoatDong.show(toke, id);
-    }
-
-    @Override
-    public Single<CheckInResponse> checkIn(String token, CheckInRequest checkInRequest) {
-        return mApiHoatDong.checkin(token, checkInRequest);
     }
 }

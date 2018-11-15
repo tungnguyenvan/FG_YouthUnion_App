@@ -19,13 +19,13 @@ public class HoatDongRequest {
     @SerializedName("end_date")
     private String end;
     @Expose
-    @SerializedName("hoatdong_type_id")
-    private int hoatDongTypeID;
+    @SerializedName("hoatdongtype_id")
+    private String hoatDongTypeID;
 
     public HoatDongRequest() {
     }
 
-    public HoatDongRequest(String name, String desc, String from, String end, int hoatDongTypeID) {
+    public HoatDongRequest(String name, String desc, String from, String end, String hoatDongTypeID) {
         this.name = name;
         this.desc = desc;
         this.from = from;
@@ -65,11 +65,11 @@ public class HoatDongRequest {
         this.end = end;
     }
 
-    public int getHoatDongTypeID() {
+    public String getHoatDongTypeID() {
         return hoatDongTypeID;
     }
 
-    public void setHoatDongTypeID(int hoatDongTypeID) {
+    public void setHoatDongTypeID(String hoatDongTypeID) {
         this.hoatDongTypeID = hoatDongTypeID;
     }
 }

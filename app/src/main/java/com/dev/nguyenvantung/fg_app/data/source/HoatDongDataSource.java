@@ -17,6 +17,5 @@ public interface HoatDongDataSource {
         Single<HoatDongsResponse> listHoatDongComming(String token);
         Single<HoatDongsResponse> store(String token, HoatDongRequest hoatDongRequest);
         Single<HoatDongResponse> show(String token, int id);
-        Single<CheckInResponse> checkIn(String token, CheckInRequest checkInRequest);
     }
 }
