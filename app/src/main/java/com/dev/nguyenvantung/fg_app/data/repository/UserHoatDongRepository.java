@@ -2,6 +2,7 @@ package com.dev.nguyenvantung.fg_app.data.repository;
 
 import com.dev.nguyenvantung.fg_app.data.source.UserHoatDongDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.user.UsersResponse;
+import com.dev.nguyenvantung.fg_app.data.source.remote.response.userhoatdong.UserHoatDongResponse;
 
 import io.reactivex.Single;
 
@@ -20,7 +21,7 @@ public class UserHoatDongRepository implements UserHoatDongDataSource.LocalDataS
     }
 
     @Override
-    public Single<UsersResponse> listJoined(String token, int id){
+    public Single<UserHoatDongResponse> listJoined(String token, int id){
         return mRemote.listJoined(token, id);
     }
 }

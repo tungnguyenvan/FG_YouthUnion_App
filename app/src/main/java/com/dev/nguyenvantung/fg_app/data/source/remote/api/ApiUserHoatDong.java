@@ -1,6 +1,7 @@
 package com.dev.nguyenvantung.fg_app.data.source.remote.api;
 
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.user.UsersResponse;
+import com.dev.nguyenvantung.fg_app.data.source.remote.response.userhoatdong.UserHoatDongResponse;
 import com.dev.nguyenvantung.fg_app.utils.AppConstants;
 
 import io.reactivex.Single;
@@ -10,9 +11,9 @@ import retrofit2.http.Path;
 
 public interface ApiUserHoatDong {
 
-    @GET("userhoatdongs/hoatdongs/{id}")
+    @GET("userhoatdongs/hoatdongs/notjoin/{id}")
     Single<UsersResponse> notJoin(@Header(AppConstants.AUTHORIZATION) String token, @Path(AppConstants.ID) int id);
 
     @GET("userhoatdongs/hoatdongs/{id}")
-    Single<UsersResponse> joined(@Header(AppConstants.AUTHORIZATION) String token, @Path(AppConstants.ID) int id);
+    Single<UserHoatDongResponse> joined(@Header(AppConstants.AUTHORIZATION) String token, @Path(AppConstants.ID) int id);
 }

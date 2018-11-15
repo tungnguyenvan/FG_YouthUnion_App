@@ -3,7 +3,7 @@ package com.dev.nguyenvantung.fg_app.utils;
 import com.dev.nguyenvantung.fg_app.data.model.user.User;
 
 public class AppConstants {
-    public static final String END_POINT = "http://192.168.1.5/Laravel/FG-YouthUnion/public/api/v1/";
+    public static final String END_POINT = "http://192.168.0.103/Laravel/FG-YouthUnion/public/api/v1/";
     public static final String BEARER = "Bearer ";
     public static final String AUTHORIZATION = "Authorization";
     public static final String SOURCEGIT = "https://github.com/tungnguyenvan/FG_YouthUnion_App";
