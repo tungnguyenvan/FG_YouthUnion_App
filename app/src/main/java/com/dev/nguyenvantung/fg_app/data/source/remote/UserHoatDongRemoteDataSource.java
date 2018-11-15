@@ -2,8 +2,10 @@ package com.dev.nguyenvantung.fg_app.data.source.remote;
 
 import android.content.Context;
 
+import com.dev.nguyenvantung.fg_app.data.model.hoatdong.CheckInRequest;
 import com.dev.nguyenvantung.fg_app.data.source.UserHoatDongDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.api.ApiUserHoatDong;
+import com.dev.nguyenvantung.fg_app.data.source.remote.response.checkin.CheckInResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.user.UsersResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.userhoatdong.UserHoatDongResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.service.AppServiceClient;
@@ -34,5 +36,10 @@ public class UserHoatDongRemoteDataSource implements UserHoatDongDataSource.Remo
     @Override
     public Single<UserHoatDongResponse> listJoined(String token, int id) {
         return mApiUserHoatDong.joined(token, id);
+    }
+
+    @Override
+    public Single<CheckInResponse> checkIn(String token, CheckInRequest checkInRequest) {
+        return mApiUserHoatDong.checkin(token, checkInRequest);
     }
 }

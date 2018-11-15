@@ -8,14 +8,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.storehoatdong.StoreHoatDongActivity">
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/header"/>
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -65,8 +59,10 @@
                 android:id="@+id/store_hoatdong_collapsing_start"
                 android:layout_marginLeft="@dimen/margin_default"
                 android:layout_marginRight="@dimen/margin_default"
-                app:textColor="@color/colorWhite"
+                app:textColor="@color/colorGray"
                 app:primaryColor="@color/colorPrimary"
+                app:todayItem_textColor="@color/colorWhite"
+                app:expandIconColor="@color/colorGray"
                 app:selectedItem_textColor="@color/colorWhite"
                 app:buttonLeft_drawableTintColor="@color/colorWhite"
                 app:buttonRight_drawableTintColor="@color/colorWhite"
@@ -100,8 +96,10 @@
                 android:id="@+id/store_hoatdong_collapsing_end"
                 android:layout_marginLeft="@dimen/margin_default"
                 android:layout_marginRight="@dimen/margin_default"
-                app:textColor="@color/colorWhite"
+                app:textColor="@color/colorGray"
                 app:primaryColor="@color/colorPrimary"
+                app:todayItem_textColor="@color/colorWhite"
+                app:expandIconColor="@color/colorGray"
                 app:selectedItem_textColor="@color/colorWhite"
                 app:buttonLeft_drawableTintColor="@color/colorWhite"
                 app:buttonRight_drawableTintColor="@color/colorWhite"

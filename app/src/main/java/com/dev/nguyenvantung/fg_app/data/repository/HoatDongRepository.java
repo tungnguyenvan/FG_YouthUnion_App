@@ -37,9 +37,4 @@ public class HoatDongRepository implements HoatDongDataSource.LocalDataSource, H
     public Single<HoatDongResponse> show(String toke, int id) {
         return mRemoteDataSource.show(toke, id);
     }
-
-    @Override
-    public Single<CheckInResponse> checkIn(String token, CheckInRequest checkInRequest) {
-        return mRemoteDataSource.checkIn(token, checkInRequest);
-    }
 }

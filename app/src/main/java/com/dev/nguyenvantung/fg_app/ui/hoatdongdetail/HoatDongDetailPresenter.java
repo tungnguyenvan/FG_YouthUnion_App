@@ -63,7 +63,7 @@ public class HoatDongDetailPresenter implements HoatDongDetailContract.Presenter
     @Override
     public void checkIn(String token, CheckInRequest checkInRequest, int possion) {
         mView.showProgressbar();
-        mHoatDongRepository.checkIn(token, checkInRequest)
+        mUserHoatDongRepository.checkIn(token, checkInRequest)
                 .subscribeOn(mProvider.io())
                 .observeOn(mProvider.ui())
                 .subscribe(checkInResponse -> handleSuccess(checkInResponse, possion),

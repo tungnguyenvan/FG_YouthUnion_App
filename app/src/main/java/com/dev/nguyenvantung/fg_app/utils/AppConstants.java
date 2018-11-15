@@ -9,6 +9,7 @@ public class AppConstants {
     public static final String SOURCEGIT = "https://github.com/tungnguyenvan/FG_YouthUnion_App";
     public static final String CONTACTDEV = "https://www.facebook.com/tungcode13";
     public static final String CONTACTDEVCODE = "fb://profile/100005222656509";
+    public static final String HEADER_CONTENTTYPE_ACCEPT = "application/json";
 
     public static final String APP_PREF = "app_pref";
     public static final String API_TOKEN = "apitoken";

@@ -25,8 +25,8 @@ public interface ApiHoatDong {
     Single<HoatDongResponse> show(@Header(AppConstants.AUTHORIZATION) String token, @Path("id") int id);
 
     @POST("hoatdongs")
-    Single<HoatDongsResponse> store(@Header(AppConstants.AUTHORIZATION) String token, @Body HoatDongRequest hoatDongRequest);
-
-    @POST("userhoatdongs")
-    Single<CheckInResponse> checkin(@Header(AppConstants.AUTHORIZATION) String token, @Body CheckInRequest checkInRequest);
+    Single<HoatDongsResponse> store(@Header("Accept") String accept,
+                                    @Header("Content-Type") String content,
+                                    @Header(AppConstants.AUTHORIZATION) String token,
+                                    @Body HoatDongRequest hoatDongRequest);
 }
