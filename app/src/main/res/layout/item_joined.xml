@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingTop="@dimen/padding_default"
+    android:paddingBottom="@dimen/padding_default"
+    android:id="@+id/item.layout"
+    android:background="?attr/selectableItemBackground"
+    android:layout_marginTop="@dimen/margin_default"
+    android:paddingLeft="16dp"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/item.img.avatar"
+        android:src="@drawable/logo"
+        android:layout_centerVertical="true"
+        android:layout_width="52dp"
+        android:layout_height="52dp" />
+
+    <TextView
+        android:id="@+id/item.user.name"
+        android:layout_marginRight="@dimen/margin_default"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_toRightOf="@id/item.img.avatar"
+        android:layout_toLeftOf="@id/item.user.checkin"
+        android:textColor="@color/colorBlack"
+        android:layout_centerVertical="true"
+        android:text="Đây là tên của một User"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:background="@color/colorGray"
+        android:layout_marginLeft="52dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="@dimen/margin_default"
+        android:layout_below="@id/item.img.avatar"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"/>
+</RelativeLayout>

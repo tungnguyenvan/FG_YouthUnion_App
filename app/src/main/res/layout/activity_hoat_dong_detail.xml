@@ -129,6 +129,7 @@
 
     <Button
         android:id="@+id/hoatdong.detail.btn.joined"
+        android:transitionName="@string/transition_joined"
         android:drawablePadding="@dimen/margin_default"
         android:drawableLeft="@drawable/ic_checked_white"
         android:textColor="@color/colorWhite"

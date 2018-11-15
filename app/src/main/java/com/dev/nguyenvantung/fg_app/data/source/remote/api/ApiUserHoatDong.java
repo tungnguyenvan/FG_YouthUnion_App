@@ -12,4 +12,7 @@ public interface ApiUserHoatDong {
 
     @GET("userhoatdongs/hoatdongs/{id}")
     Single<UsersResponse> notJoin(@Header(AppConstants.AUTHORIZATION) String token, @Path(AppConstants.ID) int id);
+
+    @GET("userhoatdongs/hoatdongs/{id}")
+    Single<UsersResponse> joined(@Header(AppConstants.AUTHORIZATION) String token, @Path(AppConstants.ID) int id);
 }

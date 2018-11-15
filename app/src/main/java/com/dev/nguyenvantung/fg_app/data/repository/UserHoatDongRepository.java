@@ -18,4 +18,9 @@ public class UserHoatDongRepository implements UserHoatDongDataSource.LocalDataS
     public Single<UsersResponse> listNotJoin(String token, int id) {
         return mRemote.listNotJoin(token, id);
     }
+
+    @Override
+    public Single<UsersResponse> listJoined(String token, int id){
+        return mRemote.listJoined(token, id);
+    }
 }

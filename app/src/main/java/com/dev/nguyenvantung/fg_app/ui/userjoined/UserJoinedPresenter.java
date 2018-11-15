@@ -1,0 +1,45 @@
+package com.dev.nguyenvantung.fg_app.ui.userjoined;
+
+import android.util.Log;
+
+import com.dev.nguyenvantung.fg_app.data.repository.UserHoatDongRepository;
+import com.dev.nguyenvantung.fg_app.data.source.remote.response.user.UsersResponse;
+import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
+
+public class UserJoinedPresenter implements UserJoinedContract.Presenter {
+    private static final String TAG = UserJoinedPresenter.class.getName();
+    private UserHoatDongRepository mUserHoatDongRepository;
+    private SchedulerProvider mSchedulerProvider;
+    private UserJoinedContract.View mView;
+
+    public UserJoinedPresenter(UserHoatDongRepository mUserHoatDongRepository, SchedulerProvider mSchedulerProvider){
+        this.mUserHoatDongRepository = mUserHoatDongRepository;
+        this.mSchedulerProvider = mSchedulerProvider;
+    }
+
+    @Override
+    public void setView(UserJoinedContract.View mView) {
+        this.mView = mView;
+    }
+
+    @Override
+    public void listUserJoined(String token, int id) {
+        mView.showProgress();
+        mUserHoatDongRepository.listJoined(token, id)
+                .subscribeOn(mSchedulerProvider.io())
+                .observeOn(mSchedulerProvider.ui())
+                .subscribe(usersResponse -> handleSuccess(usersResponse),
+                        error -> handleFail(error));
+    }
+
+    public void handleSuccess(UsersResponse mUsersResponse){
+        mView.dimissProgress();
+        Log.d(TAG, mUsersResponse.getData().size() + "");
+        mView.setListUser(mUsersResponse.getData());
+    }
+
+    public void handleFail(Throwable error){
+        mView.dimissProgress();
+        Log.e(TAG, error.getLocalizedMessage());
+    }
+}

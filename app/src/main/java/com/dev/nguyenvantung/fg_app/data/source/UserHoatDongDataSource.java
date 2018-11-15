@@ -10,5 +10,6 @@ public interface UserHoatDongDataSource {
     }
     interface RemoteDataSource {
         Single<UsersResponse> listNotJoin(String token, int id);
+        Single<UsersResponse> listJoined(String token, int id);
     }
 }

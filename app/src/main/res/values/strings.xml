@@ -55,4 +55,6 @@
     <string name="login_fail">Đăng nhập thất bại</string>
     <string name="log_out">Đăng xuất</string>
     <string name="about">Giới thiệu</string>
+    <string name="get_id_error">Get ID from intent error</string>
+    <string name="transition_joined">transition_joined</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.dev.nguyenvantung.fg_app.ui.hoatdongdetail;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,8 +27,10 @@ import com.dev.nguyenvantung.fg_app.data.source.remote.UserHoatDongRemoteDataSou
 import com.dev.nguyenvantung.fg_app.data.source.remote.UserRemoteDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.checkin.CheckInResponse;
 import com.dev.nguyenvantung.fg_app.ui.hoatdongdetail.adapter.HoatDongDetailAdapter;
+import com.dev.nguyenvantung.fg_app.ui.userjoined.UserJoinedActivity;
 import com.dev.nguyenvantung.fg_app.utils.AppConstants;
 import com.dev.nguyenvantung.fg_app.utils.AppPref;
+import com.dev.nguyenvantung.fg_app.utils.navigator.Navigator;
 import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
 
 import java.text.SimpleDateFormat;
@@ -105,7 +108,10 @@ public class HoatDongDetailActivity extends AppCompatActivity implements HoatDon
     }
 
     private void joined(){
-
+        Navigator navigator = new Navigator(this);
+        Intent intent = new Intent(this, UserJoinedActivity.class);
+        intent.putExtra(AppConstants.ID, idHoatDong);
+        navigator.startActivity(intent, btnJoined, getString(R.string.transition_joined));
     }
 
     private void initPresenter() {
