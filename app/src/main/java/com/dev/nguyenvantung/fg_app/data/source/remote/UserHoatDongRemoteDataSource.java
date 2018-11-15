@@ -29,4 +29,9 @@ public class UserHoatDongRemoteDataSource implements UserHoatDongDataSource.Remo
     public Single<UsersResponse> listNotJoin(String token, int id) {
         return mApiUserHoatDong.notJoin(token, id);
     }
+
+    @Override
+    public Single<UsersResponse> listJoined(String token, int id) {
+        return mApiUserHoatDong.joined(token, id);
+    }
 }
