@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    android:id="@+id/item.joined.layout"
     android:clickable="true"
     android:focusable="true"
     android:paddingTop="@dimen/padding_default"
     android:paddingBottom="@dimen/padding_default"
-    android:id="@+id/item.layout"
     android:background="?attr/selectableItemBackground"
     android:layout_marginTop="@dimen/margin_default"
     android:paddingLeft="16dp"

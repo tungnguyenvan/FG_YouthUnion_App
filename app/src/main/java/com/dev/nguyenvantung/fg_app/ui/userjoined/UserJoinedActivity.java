@@ -15,6 +15,7 @@ import com.dev.nguyenvantung.fg_app.data.model.userhoatdong.UserHoatDong;
 import com.dev.nguyenvantung.fg_app.data.repository.UserHoatDongRepository;
 import com.dev.nguyenvantung.fg_app.data.source.local.UserHoatDongLoacalDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.UserHoatDongRemoteDataSource;
+import com.dev.nguyenvantung.fg_app.ui.userfragment.UserFragment;
 import com.dev.nguyenvantung.fg_app.ui.userjoined.adapter.UserJoinedAdapter;
 import com.dev.nguyenvantung.fg_app.utils.AppConstants;
 import com.dev.nguyenvantung.fg_app.utils.AppPref;
@@ -42,6 +43,7 @@ public class UserJoinedActivity extends AppCompatActivity implements UserJoinedC
     private UserJoinedContract.Presenter mPresenter;
     private UserJoinedAdapter mAdapter;
     private List<UserHoatDong> users;
+    private UserFragment mUserFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +65,7 @@ public class UserJoinedActivity extends AppCompatActivity implements UserJoinedC
 
         //init recyclerview
         users = new ArrayList<>();
-        mAdapter = new UserJoinedAdapter(users);
+        mAdapter = new UserJoinedAdapter(users, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         joinedRv.setHasFixedSize(true);
         joinedRv.setLayoutManager(linearLayoutManager);
@@ -100,5 +102,12 @@ public class UserJoinedActivity extends AppCompatActivity implements UserJoinedC
     public void setListUser(List<UserHoatDong> userHoatDongs) {
         this.users.addAll(userHoatDongs);
         mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showUser(int id) {
+        if (mUserFragment == null) mUserFragment = new UserFragment();
+        mUserFragment.addData(id);
+        mUserFragment.show(getSupportFragmentManager(), TAG);
     }
 }
