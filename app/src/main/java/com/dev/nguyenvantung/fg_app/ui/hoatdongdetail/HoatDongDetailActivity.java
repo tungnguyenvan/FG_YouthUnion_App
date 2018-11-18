@@ -27,6 +27,7 @@ import com.dev.nguyenvantung.fg_app.data.source.remote.UserHoatDongRemoteDataSou
 import com.dev.nguyenvantung.fg_app.data.source.remote.UserRemoteDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.checkin.CheckInResponse;
 import com.dev.nguyenvantung.fg_app.ui.hoatdongdetail.adapter.HoatDongDetailAdapter;
+import com.dev.nguyenvantung.fg_app.ui.userfragment.UserFragment;
 import com.dev.nguyenvantung.fg_app.ui.userjoined.UserJoinedActivity;
 import com.dev.nguyenvantung.fg_app.utils.AppConstants;
 import com.dev.nguyenvantung.fg_app.utils.AppPref;
@@ -75,6 +76,7 @@ public class HoatDongDetailActivity extends AppCompatActivity implements HoatDon
     private HoatDongDetailAdapter hoatDongDetailAdapter;
 
     private ProgressDialog progressDialog;
+    private UserFragment mUserFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,5 +179,12 @@ public class HoatDongDetailActivity extends AppCompatActivity implements HoatDon
                 + " " + getString(R.string.check_in_success), Toast.LENGTH_SHORT).show();
         users.remove(possition);
         hoatDongDetailAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showUser(int id) {
+        if (mUserFragment == null) mUserFragment = new UserFragment();
+        mUserFragment.addData(id);
+        mUserFragment.show(getSupportFragmentManager(), TAG);
     }
 }

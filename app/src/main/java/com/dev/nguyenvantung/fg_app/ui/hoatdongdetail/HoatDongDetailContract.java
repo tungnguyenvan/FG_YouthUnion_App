@@ -7,14 +7,15 @@ import com.dev.nguyenvantung.fg_app.data.source.remote.response.checkin.CheckInR
 
 import java.util.List;
 
-public class HoatDongDetailContract {
-    public interface View{
+public interface HoatDongDetailContract {
+    interface View{
         void showProgressbar();
         void dimissProgresbar();
         void setHoatDong(HoatDong hoatDong);
         void setListUser(List<User> listUser);
         void checkIn(int possition);
         void checkInSuccess(CheckInResponse checkInResponse, int possition);
+        void showUser(int id);
     }
     interface Presenter{
         void setView(View mView);

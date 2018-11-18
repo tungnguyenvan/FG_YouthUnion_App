@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.dev.nguyenvantung.fg_app.R;
@@ -47,16 +48,24 @@ public class HoatDongDetailAdapter extends RecyclerView.Adapter<HoatDongDetailAd
     public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.item_user_name)
         public TextView txtName;
+
         @BindView(R.id.item_user_checkin)
         public Button btnCheckin;
+
+        @BindView(R.id.item_user_layout)
+        public RelativeLayout layout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             btnCheckin.setOnClickListener(view -> checkIn());
+            layout.setOnClickListener(view -> showUser());
         }
         private void checkIn(){
             mView.checkIn(getAdapterPosition());
+        }
+        private void showUser(){
+            mView.showUser(mUsers.get(getAdapterPosition()).getId());
         }
     }
 }
