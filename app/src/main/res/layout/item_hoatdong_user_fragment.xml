@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
-    android:translationZ="8dp"
+    android:translationZ="2dp"
     app:cardCornerRadius="@dimen/radius_cartview_default"
     android:layout_margin="@dimen/margin_default"
     android:elevation="@dimen/elevation_cartview_default"

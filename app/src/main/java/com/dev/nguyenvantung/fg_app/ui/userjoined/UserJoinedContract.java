@@ -11,6 +11,7 @@ public interface UserJoinedContract {
         void showProgress();
         void dimissProgress();
         void setListUser(List<UserHoatDong> userHoatDongs);
+        void showUser(int id);
     }
     interface Presenter{
         void setView(View mView);
