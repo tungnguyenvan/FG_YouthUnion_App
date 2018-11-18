@@ -34,7 +34,6 @@ public class UserJoinedPresenter implements UserJoinedContract.Presenter {
 
     public void handleSuccess(UserHoatDongResponse mUsersResponse){
         mView.dimissProgress();
-        Log.d(TAG, mUsersResponse.getData().size() + "-" + mUsersResponse.getData().get(1).getUser().getUsername());
         mView.setListUser(mUsersResponse.getData());
     }
 

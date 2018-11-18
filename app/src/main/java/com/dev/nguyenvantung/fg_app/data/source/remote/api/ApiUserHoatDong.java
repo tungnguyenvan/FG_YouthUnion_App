@@ -23,4 +23,7 @@ public interface ApiUserHoatDong {
 
     @POST("userhoatdongs")
     Single<CheckInResponse> checkin(@Header(AppConstants.AUTHORIZATION) String token, @Body CheckInRequest checkInRequest);
+
+    @GET("userhoatdongs/users/{id}")
+    Single<UserHoatDongResponse> userJoined(@Header(AppConstants.AUTHORIZATION) String token, @Path(AppConstants.ID) int id);
 }

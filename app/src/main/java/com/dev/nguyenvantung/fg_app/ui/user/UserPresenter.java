@@ -3,7 +3,7 @@ package com.dev.nguyenvantung.fg_app.ui.user;
 import android.util.Log;
 
 import com.dev.nguyenvantung.fg_app.data.repository.UserRepository;
-import com.dev.nguyenvantung.fg_app.data.source.remote.response.user.UserResponse;
+import com.dev.nguyenvantung.fg_app.data.source.remote.response.user.UserDetailResponse;
 import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
 
 
@@ -33,9 +33,9 @@ public class UserPresenter implements UserConstact.Presenter {
                         error -> handleError(error));
     }
 
-    private void handleSuccess(UserResponse userResponse) {
+    private void handleSuccess(UserDetailResponse userDetailResponse) {
         mView.dismissProgressBar();
-        mView.setUserDetail(userResponse);
+        mView.setUserDetail(userDetailResponse);
     }
 
     private void handleError(Throwable e) {

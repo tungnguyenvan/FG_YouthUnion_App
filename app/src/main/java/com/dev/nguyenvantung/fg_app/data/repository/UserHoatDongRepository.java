@@ -31,4 +31,9 @@ public class UserHoatDongRepository implements UserHoatDongDataSource.LocalDataS
     public Single<CheckInResponse> checkIn(String token, CheckInRequest checkInRequest) {
         return mRemote.checkIn(token, checkInRequest);
     }
+
+    @Override
+    public Single<UserHoatDongResponse> userJoined(String token, int id) {
+        return mRemote.userJoined(token, id);
+    }
 }

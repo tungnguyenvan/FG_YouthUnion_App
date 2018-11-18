@@ -5,16 +5,10 @@ import android.util.Log;
 import com.dev.nguyenvantung.fg_app.data.model.hoatdong.CheckInRequest;
 import com.dev.nguyenvantung.fg_app.data.repository.HoatDongRepository;
 import com.dev.nguyenvantung.fg_app.data.repository.UserHoatDongRepository;
-import com.dev.nguyenvantung.fg_app.data.repository.UserRepository;
-import com.dev.nguyenvantung.fg_app.data.source.UserHoatDongDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.checkin.CheckInResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.hoatdong.HoatDongResponse;
-import com.dev.nguyenvantung.fg_app.data.source.remote.response.user.UserResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.user.UsersResponse;
 import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
-
-import io.reactivex.SingleObserver;
-import io.reactivex.disposables.Disposable;
 
 public class HoatDongDetailPresenter implements HoatDongDetailContract.Presenter {
     private static final String TAG = HoatDongDetailPresenter.class.getName();

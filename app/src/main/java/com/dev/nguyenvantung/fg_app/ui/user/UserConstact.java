@@ -1,14 +1,10 @@
 package com.dev.nguyenvantung.fg_app.ui.user;
 
-import com.dev.nguyenvantung.fg_app.data.model.user.User;
-import com.dev.nguyenvantung.fg_app.data.model.userdetail.UserDetail;
-import com.dev.nguyenvantung.fg_app.data.source.remote.response.user.UserResponse;
-
-import java.util.List;
+import com.dev.nguyenvantung.fg_app.data.source.remote.response.user.UserDetailResponse;
 
 public interface UserConstact {
     interface View{
-        void setUserDetail(UserResponse data);
+        void setUserDetail(UserDetailResponse data);
         void showProgressBar();
         void dismissProgressBar();
     }
