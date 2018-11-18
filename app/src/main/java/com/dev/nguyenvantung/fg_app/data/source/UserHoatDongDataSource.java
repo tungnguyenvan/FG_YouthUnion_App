@@ -15,5 +15,6 @@ public interface UserHoatDongDataSource {
         Single<UsersResponse> listNotJoin(String token, int id);
         Single<UserHoatDongResponse> listJoined(String token, int id);
         Single<CheckInResponse> checkIn(String token, CheckInRequest checkInRequest);
+        Single<UserHoatDongResponse> userJoined(String token, int id);
     }
 }

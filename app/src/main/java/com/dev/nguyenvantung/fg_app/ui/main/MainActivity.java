@@ -29,6 +29,7 @@ import com.dev.nguyenvantung.fg_app.ui.hoatdong.HoatDongFragment;
 import com.dev.nguyenvantung.fg_app.ui.lcdoan.LCDoanFragment;
 import com.dev.nguyenvantung.fg_app.ui.login.LoginActivity;
 import com.dev.nguyenvantung.fg_app.ui.user.UserActivity;
+import com.dev.nguyenvantung.fg_app.ui.userfragment.UserFragment;
 import com.dev.nguyenvantung.fg_app.utils.AppConstants;
 import com.dev.nguyenvantung.fg_app.utils.AppPref;
 import com.dev.nguyenvantung.fg_app.utils.navigator.Navigator;
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private MainContract.Presenter mPresenter;
     private ProgressDialog mProgressDialog;
     private Navigator mNavigator;
+    private UserFragment userFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,7 +119,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void toUserActivity(){
-        mNavigator.startActivity(UserActivity.class);
+//        mNavigator.startActivity(UserActivity.class);
+        if (userFragment == null) userFragment = new UserFragment();
+        userFragment.addData(AppConstants.USER.getId());
+        userFragment.show(getSupportFragmentManager(), TAG);
+        drawerLayout.closeDrawer(Gravity.START);
     }
 
     private void about() {

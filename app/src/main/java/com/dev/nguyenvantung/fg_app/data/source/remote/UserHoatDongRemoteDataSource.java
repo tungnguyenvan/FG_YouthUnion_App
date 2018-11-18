@@ -42,4 +42,9 @@ public class UserHoatDongRemoteDataSource implements UserHoatDongDataSource.Remo
     public Single<CheckInResponse> checkIn(String token, CheckInRequest checkInRequest) {
         return mApiUserHoatDong.checkin(token, checkInRequest);
     }
+
+    @Override
+    public Single<UserHoatDongResponse> userJoined(String token, int id) {
+        return mApiUserHoatDong.userJoined(token, id);
+    }
 }

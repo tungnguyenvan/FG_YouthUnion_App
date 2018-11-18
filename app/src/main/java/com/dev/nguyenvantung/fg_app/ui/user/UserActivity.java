@@ -5,24 +5,18 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.dev.nguyenvantung.fg_app.R;
-import com.dev.nguyenvantung.fg_app.data.model.user.User;
-import com.dev.nguyenvantung.fg_app.data.model.userdetail.UserDetail;
 import com.dev.nguyenvantung.fg_app.data.repository.UserRepository;
 import com.dev.nguyenvantung.fg_app.data.source.local.UserLocalDataSource;
 import com.dev.nguyenvantung.fg_app.data.source.remote.UserRemoteDataSource;
-import com.dev.nguyenvantung.fg_app.data.source.remote.response.user.UserResponse;
+import com.dev.nguyenvantung.fg_app.data.source.remote.response.user.UserDetailResponse;
 import com.dev.nguyenvantung.fg_app.utils.AppConstants;
 import com.dev.nguyenvantung.fg_app.utils.AppPref;
 import com.dev.nguyenvantung.fg_app.utils.helper.DateHelper;
 import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
-
-import java.text.SimpleDateFormat;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -78,7 +72,7 @@ public class UserActivity extends AppCompatActivity implements UserConstact.View
 
 
     @Override
-    public void setUserDetail(UserResponse userDetail) {
+    public void setUserDetail(UserDetailResponse userDetail) {
         Log.d(TAG, userDetail.getData().getMiddleName() + "---" + AppConstants.USER.getUsername());
         txt_user_name.setText(AppConstants.USER.getUsername());
         txt_email.setText(AppConstants.USER.getEmail());

@@ -1,5 +1,6 @@
 package com.dev.nguyenvantung.fg_app.data.source.remote.api;
 
+import com.dev.nguyenvantung.fg_app.data.source.remote.response.user.UserDetailResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.user.UserResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.user.UsersResponse;
 import com.dev.nguyenvantung.fg_app.utils.AppConstants;
@@ -18,5 +19,8 @@ public interface ApiUser {
     Single<UsersResponse> listUserLCDoan(@Header(AppConstants.AUTHORIZATION) String token, @Path(AppConstants.ID) int id);
 
     @GET("users/detail/{id}")
-    Single<UserResponse> userDetail(@Header(AppConstants.AUTHORIZATION) String token, @Path(AppConstants.ID) int id);
+    Single<UserDetailResponse> userDetail(@Header(AppConstants.AUTHORIZATION) String token, @Path(AppConstants.ID) int id);
+
+    @GET("users/{id}")
+    Single<UserResponse> show (@Header(AppConstants.AUTHORIZATION) String token, @Path(AppConstants.ID) int id);
 }
