@@ -2,9 +2,12 @@ package com.dev.nguyenvantung.fg_app.ui.storehoatdong;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.dev.nguyenvantung.fg_app.R;
+import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDong;
 import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDongRequest;
 import com.dev.nguyenvantung.fg_app.data.model.hoatdongtype.HoatDongType;
 import com.dev.nguyenvantung.fg_app.data.repository.HoatDongRepository;
@@ -27,9 +31,11 @@ import com.dev.nguyenvantung.fg_app.utils.AppPref;
 import com.dev.nguyenvantung.fg_app.utils.Validation;
 import com.dev.nguyenvantung.fg_app.utils.helper.CalendaHelper;
 import com.dev.nguyenvantung.fg_app.utils.helper.DateHelper;
+import com.dev.nguyenvantung.fg_app.utils.navigator.Navigator;
 import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
 import com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,7 +45,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class StoreHoatDongActivity extends AppCompatActivity
-        implements StoreHoatDongConstact.View, View.OnClickListener {
+        implements StoreHoatDongConstact.View {
     private static final String TAG = StoreHoatDongActivity.class.getName();
     @BindView(R.id.toolbar)
     public Toolbar toolbar;
@@ -64,6 +70,7 @@ public class StoreHoatDongActivity extends AppCompatActivity
     private StoreHoatDongConstact.Presenter mPresenter;
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private Date date = new Date();
+    private Navigator mNavigator;
 
     private List<HoatDongType> hoatDongTypes;
     private HoatDongTypeAdapter hoatDongTypeAdapter;
@@ -93,7 +100,7 @@ public class StoreHoatDongActivity extends AppCompatActivity
         txt_start.setText(simpleDateFormat.format(date));
         txt_end.setText(simpleDateFormat.format(date));
 
-        btn_create.setOnClickListener(this);
+        btn_create.setOnClickListener(v -> createHoatDong());
 
         hoatDongTypes = new ArrayList<>();
         hoatDongTypeAdapter = new HoatDongTypeAdapter(hoatDongTypes, this);
@@ -127,6 +134,17 @@ public class StoreHoatDongActivity extends AppCompatActivity
 
     }
 
+    private void finishActivity(HoatDong hoatDong){
+        if (mNavigator == null) mNavigator = new Navigator(this);
+        Intent intent = new Intent();
+        intent.putExtra(AppConstants.ID, hoatDong.getId());
+        Log.d(TAG,"ID: " + hoatDong.getId());
+        mProgressDialog.dismiss();
+//        mNavigator.finishActivityWithResult(intent, AppConstants.REQUEST_CODE_STORE_HOATDONG);
+        setResult(RESULT_OK, intent);
+        finish();
+    }
+
     @Override
     public void showProgressbar() {
         if (mProgressDialog == null) initProgressDialog();
@@ -148,19 +166,10 @@ public class StoreHoatDongActivity extends AppCompatActivity
     public void createHoatDongSuccess(HoatDongsResponse hoatDong) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.store_hoatdong_success));
+        builder.setCancelable(false);
         builder.setMessage(ed_name.getText().toString() + " " + getString(R.string.created_success));
-        builder.setPositiveButton(getString(R.string.ok), ((dialog, which) -> onBackPressed()));
+        builder.setPositiveButton(getString(R.string.ok), ((dialog, which) -> finishActivity(hoatDong.getData().get(0))));
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.store_hoatdong_btn_create:
-                createHoatDong();
-                break;
-        }
-    }
-
 }

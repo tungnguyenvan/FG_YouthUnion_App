@@ -1,16 +1,19 @@
 package com.dev.nguyenvantung.fg_app.ui.hoatdong.fragment.coming;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.dev.nguyenvantung.fg_app.R;
 import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDong;
@@ -91,7 +94,21 @@ public class HoatDongComingFragment extends Fragment implements HoatDongComingCo
 
     private void storeHoatDong() {
         Intent intent = new Intent(getActivity(), StoreHoatDongActivity.class);
-        new Navigator(getActivity()).startActivityForResult(intent, AppConstants.REQUEST_CODE_STORE_HOATDONG);
+//        new Navigator(getActivity()).startActivityForResult(intent, AppConstants.REQUEST_CODE_STORE_HOATDONG);
+        startActivityForResult(intent, AppConstants.REQUEST_CODE_STORE_HOATDONG);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == AppConstants.REQUEST_CODE_STORE_HOATDONG && resultCode == Activity.RESULT_OK && data != null){
+            int id = data.getIntExtra(AppConstants.ID, 0);
+            Log.d(TAG, "ID: " + id);
+            if (id > 0) {
+                mPresenter.hoatDong(AppConstants.BEARER + AppPref.getInstance(getContext()).getApiToken(), id);
+            }else {
+                Toast.makeText(getContext(), "error", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     @Override
@@ -119,5 +136,12 @@ public class HoatDongComingFragment extends Fragment implements HoatDongComingCo
         Intent intent = new Intent(getContext(), HoatDongDetailActivity.class);
         intent.putExtra(AppConstants.ID, id);
         navigator.startActivity(intent, view, getString(R.string.share_hoatdong));
+    }
+
+    @Override
+    public void setHoatDong(HoatDong mHoatDong) {
+        listHoatDongComing.add(0, mHoatDong);
+        hoatDongAdapter.notifyDataSetChanged();
+        rv_hoatdong_coming.smoothScrollToPosition(0);
     }
 }
