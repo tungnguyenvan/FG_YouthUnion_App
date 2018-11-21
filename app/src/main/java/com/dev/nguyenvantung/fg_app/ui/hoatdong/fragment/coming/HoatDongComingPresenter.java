@@ -3,6 +3,7 @@ package com.dev.nguyenvantung.fg_app.ui.hoatdong.fragment.coming;
 import android.util.Log;
 
 import com.dev.nguyenvantung.fg_app.data.repository.HoatDongRepository;
+import com.dev.nguyenvantung.fg_app.data.source.remote.response.hoatdong.HoatDongResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.hoatdong.HoatDongsResponse;
 import com.dev.nguyenvantung.fg_app.utils.rx.SchedulerProvider;
 
@@ -35,9 +36,24 @@ public class HoatDongComingPresenter implements HoatDongComingConstract.Presente
                         error -> handleError(error));
     }
 
+    @Override
+    public void hoatDong(String token, int id) {
+        mView.showProgressBar();
+        mRepository.show(token, id)
+                .subscribeOn(mSchedulerProvider.io())
+                .observeOn(mSchedulerProvider.ui())
+                .subscribe(hoatDongResponse -> handleSuccess(hoatDongResponse),
+                        error -> handleError(error));
+    }
+
     private void handleSuccess(HoatDongsResponse hoatDongsResponse) {
         mView.dismissProgressBar();
         mView.setListHoatDongComing(hoatDongsResponse.getData());
+    }
+
+    private void handleSuccess(HoatDongResponse hoatDongResponse){
+        mView.dismissProgressBar();
+        mView.setHoatDong(hoatDongResponse.getData());
     }
 
     private void handleError(Throwable e) {

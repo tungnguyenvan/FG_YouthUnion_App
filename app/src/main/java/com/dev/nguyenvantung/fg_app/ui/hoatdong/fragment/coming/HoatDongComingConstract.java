@@ -11,10 +11,12 @@ public interface HoatDongComingConstract {
         void showProgressBar();
         void dismissProgressBar();
         void hoatDongDetail(android.view.View view, int id);
+        void setHoatDong(HoatDong mHoatDong);
     }
 
     interface Presenter{
-        void listHoatDongComing(String token);
         void setView(HoatDongComingConstract.View view);
+        void listHoatDongComing(String token);
+        void hoatDong(String token, int id);
     }
 }

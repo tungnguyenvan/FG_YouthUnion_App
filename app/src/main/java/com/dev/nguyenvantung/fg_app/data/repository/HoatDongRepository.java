@@ -1,9 +1,7 @@
 package com.dev.nguyenvantung.fg_app.data.repository;
 
-import com.dev.nguyenvantung.fg_app.data.model.hoatdong.CheckInRequest;
 import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDongRequest;
 import com.dev.nguyenvantung.fg_app.data.source.HoatDongDataSource;
-import com.dev.nguyenvantung.fg_app.data.source.remote.response.checkin.CheckInResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.hoatdong.HoatDongResponse;
 import com.dev.nguyenvantung.fg_app.data.source.remote.response.hoatdong.HoatDongsResponse;
 
