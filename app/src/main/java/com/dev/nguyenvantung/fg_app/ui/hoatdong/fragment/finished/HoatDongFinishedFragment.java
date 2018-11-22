@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.dev.nguyenvantung.fg_app.R;
 import com.dev.nguyenvantung.fg_app.data.model.hoatdong.HoatDong;
@@ -41,6 +42,8 @@ public class HoatDongFinishedFragment extends Fragment implements HoatDongFinish
     protected RecyclerView rv_hoatdong_end;
     @BindView(R.id.end_progress)
     protected ProgressBar progressBar;
+    @BindView(R.id.not_data_end)
+    public TextView txtNotData;
 
     private HoatDongAdapter hoatDongAdapter;
     private List<HoatDong> listHoatDong;
@@ -83,10 +86,21 @@ public class HoatDongFinishedFragment extends Fragment implements HoatDongFinish
         rv_hoatdong_end.setAdapter(hoatDongAdapter);
     }
 
+    private void checkData(){
+        if (this.listHoatDong.size() <= 0){
+            txtNotData.setVisibility(View.VISIBLE);
+            rv_hoatdong_end.setVisibility(View.GONE);
+        }else {
+            txtNotData.setVisibility(View.GONE);
+            rv_hoatdong_end.setVisibility(View.VISIBLE);
+        }
+    }
+
 
     @Override
     public void setListHoatDongFinished(List<HoatDong> listHoatDong) {
         this.listHoatDong.addAll(listHoatDong);
+        checkData();
         hoatDongAdapter.notifyDataSetChanged();
     }
 
