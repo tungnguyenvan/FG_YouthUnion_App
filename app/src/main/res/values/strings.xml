@@ -62,4 +62,5 @@
     <string name="ok">Ok</string>
     <string name="required">Cần phải có</string>
     <string name="title_create_hoatdong">Tạo hoạt đông</string>
+    <string name="coming_hoatdong">Hoạt động sắp diễn ra</string>
 </resources>
