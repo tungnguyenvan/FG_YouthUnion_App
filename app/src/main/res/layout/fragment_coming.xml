@@ -10,9 +10,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <!-- TODO: Update blank fragment layout -->
-        <include layout="@layout/header" />
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -29,6 +26,17 @@
                 android:layout_height="wrap_content" />
         </RelativeLayout>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/coming.not.data"
+        android:visibility="gone"
+        android:textSize="@dimen/font_size_16"
+        android:gravity="center"
+        android:text="Không có hoạt động"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <Button
         android:id="@+id/btn_store_hoatdong"
         android:transformPivotY="10dp"

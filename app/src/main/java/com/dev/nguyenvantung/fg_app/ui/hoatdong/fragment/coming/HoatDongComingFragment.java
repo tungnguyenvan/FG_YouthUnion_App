@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dev.nguyenvantung.fg_app.R;
@@ -51,6 +53,9 @@ public class HoatDongComingFragment extends Fragment implements HoatDongComingCo
     @BindView(R.id.btn_store_hoatdong)
     protected Button btn_store;
 
+    @BindView(R.id.coming_not_data)
+    protected TextView txtNotData;
+
     private HoatDongAdapter hoatDongAdapter;
     private List<HoatDong> listHoatDongComing;
     public HoatDongComingFragment() {
@@ -67,22 +72,17 @@ public class HoatDongComingFragment extends Fragment implements HoatDongComingCo
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_coming, container, false);
         ButterKnife.bind(this,view);
-        initRecycleview();
 
-        HoatDongRepository hoatDongRepository = new HoatDongRepository(HoatDongLocalDataSource.getInstance(), HoatDongRemoteDataSource.getInstance(getContext()));
-        mPresenter = new HoatDongComingPresenter(hoatDongRepository, SchedulerProvider.getInstance());
-        mPresenter.setView(this);
-        mPresenter.listHoatDongComing(AppConstants.BEARER + AppPref.getInstance(getContext()).getApiToken());
+        initView();
+        initPresenter();
+        getData();
 
-
-        btn_store.setOnClickListener((v) -> storeHoatDong());
         return view;
     }
 
-    private void initRecycleview() {
+    private void initView() {
         listHoatDongComing = new ArrayList<>();
         hoatDongAdapter = new HoatDongAdapter(listHoatDongComing, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),
@@ -90,12 +90,36 @@ public class HoatDongComingFragment extends Fragment implements HoatDongComingCo
         rv_hoatdong_coming.setHasFixedSize(true);
         rv_hoatdong_coming.setLayoutManager(linearLayoutManager);
         rv_hoatdong_coming.setAdapter(hoatDongAdapter);
+
+        btn_store.setOnClickListener((v) -> storeHoatDong());
+    }
+
+    private void initPresenter(){
+        HoatDongRepository hoatDongRepository = new HoatDongRepository(HoatDongLocalDataSource.getInstance(), HoatDongRemoteDataSource.getInstance(getContext()));
+        mPresenter = new HoatDongComingPresenter(hoatDongRepository, SchedulerProvider.getInstance());
+        mPresenter.setView(this);
+    }
+
+    private void getData(){
+        mPresenter.listHoatDongComing(AppConstants.BEARER + AppPref.getInstance(getContext()).getApiToken());
     }
 
     private void storeHoatDong() {
         Intent intent = new Intent(getActivity(), StoreHoatDongActivity.class);
-//        new Navigator(getActivity()).startActivityForResult(intent, AppConstants.REQUEST_CODE_STORE_HOATDONG);
         startActivityForResult(intent, AppConstants.REQUEST_CODE_STORE_HOATDONG);
+    }
+
+    /**
+     * Kiểm tra xem có dữ liệu hay không, để hiển thị thông báo ra màn hình là "Không có hoạt động"
+     */
+    private void checkData(){
+        if (this.listHoatDongComing.size() <= 0){
+            txtNotData.setVisibility(View.VISIBLE);
+            rv_hoatdong_coming.setVisibility(View.GONE);
+        }else {
+            txtNotData.setVisibility(View.GONE);
+            rv_hoatdong_coming.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -113,10 +137,11 @@ public class HoatDongComingFragment extends Fragment implements HoatDongComingCo
 
     @Override
     public void setListHoatDongComing(List<HoatDong> listHoatDongComing) {
+        this.listHoatDongComing.addAll(listHoatDongComing);
         if (listHoatDongComing.isEmpty()) {
             progressBar.setVisibility(View.INVISIBLE);
         }
-        this.listHoatDongComing.addAll(listHoatDongComing);
+        checkData();
         hoatDongAdapter.notifyDataSetChanged();
     }
 
@@ -141,6 +166,7 @@ public class HoatDongComingFragment extends Fragment implements HoatDongComingCo
     @Override
     public void setHoatDong(HoatDong mHoatDong) {
         listHoatDongComing.add(0, mHoatDong);
+        checkData();
         hoatDongAdapter.notifyDataSetChanged();
         rv_hoatdong_coming.smoothScrollToPosition(0);
     }
