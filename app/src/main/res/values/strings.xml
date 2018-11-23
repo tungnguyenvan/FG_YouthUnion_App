@@ -63,4 +63,6 @@
     <string name="required">Cần phải có</string>
     <string name="title_create_hoatdong">Tạo hoạt đông</string>
     <string name="coming_hoatdong">Hoạt động sắp diễn ra</string>
+    <string name="coming">Sắp diễn ra</string>
+    <string name="finish">Đã diễn ra</string>
 </resources>
