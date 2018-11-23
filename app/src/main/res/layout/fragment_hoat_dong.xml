@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.hoatdong.HoatDongFragment">
+    tools:context=".ui.hoatdong.HoatDongFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <android.support.design.widget.TabLayout
+        android:id="@+id/hoatdong.tablayout"
+        android:layout_gravity="fill"
+        app:tabMode="fixed"
+        style="@style/MyCustomTabLayout"
+        app:tabTextColor="@color/colorDarkGray"
+        app:tabSelectedTextColor="@color/colorBlack"
+        app:tabRippleColor="@color/colorGray"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-</FrameLayout>
+</LinearLayout>

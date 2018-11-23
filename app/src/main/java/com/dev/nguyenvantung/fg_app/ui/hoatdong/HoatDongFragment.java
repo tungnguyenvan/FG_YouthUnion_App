@@ -2,6 +2,7 @@ package com.dev.nguyenvantung.fg_app.ui.hoatdong;
 
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -23,7 +24,9 @@ public class HoatDongFragment extends Fragment {
     private static final String TAG = "HoatDongFragment";
     private View view;
     @BindView(R.id.viewpager)
-    public ViewPager viewpager;
+    public ViewPager mViewpager;
+    @BindView(R.id.hoatdong_tablayout)
+    public TabLayout mTabLayout;
     private static HoatDongFragment instance;
 
 
@@ -46,16 +49,17 @@ public class HoatDongFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_hoat_dong, container, false);
         ButterKnife.bind(this, view);
 
-        initViewPager();
+        initView();
 
         return view;
     }
 
-    private void initViewPager() {
+    private void initView() {
         ViewPagerHoatDongAdapter mainAdapter = new ViewPagerHoatDongAdapter(getFragmentManager());
-        mainAdapter.addFragment(HoatDongComingFragment.getInstance());
-        mainAdapter.addFragment(HoatDongFinishedFragment.getInstance());
-        viewpager.setAdapter(mainAdapter);
+        mainAdapter.addFragment(HoatDongComingFragment.getInstance(), getString(R.string.coming));
+        mainAdapter.addFragment(HoatDongFinishedFragment.getInstance(), getString(R.string.finish));
+        mViewpager.setAdapter(mainAdapter);
+        mTabLayout.setupWithViewPager(mViewpager);
     }
 
 }
