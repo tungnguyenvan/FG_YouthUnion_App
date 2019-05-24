@@ -160,6 +160,7 @@ public class HoatDongComingFragment extends Fragment implements HoatDongComingCo
         Navigator navigator = new Navigator(getActivity());
         Intent intent = new Intent(getContext(), HoatDongDetailActivity.class);
         intent.putExtra(AppConstants.ID, id);
+        intent.putExtra(AppConstants.TYPE, HoatDongDetailActivity.COMING);
         navigator.startActivity(intent, view, getString(R.string.share_hoatdong));
     }
 

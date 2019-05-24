@@ -20,7 +20,13 @@ public class CalendaHelper implements CollapsibleCalendar.CalendarListener {
     public void onDaySelect() {
         Day day = collapsibleCalendar.getSelectedDay();
         int month = day.getMonth() + 1;
-        textView.setText(day.getYear() + "-" + month + "-" + day.getDay());
+
+        if (month < 10) {
+            textView.setText(day.getYear() + "-0" + month + "-" + day.getDay());
+        } else {
+            textView.setText(day.getYear() + "-" + month + "-" + day.getDay());
+        }
+
         Log.d("select : ", textView.getText().toString());
     }
 

@@ -31,16 +31,6 @@ public class HoatDongAdapter extends RecyclerView.Adapter<HoatDongAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.item_hoatdong_txt_name)
         TextView txt_name;
-     /*
-        @BindView(R.id.item_hoatdong_txt_desc)
-        TextView txt_desc;
-
-        @BindView(R.id.item_hoatdong_txt_from_date)
-        TextView txt_from_date;
-
-        @BindView(R.id.item_hoatdong_txt_to_date)
-        TextView txt_to_date;
-        */
         @BindView(R.id.item_hoatdong_layout)
         public RelativeLayout layout;
         public ViewHolder(@NonNull View itemView) {
@@ -54,7 +44,6 @@ public class HoatDongAdapter extends RecyclerView.Adapter<HoatDongAdapter.ViewHo
         public void onClick(View v) {
             if (viewComming != null) viewComming.hoatDongDetail(layout, listHoatDong.get(getAdapterPosition()).getId());
             else viewFinished.hoatDongDetail(layout, listHoatDong.get(getAdapterPosition()).getId());
-
         }
     }
 
@@ -81,11 +70,6 @@ public class HoatDongAdapter extends RecyclerView.Adapter<HoatDongAdapter.ViewHo
         HoatDong hoatDong = listHoatDong.get(i);
         String strDate = fm.format(hoatDong.getFromDate());
         viewHolder.txt_name.setText(hoatDong.getName());
-//        viewHolder.txt_desc.setText(hoatDong.getDesc());
-//        DateHelper.date date = DateHelper.getInstance();
-//        date = dateHelper.splitDate(strDate);
-//        viewHolder.txt_from_date.setText(date.getDay() + "/" + date.getMonth());
-//        viewHolder.txt_to_date.setText(this.fm.format(hoatDong.getEndDate()));
     }
 
     @Override

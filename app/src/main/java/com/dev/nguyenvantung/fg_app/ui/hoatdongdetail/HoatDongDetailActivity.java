@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -43,6 +44,8 @@ import butterknife.ButterKnife;
 
 public class HoatDongDetailActivity extends AppCompatActivity implements HoatDongDetailContract.View {
     private static final String TAG = HoatDongDetailActivity.class.getName();
+    public static final int COMING = 0;
+    public static final int FINISHED = 1;
 
     @BindView(R.id.item_hoatdong_detail_txt_name)
     public TextView txt_name;
@@ -77,6 +80,7 @@ public class HoatDongDetailActivity extends AppCompatActivity implements HoatDon
 
     private ProgressDialog progressDialog;
     private UserFragment mUserFragment;
+    private int mType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +102,7 @@ public class HoatDongDetailActivity extends AppCompatActivity implements HoatDon
         btnJoined.setOnClickListener(view -> joined());
 
         users = new ArrayList<>();
-        hoatDongDetailAdapter = new HoatDongDetailAdapter(users, this);
+        hoatDongDetailAdapter = new HoatDongDetailAdapter(users, this, mType);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -131,6 +135,7 @@ public class HoatDongDetailActivity extends AppCompatActivity implements HoatDon
     private void getData() {
         appPref = new AppPref(this);
         idHoatDong = getIntent().getIntExtra(AppConstants.ID, 0);
+        mType = getIntent().getIntExtra(AppConstants.TYPE, 0);
     }
 
     private void initProgressbar(){
